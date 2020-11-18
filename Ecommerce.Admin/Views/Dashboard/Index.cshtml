@@ -89,29 +89,36 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Người đặt hàng</th>
-                                    <th>Ngày đặt hàng</th>
-                                    <th>Giá</th>
-                                    <th>Trạng thái</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.NewOrders)
-                                {
+                        @if (Model.NewOrders.Count > 0)
+                        {
+                            <table id="example1" class="table table-bordered table-striped table-hover">
+                                <thead>
                                     <tr>
-                                        <td>@item.OrderId</td>
-                                        <td>@item.CustomerName</td>
-                                        <td>@item.CreateDate</td>
-                                        <td>@item.TotalPrice.ToString("N0")</td>
-                                        <td>@item.OrderStatus.ToString()</td>
+                                        <th>Id</th>
+                                        <th>Người đặt hàng</th>
+                                        <th>Ngày đặt hàng</th>
+                                        <th>Giá</th>
+                                        <th>Trạng thái</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.NewOrders)
+                                    {
+                                        <tr>
+                                            <td>@item.OrderId</td>
+                                            <td>@item.CustomerName</td>
+                                            <td>@item.CreateDate</td>
+                                            <td>@item.TotalPrice.ToString("N0")</td>
+                                            <td>@item.OrderStatus.ToString()</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                    <span>Chưa có đơn hàng mới trong ngày</span>
+                        }
                     </div>
                     <!-- /.card-body -->
                 </div>

@@ -20,6 +20,15 @@ namespace Ecommerce.Repository
         }
 
         /// <summary>
+        /// Get all as queryable
+        /// </summary>
+        /// <returns></returns>
+        public virtual IQueryable<CategoryViewModel> GetAllAsQueryale()
+        {
+            throw new Exception();
+        }
+
+        /// <summary>
         /// Get category parrent
         /// </summary>
         /// <returns></returns>
@@ -59,9 +68,9 @@ namespace Ecommerce.Repository
         /// Get list categories
         /// </summary>
         /// <returns></returns>
-        public async Task<List<CategoryViewModel>> GetListCategories(string languageId)
+        public IQueryable<CategoryViewModel> GetListCategories(string languageId)
         {
-            var categories = await (from c in DbContext.Categories
+            var categories =  (from c in DbContext.Categories
                                     join ct in DbContext.CategoryTranslations on c.Id equals ct.CategoryId
                                     where ct.LanguageId == languageId
                                     select new CategoryViewModel()
@@ -73,8 +82,9 @@ namespace Ecommerce.Repository
                                         Name = ct.Name,
                                         ParentId = c.ParentId,
                                         CreatedDate = c.CreatedDate,
-                                        LanguageId = languageId
-                                    }).ToListAsync();
+                                        LanguageId = languageId,
+                                        IsDeleted = c.IsDeleted
+                                    });
 
             return categories;
         }
@@ -116,7 +126,7 @@ namespace Ecommerce.Repository
         /// Create category
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> Create(CategoryCreateDto dto)
+        public async Task<bool> Create(CategoryDto dto)
         {
             var category = new Category()
             {

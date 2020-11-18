@@ -101,7 +101,11 @@ namespace Ecommerce.Repository.Interfaces
         void DeleteRange(List<T> entity);
         #endregion
 
+
+
         #region Async function
+
+
         /// <summary>
         /// FindAllAsync
         /// </summary>

@@ -30,36 +30,40 @@
 <section class="content">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-header">
-                <a asp-action="Create" class="btn btn-success">Thêm mới</a>
-            </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Tài khoản</th>
-                            <th>Tên</th>
-                            <th>Họ</th>
-                            <th>Điện thoại</th>
-                            <th>Email</th>
-                            <th>Địa chỉ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+                @if (Model.Count > 0)
+                {
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
                             <tr>
-                                <td>@item.Username</td>
-                                <td>@item.LastName</td>
-                                <td>@item.FirstName</td>
-                                <td>@item.Phone</td>
-                                <td>@item.Email</td>
-                                <td>@item.Address</td>
+                                <th>Tài khoản</th>
+                                <th>Tên</th>
+                                <th>Họ</th>
+                                <th>Điện thoại</th>
+                                <th>Email</th>
+                                <th>Địa chỉ</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Username</td>
+                                    <td>@item.LastName</td>
+                                    <td>@item.FirstName</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Address</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <span>Chưa có người dùng đăng ký trong ngày</span>
+                }
             </div>
             <!-- /.card-body -->
         </div>

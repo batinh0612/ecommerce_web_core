@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
@@ -10,6 +11,13 @@ namespace Ecommerce.Repository.Interfaces
 {
     public interface ICategoryRepository : IRepository<Category>
     {
+
+        /// <summary>
+        /// Get all as queryable
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<CategoryViewModel> GetAllAsQueryale();
+
         /// <summary>
         /// Get category parrent
         /// </summary>
@@ -26,7 +34,7 @@ namespace Ecommerce.Repository.Interfaces
        /// Get list categories
        /// </summary>
        /// <returns></returns>
-       Task<List<CategoryViewModel>> GetListCategories(string languageId);
+       IQueryable<CategoryViewModel> GetListCategories(string languageId);
 
        /// <summary>
        /// Get category by id
@@ -40,7 +48,7 @@ namespace Ecommerce.Repository.Interfaces
        /// </summary>
        /// <param name="dto"></param>
        /// <returns></returns>
-       Task<bool> Create(CategoryCreateDto dto);
+       Task<bool> Create(CategoryDto dto);
 
        /// <summary>
        /// Update

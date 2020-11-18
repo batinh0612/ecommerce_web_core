@@ -8,6 +8,7 @@ using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.Dto.Category;
 using EcommerceCommon.Utilities.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,11 +31,11 @@ namespace Ecommerce.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             var languageId = HttpContext.Session.GetString(SystemConstant.DefaultLanguageId);
 
-            var categories = await _categoryService.GetListCategories(languageId);
+            var categories = _categoryService.GetListCategories(languageId);
 
             ViewBag.Success = TempData["result"];
 
@@ -77,7 +78,7 @@ namespace Ecommerce.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryCreateDto dto)
+        public async Task<IActionResult> Create(CategoryDto dto)
         {
             if (!ModelState.IsValid)
             {

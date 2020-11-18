@@ -12,3 +12,17 @@ D:\Project IT\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecomm
 D:\Project IT\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.csproj.CopyComplete
 D:\Project IT\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.dll
 D:\Project IT\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.pdb
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\Ecommerce.Repository.deps.json
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\Ecommerce.Repository.dll
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\Ecommerce.Repository.pdb
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\Ecommerce.Domain.dll
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\EcommerceCommon.dll
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\EcommerceCommon.pdb
+D:\EcommerceWebCore\eTakaful.Repository\bin\Debug\netcoreapp3.1\Ecommerce.Domain.pdb
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.csprojAssemblyReference.cache
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.AssemblyInfoInputs.cache
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.AssemblyInfo.cs
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.csproj.CoreCompileInputs.cache
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.csproj.CopyComplete
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.dll
+D:\EcommerceWebCore\eTakaful.Repository\obj\Debug\netcoreapp3.1\Ecommerce.Repository.pdb

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.ViewModels;
 using EcommerceCommon.Infrastructure.Dto.Category;
+using EcommerceCommon.Infrastructure.Dto.Common;
 using EcommerceCommon.Infrastructure.ViewModel.Category;
 
 namespace Ecommerce.Service.Interface
@@ -33,7 +35,7 @@ namespace Ecommerce.Service.Interface
         /// Get list categories
         /// </summary>
         /// <returns></returns>
-        Task<List<CategoryViewModel>> GetListCategories(string languageId);
+        List<CategoryViewModel> GetListCategories(string languageId);
 
         /// <summary>
         /// Get category by id
@@ -47,7 +49,7 @@ namespace Ecommerce.Service.Interface
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<bool> Create(CategoryCreateDto dto);
+        Task<bool> Create(CategoryDto dto);
 
         /// <summary>
         /// Update
@@ -69,5 +71,13 @@ namespace Ecommerce.Service.Interface
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> ChangeStatus(Guid id);
+
+        /// <summary>
+        /// Search And Paging Category
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="languageId"></param>
+        /// <returns></returns>
+        public Task<QueryListResponse<CategoryViewModel>> SearchAndPagingCategory(QueryBase<BaseSearch> dto, string languageId);
     }
 }

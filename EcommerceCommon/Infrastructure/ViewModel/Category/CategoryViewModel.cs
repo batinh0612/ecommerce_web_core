@@ -35,6 +35,8 @@ namespace EcommerceCommon.Infrastructure.ViewModel.Category
         [Display(Name = "Trạng thái")]
         public Status CommonStatus { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         [Display(Name = "Danh mục cha")]
         public string CategoryName { get; set; }
 
