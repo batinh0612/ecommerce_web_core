@@ -62,17 +62,23 @@ namespace Ecommerce.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<ApiResponse> Edit(Guid id, [FromBody] SupplierDto dto)
         {
-            var supplier = await _supplierService.GetByIdAsync(id);
-
-            if (supplier != null)
+            try
             {
-                var newSupplier = _mapper.Map(dto, supplier);
-                newSupplier.UpdatedDate = DateTime.Now;
-                await _supplierService.UpdateAsync(newSupplier);
-                return new ApiResponse($"Record has been updated with id {id} to the database", dto, 201);
-            }
+                var supplier = await _supplierService.GetByIdAsync(id);
 
-            throw new ApiException($"Record with id: {id} does not exist.", 400);
+                if (supplier != null)
+                {
+                    var newSupplier = _mapper.Map(dto, supplier);
+                    newSupplier.UpdatedDate = DateTime.Now;
+                    await _supplierService.UpdateAsync(newSupplier);
+                    return new ApiResponse($"Record has been updated with id {id} to the database", dto, 201);
+                }
+                return new ApiResponse($"Can't update category with id: {id}", dto, 200);
+            }
+            catch (Exception ex)
+            {
+                throw new ApiException(ex, 400);
+            }  
         }
 
         [HttpDelete("delete-supplier/{id}")]
