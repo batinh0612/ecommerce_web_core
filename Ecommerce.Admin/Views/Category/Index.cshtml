@@ -1,0 +1,133 @@
+﻿@using EcommerceCommon.Infrastructure.ViewModel.Category;
+@model List<CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Danh mục sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section DataTable{
+    <!-- DataTables -->
+    <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+}
+
+<style>
+    .btn-active:hover{
+        color:white !important;
+    }
+    .btn-action {
+        line-height: 1 !important;
+    }
+</style>
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Danh mục sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Danh mục sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <a asp-action="Create" class="btn btn-success">Thêm mới</a>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                @if (@ViewBag.Success != null)
+                {
+                    <div id="msgSuccess" class="alert alert-success" role="alert">
+                        @ViewBag.Success
+                    </div>
+                }
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên danh mục</th>
+                            <th>Tiêu đề</th>
+                            <th>Mô tả</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.MetaTitle</td>
+                                <td>@item.Description</td>
+                                <td><a href="#" data-id="@item.Id" class="btn btn-action btn-active btn-outline-success status">@(item.IsDisplayHomePage ? "Kích hoạt" : "Khoá") </a></td>
+                                <td>@item.CreatedDate.ToShortDateString()</td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-action" })
+                                    @Html.ActionLink("Xem chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-action" })
+                                    @*@Html.ActionLink("Xóa", "#", new { id = item.Id }, new { @class = "btn btn-danger btn-action btn-delete" })*@
+                                    <a href="#" data-id="@item.Id" class="btn btn-danger btn-action btn-delete">Xoá</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="/js/bootbox.min.js"></script>
+    <script src="/js/controller/categoryController.js"></script>
+    <script>
+        setTimeout(function () {
+            $("#msgSuccess").fadeOut();
+        }, 3000);
+
+        $(function () {
+            $("#example1").DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "columnDefs": [
+                    { "targets": 5, "orderable": false }
+                ],
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                "language": {
+                    "info": "Hiển thị _START_ đến _END_ trong _TOTAL_ bản ghi",
+                    "search": "Tìm kiếm:",
+                    "zeroRecords": "Không tìm thấy bản ghi nào",
+                    "infoFiltered": "(Tìm kiếm từ _MAX_ bản ghi)",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                    "lengthMenu": "Hiển thị _MENU_ bản ghi",
+                    "infoEmpty": "Hiển thị 0 đến 0 trong 0 bản ghi",
+                    "emptyTable": "Không có dữ liệu trong bảng",
+                },
+                "zeroRecords": "Không tìm thấy bản ghi nào",
+            });
+        });
+    </script>
+}

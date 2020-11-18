@@ -1,0 +1,80 @@
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csprojAssemblyReference.cache
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfoInputs.cache
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfo.cs
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CoreCompileInputs.cache
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.deps.json
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.dll
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.dll
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.pdb
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.pdb
+D:\Project IT\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CopyComplete
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\Project IT\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.deps.json
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.dll
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.dll
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.pdb
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.pdb
+D:\Project IT\EcommerceWeb\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csprojAssemblyReference.cache
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfoInputs.cache
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfo.cs
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CoreCompileInputs.cache
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CopyComplete
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\Project IT\EcommerceWeb\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.deps.json
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.dll
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.dll
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.dll
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.pdb
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.pdb
+E:\EcommerceCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csprojAssemblyReference.cache
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfoInputs.cache
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfo.cs
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CoreCompileInputs.cache
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CopyComplete
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.dll
+E:\EcommerceCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.deps.json
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.dll
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.dll
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.dll
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.pdb
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.pdb
+E:\Ecommerce_Web_Core\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csprojAssemblyReference.cache
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfoInputs.cache
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfo.cs
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CoreCompileInputs.cache
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CopyComplete
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.dll
+E:\Ecommerce_Web_Core\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.deps.json
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Service.pdb
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.dll
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.dll
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Domain.pdb
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\Ecommerce.Repository.pdb
+D:\EcommerceWebCore\eTakaful.Core\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csprojAssemblyReference.cache
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfoInputs.cache
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.AssemblyInfo.cs
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CoreCompileInputs.cache
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.csproj.CopyComplete
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.dll
+D:\EcommerceWebCore\eTakaful.Core\obj\Debug\netcoreapp2.2\Ecommerce.Service.pdb

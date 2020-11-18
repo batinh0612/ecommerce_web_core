@@ -1,0 +1,121 @@
+﻿@model EcommerceCommon.Infrastructure.Dto.Product.ProductUpdateDto
+
+@{
+    ViewData["Title"] = "Cập nhật sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/js/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <a asp-action="Index" class="btn btn-success">Về danh sách</a>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form asp-action="Edit" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Keyword" class="control-label"></label>
+                                <input asp-for="Keyword" class="form-control" />
+                                <span asp-validation-for="Keyword" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Details" class="control-label"></label>
+                                <textarea id="editor" asp-for="Details" class="form-control"></textarea>
+                                <span asp-validation-for="Details" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" rows="5" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ShortDescription" class="control-label"></label>
+                                <input asp-for="ShortDescription" class="form-control" />
+                                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SeoDescription" class="control-label"></label>
+                                <input asp-for="SeoDescription" class="form-control" />
+                                <span asp-validation-for="SeoDescription" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SeoTitle" class="control-label"></label>
+                                <input asp-for="SeoTitle" class="form-control" />
+                                <span asp-validation-for="SeoTitle" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SeoAlias" class="control-label"></label>
+                                <input asp-for="SeoAlias" class="form-control" />
+                                <span asp-validation-for="SeoAlias" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductStatus" class="control-label"></label>
+                                <input asp-for="ProductStatus" class="form-control" />
+                                <span asp-validation-for="ProductStatus" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ThumbnailImage" class="control-label"></label>
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input type="file" asp-for="ThumbnailImage" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="@Model.ImageLink" width="40" height="40" />
+                                    </div>
+                                </div>
+                                
+                             
+                                <span asp-validation-for="ThumbnailImage" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</section>
+
+

@@ -1,0 +1,208 @@
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.exe
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.deps.json
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.json
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.dev.json
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csprojAssemblyReference.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfoInputs.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfo.cs
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csproj.CoreCompileInputs.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.Manifest.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.xml
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\Ecommerce.WebAPI.styles.css
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.RazorTargetAssemblyInfo.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.genruntimeconfig.cache
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.ApplicationInsights.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.ApplicationInsights.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Domain.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Repository.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Service.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\EcommerceCommon.dll
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Service.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Domain.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Repository.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\EcommerceCommon.pdb
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csproj.CopyComplete
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.xml
+D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\appsettings.json
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.exe
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.deps.json
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.json
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.dev.json
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.xml
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.ApplicationInsights.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.ApplicationInsights.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Convention.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Domain.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Repository.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Service.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\EcommerceCommon.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Service.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Domain.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Ecommerce.Repository.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\EcommerceCommon.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csprojAssemblyReference.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfoInputs.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfo.cs
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csproj.CoreCompileInputs.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.Manifest.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.xml
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\scopedcss\bundle\Ecommerce.WebAPI.styles.css
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.RazorTargetAssemblyInfo.cache
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csproj.CopyComplete
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.pdb
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.genruntimeconfig.cache

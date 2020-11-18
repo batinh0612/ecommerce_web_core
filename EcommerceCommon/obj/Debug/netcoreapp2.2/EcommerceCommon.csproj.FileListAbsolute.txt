@@ -1,0 +1,35 @@
+D:\Project IT\EcommerceWeb\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.deps.json
+D:\Project IT\EcommerceWeb\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\Project IT\EcommerceWeb\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfoInputs.cache
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfo.cs
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csproj.CoreCompileInputs.cache
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\Project IT\EcommerceWeb\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csprojAssemblyReference.cache
+E:\EcommerceCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.deps.json
+E:\EcommerceCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\EcommerceCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csprojAssemblyReference.cache
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfoInputs.cache
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfo.cs
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csproj.CoreCompileInputs.cache
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\EcommerceCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.pdb
+E:\Ecommerce_Web_Core\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.deps.json
+E:\Ecommerce_Web_Core\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\Ecommerce_Web_Core\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csprojAssemblyReference.cache
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfoInputs.cache
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfo.cs
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csproj.CoreCompileInputs.cache
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.dll
+E:\Ecommerce_Web_Core\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\EcommerceWebCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.deps.json
+D:\EcommerceWebCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\EcommerceWebCore\EcommerceCommon\bin\Debug\netcoreapp2.2\EcommerceCommon.pdb
+D:\EcommerceWebCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfoInputs.cache
+D:\EcommerceWebCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.AssemblyInfo.cs
+D:\EcommerceWebCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.csproj.CoreCompileInputs.cache
+D:\EcommerceWebCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.dll
+D:\EcommerceWebCore\EcommerceCommon\obj\Debug\netcoreapp2.2\EcommerceCommon.pdb
