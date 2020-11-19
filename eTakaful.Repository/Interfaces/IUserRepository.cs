@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
+using EcommerceCommon.Infrastructure.Dto.User;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
 
@@ -10,6 +11,20 @@ namespace Ecommerce.Repository.Interfaces
 {
     public interface IUserRepository: IRepository<User>
     {
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<User> Register(UserRegisterDto dto);
+
+        /// <summary>
+        /// Authenticate
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model);
+
         /// <summary>
         /// Authenticate
         /// </summary>
@@ -57,6 +72,5 @@ namespace Ecommerce.Repository.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task<UserViewModel> GetUserById(Guid id);
-
     } 
 }

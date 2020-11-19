@@ -10,13 +10,95 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
+using EcommerceCommon.Infrastructure.Dto.User;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Ecommerce.Repository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
+        //private readonly AppSettings _appSettings;
         public UserRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+            //_appSettings = appSettings.Value;
+        }
+
+        public async Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model)
+        {
+            var user = await DbContext.Users.SingleOrDefaultAsync(x => x.Username == model.Username);
+
+            if (user == null)
+            {
+                throw new Exception("Username incorrect");
+            }
+
+            //byte[] passwordHash;
+            //byte[] passwordSalt;
+            var result = AuthenUserHelper.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt);
+
+            if (!result)
+            {
+                throw new Exception("Username or password incorrect");
+            }
+
+            // authentication successful so generate jwt token
+            var token = generateJwtToken(user);
+
+            return new AuthenticateResponse(user, token);
+        }
+
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<User> Register(UserRegisterDto dto)
+        {
+            if (DbContext.Users.Any(x => x.Username == dto.Username))
+            {
+                throw new Exception("Username \"" + dto.Username + "\" is already taken");
+            }
+
+            byte[] passwordHash;
+            byte[] passwordSalt;
+
+            AuthenUserHelper.CreatePasswordHash(dto.Password, out passwordHash, out passwordSalt);
+
+            var user = new User()
+            {
+                Username = dto.Username,
+                Address = dto.Address,
+                Avatar = dto.Avatar,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Email = dto.Email,
+                Phone = dto.Phone,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+            };
+
+            await DbContext.Users.AddAsync(user);
+            await DbContext.SaveChangesAsync();
+
+            return user;
+        }
+
+        private string generateJwtToken(User user)
+        {
+            // generate token that is valid for 7 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
         }
 
         /// <summary>

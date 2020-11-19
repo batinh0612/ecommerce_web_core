@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.WebAPI
@@ -41,54 +42,82 @@ namespace Ecommerce.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
+            services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            //var section = Configuration.GetSection("Jwt:Key");
+            //var sectionValue = section.Value;
+
+            string secreat = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true,
+                    //ValidIssuer = Configuration["Jwt:Issuer"],
+                    //ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secreat))
+                };
+            });
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer("Server=DESKTOP-LCP472S;Database=Ecommerce;Integrated Security=SSPI;"));
 
-
+            #region JWT
             // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AuthencationSetting>(appSettingsSection);
+            //var appSettingsSection = Configuration.GetSection("AppSettings");
+            //services.Configure<AuthencationSetting>(appSettingsSection);
 
-            // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AuthencationSetting>();
-            //var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.Events = new JwtBearerEvents
-                {
-                    //OnTokenValidated = context =>
-                    //{
-                    //    var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                    //    var userId = Guid.Parse(context.Principal.Identity.Name);
-                    //    var user = userService.GetById(userId);
-                    //    if (user == null)
-                    //    {
-                    //        // return unauthorized if user no longer exists
-                    //        context.Fail("Unauthorized");
-                    //    }
-                    //    return Task.CompletedTask;
-                    //}
-                };
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    //IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
+            //// configure jwt authentication
+            //var appSettings = appSettingsSection.Get<AuthencationSetting>();
+            ////var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            //services.AddAuthentication(x =>
+            //{
+            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //})
+            //.AddJwtBearer(x =>
+            //{
+            //    x.Events = new JwtBearerEvents
+            //    {
+            //        //OnTokenValidated = context =>
+            //        //{
+            //        //    var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
+            //        //    var userId = Guid.Parse(context.Principal.Identity.Name);
+            //        //    var user = userService.GetById(userId);
+            //        //    if (user == null)
+            //        //    {
+            //        //        // return unauthorized if user no longer exists
+            //        //        context.Fail("Unauthorized");
+            //        //    }
+            //        //    return Task.CompletedTask;
+            //        //}
+            //    };
+            //    x.RequireHttpsMetadata = false;
+            //    x.SaveToken = true;
+            //    x.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        //IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false
+            //    };
+            //});
+            #endregion
+            
+
 
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IApplicationDbContextInitializer, ApplicationDbContextInitializer>();
@@ -164,19 +193,16 @@ namespace Ecommerce.WebAPI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthorization();
+        
+
+      
             app.UseAuthentication();
+            app.UseRouting();
+
+            app.UseMiddleware<JwtMiddleware>();
+
+            app.UseAuthorization();
             app.UseApiResponseAndExceptionWrapper();
-
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller}/{action=Index}/{id?}");
-            //});
-
-
 
             app.UseEndpoints(endpoints =>
             {

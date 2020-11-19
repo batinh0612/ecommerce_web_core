@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ecommerce.Service.Dto
 {
-    public  class UserLoginDto
+    public class UserLoginDto
     {
         [Required]
         public string Username { get; set; }

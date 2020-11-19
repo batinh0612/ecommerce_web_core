@@ -1,0 +1,4 @@
+D:\EcommerceWebCore\Ecommerce.APIClient\obj\Debug\netcoreapp3.1\Ecommerce.APIClient.csprojAssemblyReference.cache
+D:\EcommerceWebCore\Ecommerce.APIClient\obj\Debug\netcoreapp3.1\Ecommerce.APIClient.AssemblyInfoInputs.cache
+D:\EcommerceWebCore\Ecommerce.APIClient\obj\Debug\netcoreapp3.1\Ecommerce.APIClient.AssemblyInfo.cs
+D:\EcommerceWebCore\Ecommerce.APIClient\obj\Debug\netcoreapp3.1\Ecommerce.APIClient.csproj.CoreCompileInputs.cache

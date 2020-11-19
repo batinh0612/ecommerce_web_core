@@ -522,7 +522,6 @@ D:\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.Web.dll
 D:\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.Web.pdb
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\appsettings.json
-D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.Web.exe
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.Web.deps.json
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.Web.runtimeconfig.json
@@ -690,3 +689,10 @@ D:\Project IT\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.W
 D:\Project IT\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.Web.dll
 D:\Project IT\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.Web.pdb
 D:\Project IT\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Ecommerce.Web.genruntimeconfig.cache
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
+D:\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\scopedcss\bundle\Ecommerce.Web.styles.css
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

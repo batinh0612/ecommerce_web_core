@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -7,8 +9,12 @@ using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Dto;
 using Ecommerce.Service.Interface;
+using EcommerceCommon.Infrastructure.Dto.User;
+using EcommerceCommon.Infrastructure.Helper;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Ecommerce.Service.Services
 {
@@ -16,10 +22,12 @@ namespace Ecommerce.Service.Services
     {
         private readonly IUserRepository _userReponsitory;
         private readonly IMapper _mapper;
-        public UserService(IUserRepository userReponsitory, IMapper mapper) : base(userReponsitory)
+
+        public UserService(IUserRepository userReponsitory, IMapper mapper, IOptions<AppSettings> appSettings) : base(userReponsitory)
         {
             _userReponsitory = userReponsitory;
             _mapper = mapper;
+
         }
 
         /// <summary>
@@ -31,6 +39,16 @@ namespace Ecommerce.Service.Services
         public User Authenticate(string username, string password)
         {
             return _userReponsitory.Authenticate(username, password);
+        }
+
+        /// <summary>
+        /// Authenticate
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model)
+        {
+            return await _userReponsitory.Authenticate2(model);
         }
 
         /// <summary>
@@ -73,6 +91,15 @@ namespace Ecommerce.Service.Services
             return await _userReponsitory.GetUserById(id);
         }
 
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<User> Register(UserRegisterDto dto)
+        {
+            return await _userReponsitory.Register(dto);
+        }
 
         /// <summary>
         /// Update
