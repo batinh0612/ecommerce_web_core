@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LDohWA1OzjIfKWkxyuH9avFVBbigrjCN9ScIPyvky3VOdul6L1bbiqW7doWei6fzxZ1t3vsEVCnAHrLN2+U8hw==",
+  "dgSpecHash": "41sn9ZQhPOeOFpewt0YIgPLcX2X8QCLZeus5AwIko0mBNt3n+0p7SFUyZ8rOx5JKNjP9Atkim41goedrh/FiIQ==",
   "success": true,
   "projectFilePath": "D:\\EcommerceWebCore\\Ecommerce.WebAPI\\Ecommerce.WebAPI.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\jwt\\7.3.0\\jwt.7.3.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.applicationinsights\\2.16.0\\microsoft.applicationinsights.2.16.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.8\\microsoft.aspnetcore.connections.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
@@ -17,6 +18,8 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.0\\microsoft.aspnetcore.jsonpatch.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.8.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\2.2.0\\microsoft.aspnetcore.razor.language.2.2.0.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.signalr.common\\3.1.8\\microsoft.aspnetcore.signalr.common.3.1.8.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.signalr.protocols.newtonsoftjson\\3.1.8\\microsoft.aspnetcore.signalr.protocols.newtonsoftjson.3.1.8.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.codeanalysis.common\\2.8.0\\microsoft.codeanalysis.common.2.8.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.codeanalysis.csharp\\2.8.0\\microsoft.codeanalysis.csharp.2.8.0.nupkg.sha512",

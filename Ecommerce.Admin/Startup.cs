@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Ecommerce.ApiIntegration;
+using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository;
@@ -111,6 +113,8 @@ namespace Ecommerce.Admin
 
             services.AddTransient<ILanguageRepository, LanguageRepository>();
             services.AddTransient<ILanguageService, LanguageService>();
+
+            services.AddTransient<IUserApiClient, UserApiClient>();
         }
     }
 }

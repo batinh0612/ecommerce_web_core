@@ -209,3 +209,6 @@ D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.ge
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\JWT.dll
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Common.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll

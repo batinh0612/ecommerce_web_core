@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.ApiIntegration\Ecommerce.ApiIntegration.csproj" />
     <ProjectReference Include="..\eTakaful.Core\Ecommerce.Service.csproj" />
     <ProjectReference Include="..\eTakaful.Repository\Ecommerce.Repository.csproj" />
   </ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,12 @@ namespace Ecommerce.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IUserApiClient userApiClient;
+
+        public UserController(IUserService userService, IUserApiClient userApiClient)
         {
             _userService = userService;
+            this.userApiClient = userApiClient;
         }
 
         /// <summary>
