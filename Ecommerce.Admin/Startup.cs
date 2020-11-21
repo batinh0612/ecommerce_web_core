@@ -15,6 +15,7 @@ using Ecommerce.Service.Services;
 using Flurl.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +44,8 @@ namespace Ecommerce.Admin
             });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddHttpClient();
 
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
 
@@ -87,6 +90,8 @@ namespace Ecommerce.Admin
         /// <param name="services"></param>
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));
 
@@ -115,6 +120,7 @@ namespace Ecommerce.Admin
             services.AddTransient<ILanguageService, LanguageService>();
 
             services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<ISupplierApiClient, SupplierApiClient>();
         }
     }
 }

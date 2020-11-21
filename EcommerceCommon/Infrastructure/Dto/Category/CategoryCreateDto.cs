@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EcommerceCommon.Infrastructure.Dto.Category
 {
-    public class CategoryDto
+    public class CategoryCreateDto
     {
         [Display(Name = "Tên danh mục")]
         public string Name { get; set; }

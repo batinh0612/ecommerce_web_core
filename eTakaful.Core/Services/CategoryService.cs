@@ -42,7 +42,7 @@ namespace Ecommerce.Service.Services
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<bool> Create(CategoryDto dto)
+        public async Task<bool> Create(CategoryCreateDto dto)
         {
             return await _categoryRepository.Create(dto);
         }

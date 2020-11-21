@@ -126,7 +126,7 @@ namespace Ecommerce.Repository
         /// Create category
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> Create(CategoryDto dto)
+        public async Task<bool> Create(CategoryCreateDto dto)
         {
             var category = new Category()
             {

@@ -78,7 +78,7 @@ namespace Ecommerce.Admin.Controllers
         /// <param name="dto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryDto dto)
+        public async Task<IActionResult> Create(CategoryCreateDto dto)
         {
             if (!ModelState.IsValid)
             {

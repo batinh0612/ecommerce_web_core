@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Domain;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -51,6 +52,13 @@ namespace Ecommerce.Repository
             });
 
             return await suppliers.ToListAsync();
+        }
+
+        public async Task<List<Supplier>> GetAllSuppliersAsync()
+        {
+            var suppliers = await DbContext.Suppliers.ToListAsync();
+
+            return suppliers;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Domain.Models;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Ecommerce.Repository.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<List<SupplierListItem>> GetAllSuppliers();
+
+        Task<List<Supplier>> GetAllSuppliersAsync();
 
         /// <summary>
         /// Create

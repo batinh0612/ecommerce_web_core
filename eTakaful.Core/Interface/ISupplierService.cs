@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Domain.Models;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,7 @@ namespace Ecommerce.Service.Interface
         /// <param name="dto"></param>
         /// <returns></returns>
         Task<Supplier> Create(SupplierDto dto);
+
+        Task<List<Supplier>> GetAllSuppliersAsync();
     }
 }

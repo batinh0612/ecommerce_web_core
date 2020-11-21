@@ -27,7 +27,7 @@ namespace Ecommerce.ApiIntegration
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ApiResponse> Authenticate(AuthenticateRequest model)
+        public async Task<string> Authenticate(AuthenticateRequest model)
         {
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -38,9 +38,11 @@ namespace Ecommerce.ApiIntegration
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<ApiResponse>(result);
+                //return JsonConvert.DeserializeObject<string>(result);
+                return result;
             }
-            return JsonConvert.DeserializeObject<ApiResponse>(result);
+            //return JsonConvert.DeserializeObject<string>(result);
+            return null;
         }
     }
 }

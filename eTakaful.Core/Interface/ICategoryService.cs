@@ -49,7 +49,7 @@ namespace Ecommerce.Service.Interface
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<bool> Create(CategoryDto dto);
+        Task<bool> Create(CategoryCreateDto dto);
 
         /// <summary>
         /// Update

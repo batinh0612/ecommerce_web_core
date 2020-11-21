@@ -13,11 +13,19 @@ namespace EcommerceCommon.Infrastructure.Dto.User
 
         public AuthenticateResponse(Ecommerce.Domain.Models.User user, string token)
         {
-            Id = user.Id;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Username = user.Username;
-            Token = token;
+            try
+            {
+                Id = user.Id;
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Username = user.Username;
+                Token = token;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

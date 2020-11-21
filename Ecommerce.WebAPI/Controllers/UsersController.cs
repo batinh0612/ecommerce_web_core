@@ -2,19 +2,10 @@
 using Ecommerce.WebAPI.Infrastructure.Helper;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.Dto.User;
-using EcommerceCommon.Infrastructure.ViewModel.User;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.WebAPI.Controllers
@@ -65,9 +56,9 @@ namespace Ecommerce.WebAPI.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public ApiResponse Authenticate([FromBody]AuthenticateRequest model)
+        public async Task<ApiResponse> Authenticate([FromBody]AuthenticateRequest model)
         {
-            var response = _userService.Authenticate2(model);
+            var response = await _userService.Authenticate2(model);
 
             if (response == null)
                 throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);

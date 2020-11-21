@@ -14,6 +14,6 @@ namespace Ecommerce.ApiIntegration.Interfaces
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<ApiResponse> Authenticate(AuthenticateRequest model);
+        Task<string> Authenticate(AuthenticateRequest model);
     }
 }

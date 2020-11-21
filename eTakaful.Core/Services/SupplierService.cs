@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 
 namespace Ecommerce.Service.Services
@@ -37,6 +38,11 @@ namespace Ecommerce.Service.Services
         public async Task<List<SupplierListItem>> GetAllSuppliers()
         {
             return await _supplierRepository.GetAllSuppliers();
+        }
+
+        public async Task<List<Supplier>> GetAllSuppliersAsync()
+        {
+            return await _supplierRepository.GetAllSuppliersAsync();
         }
     }
 }

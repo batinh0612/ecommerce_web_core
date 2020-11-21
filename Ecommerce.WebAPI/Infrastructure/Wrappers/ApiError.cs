@@ -13,6 +13,11 @@ namespace Ecommerce.WebAPI.Infrastructure.Wrappers
         public string ReferenceDocumentLink { get; set; }
         public IEnumerable<ValidationError> ValidationErrors { get; set; }
 
+        public ApiError()
+        {
+
+        }
+
         public ApiError(string message)
         {
             this.ExceptionMessage = message;

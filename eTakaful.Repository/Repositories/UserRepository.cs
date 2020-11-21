@@ -47,7 +47,9 @@ namespace Ecommerce.Repository
             // authentication successful so generate jwt token
             var token = generateJwtToken(user);
 
-            return new AuthenticateResponse(user, token);
+            var authenticate = new AuthenticateResponse(user, token);
+
+            return authenticate;
         }
 
         /// <summary>

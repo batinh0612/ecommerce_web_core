@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.Interface;
+//using EcommerceCommon.Infrastructure.ApiResponse;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using EcommerceCommon.Infrastructure.ViewModel.Supplier;
@@ -16,6 +17,7 @@ namespace Ecommerce.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SuppliersController : ControllerBase
     {
         private readonly ISupplierService _supplierService;
@@ -31,15 +33,27 @@ namespace Ecommerce.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<ApiResponse> GetAll()
         {
-            var suppliers = await _supplierService.GetAllAsync();
+            var suppliers = await _supplierService.GetAllSuppliersAsync();
 
             if (suppliers != null && suppliers.Any())
             {
-                var result = _mapper.Map<List<SupplierViewModel>>(suppliers);
-                return new ApiResponse("All supplier items", result, 200);
+                //var result = _mapper.Map<List<SupplierViewModel>>(suppliers);
+                return new ApiResponse("All supplier items", suppliers, 200);
             }
 
             return new ApiResponse("No item", null, 200);
+
+            //var suppliers = await _supplierService.GetAllAsync();
+
+            //if (suppliers != null && suppliers.Any())
+            //{
+            //    //var result = _mapper.Map<List<SupplierViewModel>>(suppliers);
+            //    //return new ApiResponse("All supplier items", suppliers, 200);
+            //    return Ok(suppliers);
+            //}
+
+            ////return new ApiResponse("No item", null, 200);
+            //return BadRequest();
         }
 
         [HttpPost("add-supplier")]
@@ -48,7 +62,7 @@ namespace Ecommerce.WebAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new ApiException("errors");
+                throw new ApiException("errors", 500);
             }
 
             var supplier = _mapper.Map<Supplier>(dto);
@@ -78,7 +92,7 @@ namespace Ecommerce.WebAPI.Controllers
             catch (Exception ex)
             {
                 throw new ApiException(ex, 400);
-            }  
+            }
         }
 
         [HttpDelete("delete-supplier/{id}")]
