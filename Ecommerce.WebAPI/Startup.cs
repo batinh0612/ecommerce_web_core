@@ -5,7 +5,7 @@ using Ecommerce.Repository;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
-using Ecommerce.WebAPI.Infrastructure.Extensions;
+//using Ecommerce.WebAPI.Infrastructure.Extensions;
 using Ecommerce.WebAPI.Infrastructure.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -56,14 +56,16 @@ namespace Ecommerce.WebAPI
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = false,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    //ValidIssuer = Configuration["Jwt:Issuer"],
-                    //ValidAudience = Configuration["Jwt:Issuer"],
+                    ValidIssuer = "https://webapi.tedu.com.vn",
+                    ValidAudience = "https://webapi.tedu.com.vn",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secreat))
                 };
+                options.Audience = "https://webapi.tedu.com.vn";
+                options.RequireHttpsMetadata = false;
             });
 
             services.AddControllers()
@@ -207,7 +209,7 @@ namespace Ecommerce.WebAPI
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
-            app.UseApiResponseAndExceptionWrapper();
+            //app.UseApiResponseAndExceptionWrapper();
 
             app.UseEndpoints(endpoints =>
             {

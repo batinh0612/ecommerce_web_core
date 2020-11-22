@@ -696,3 +696,8 @@ D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityMode
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

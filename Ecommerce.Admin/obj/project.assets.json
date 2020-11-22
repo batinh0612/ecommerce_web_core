@@ -10920,7 +10920,9 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 3.1.9",
       "Microsoft.EntityFrameworkCore >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4"
+      "Microsoft.IdentityModel.Tokens >= 6.8.0",
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
+      "System.IdentityModel.Tokens.Jwt >= 6.8.0"
     ]
   },
   "packageFolders": {
@@ -10996,9 +10998,17 @@
             "target": "Package",
             "version": "[5.0.0, )"
           },
+          "Microsoft.IdentityModel.Tokens": {
+            "target": "Package",
+            "version": "[6.8.0, )"
+          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[3.1.4, )"
+          },
+          "System.IdentityModel.Tokens.Jwt": {
+            "target": "Package",
+            "version": "[6.8.0, )"
           }
         },
         "imports": [

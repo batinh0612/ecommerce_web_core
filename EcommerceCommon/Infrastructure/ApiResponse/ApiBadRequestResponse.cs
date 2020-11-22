@@ -6,24 +6,31 @@ using System.Threading.Tasks;
 
 namespace EcommerceCommon.Infrastructure.ApiResponse
 {
-    public class ApiBadRequestResponse : ApiResponse
+    public class ApiBadRequestResponse<T> : ApiResponseNew<T>
     {
-        public IEnumerable<string> Errors { get; }
+        public IEnumerable<string> Errors { get; set; }
 
-        public ApiBadRequestResponse(string message) : base(400)
+        public ApiBadRequestResponse(string message)/* : base(400)*/
         {
             IsSuccessed = false;
+            Message = message;
         }
 
-        public ApiBadRequestResponse(ModelStateDictionary modelState) : base(400)
+        public ApiBadRequestResponse(IEnumerable<string> errors)
         {
-            if (modelState.IsValid)
-            {
-                throw new ArgumentException("ModelState must be invalid", nameof(modelState));
-            }
-
-            Errors = modelState.SelectMany(x => x.Value.Errors)
-                .Select(x => x.ErrorMessage).ToArray();
+            IsSuccessed = false;
+            Errors = errors;
         }
+
+        //public ApiBadRequestResponse(ModelStateDictionary modelState) : base(400)
+        //{
+        //    if (modelState.IsValid)
+        //    {
+        //        throw new ArgumentException("ModelState must be invalid", nameof(modelState));
+        //    }
+
+        //    Errors = modelState.SelectMany(x => x.Value.Errors)
+        //        .Select(x => x.ErrorMessage).ToArray();
+        //}
     }
 }

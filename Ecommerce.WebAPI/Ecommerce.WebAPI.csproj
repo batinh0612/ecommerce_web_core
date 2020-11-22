@@ -10,7 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\Extensions\**" />
+    <Content Remove="Infrastructure\Extensions\**" />
+    <EmbeddedResource Remove="Infrastructure\Extensions\**" />
+    <None Remove="Infrastructure\Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="HttpStatusCodeExceptionMiddleware.cs" />
+    <Compile Remove="Infrastructure\ApiResponseMiddleware.cs" />
+    <Compile Remove="Infrastructure\ApiResponseOptions.cs" />
   </ItemGroup>
 
   <ItemGroup>

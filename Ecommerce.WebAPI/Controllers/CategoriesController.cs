@@ -25,19 +25,19 @@ namespace Ecommerce.WebAPI.Controllers
             _imapper = imapper;
         }
 
-        [HttpPost("search-and-paging-category")]
-        [AllowAnonymous]
-        public async Task<ApiResponse> SearchAndPagingCategory([FromBody] QueryBase<BaseSearch> dto, string languageId)
-        {
-            try
-            {
-                var list = await _categoryService.SearchAndPagingCategory(dto, languageId);
-                return new ApiResponse($"List category", list, 200);
-            }
-            catch (Exception ex)
-            {
-                throw new ApiException(ex, 400);
-            }
-        }
+        //[HttpPost("search-and-paging-category")]
+        //[AllowAnonymous]
+        //public async Task<ApiResponse> SearchAndPagingCategory([FromBody] QueryBase<BaseSearch> dto, string languageId)
+        //{
+        //    try
+        //    {
+        //        var list = await _categoryService.SearchAndPagingCategory(dto, languageId);
+        //        return new ApiResponse($"List category", list, 200);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ApiException(ex, 400);
+        //    }
+        //}
     }
 }

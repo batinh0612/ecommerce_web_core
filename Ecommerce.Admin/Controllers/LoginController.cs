@@ -50,7 +50,7 @@ namespace Ecommerce.Admin.Controllers
                 return View();
             }
 
-            var userPrincipal = this.ValidateToken(token);
+            var userPrincipal = this.ValidateToken(token.ResultObj.Token);
 
             var authProperties = new AuthenticationProperties
             {
@@ -58,7 +58,7 @@ namespace Ecommerce.Admin.Controllers
                 IsPersistent = false
             };
 
-            HttpContext.Session.SetString(SystemConstant.AppSettings.Token, token);
+            HttpContext.Session.SetString(SystemConstant.AppSettings.Token, token.ResultObj.Token);
 
 
             await HttpContext.SignInAsync(
@@ -81,16 +81,17 @@ namespace Ecommerce.Admin.Controllers
         {
             IdentityModelEventSource.ShowPII = true;
 
-            SecurityToken validateToken;
             TokenValidationParameters validationParameters = new TokenValidationParameters();
 
             validationParameters.ValidateLifetime = true;
+            validationParameters.ValidateAudience = true;
+            validationParameters.ValidateIssuer = true;
 
-            validationParameters.ValidAudience = configuration["Tokens:Issuer"];
-            validationParameters.ValidIssuer = configuration["Tokens:Issuer"];
-            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"]));
+            validationParameters.ValidAudience = "https://webapi.tedu.com.vn";
+            validationParameters.ValidIssuer = "https://webapi.tedu.com.vn";
+            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("035131513513ACNMCM"));
 
-            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validateToken);
+            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out SecurityToken validateToken);
 
             return principal;
         }

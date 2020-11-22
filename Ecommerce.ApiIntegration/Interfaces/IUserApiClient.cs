@@ -1,4 +1,5 @@
 ﻿using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.User;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,6 @@ namespace Ecommerce.ApiIntegration.Interfaces
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<string> Authenticate(AuthenticateRequest model);
+        Task<ApiResponseNew<AuthenticateResponse>> Authenticate(AuthenticateRequest model);
     }
 }

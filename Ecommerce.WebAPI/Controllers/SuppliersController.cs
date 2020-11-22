@@ -57,7 +57,6 @@ namespace Ecommerce.WebAPI.Controllers
         }
 
         [HttpPost("add-supplier")]
-        [AllowAnonymous]
         public async Task<ApiResponse> Create([FromBody] SupplierDto dto)
         {
             if (!ModelState.IsValid)
@@ -69,7 +68,7 @@ namespace Ecommerce.WebAPI.Controllers
             supplier.UpdatedDate = null;
 
             await _supplierService.AddAsync(supplier);
-            return new ApiResponse("New record has been created to the database", dto, 201);
+            return new ApiResponse("New record has been created to the database", null, 201);
         }
 
         [HttpPatch("update-supplier/{id}")]
@@ -104,7 +103,7 @@ namespace Ecommerce.WebAPI.Controllers
             if (supplier != null)
             {
                 await _supplierService.DeleteAsync(supplier);
-                return new ApiResponse("Removed item", 200);
+                return new ApiResponse("Removed item", supplier,200);
             }
 
             return new ApiResponse("Can't delete item", null, 200);

@@ -10,22 +10,18 @@ namespace EcommerceCommon.Infrastructure.Dto.User
         public string Username { get; set; }
         public string Token { get; set; }
 
+        public AuthenticateResponse()
+        {
+
+        }
 
         public AuthenticateResponse(Ecommerce.Domain.Models.User user, string token)
         {
-            try
-            {
-                Id = user.Id;
-                FirstName = user.FirstName;
-                LastName = user.LastName;
-                Username = user.Username;
-                Token = token;
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            Id = user.Id;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Username = user.Username;
+            Token = token;
         }
     }
 }

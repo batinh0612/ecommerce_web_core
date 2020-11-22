@@ -1,5 +1,6 @@
 ﻿using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.User;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -27,7 +28,25 @@ namespace Ecommerce.ApiIntegration
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<string> Authenticate(AuthenticateRequest model)
+        //public async Task<string> Authenticate(AuthenticateRequest model)
+        //{
+        //    var json = JsonConvert.SerializeObject(model);
+        //    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //    var client = httpClientFactory.CreateClient();
+        //    client.BaseAddress = new Uri(configuration["BaseAddress"]);
+        //    var response = await client.PostAsync("/api/Users/Authenticate", httpContent);
+        //    var result = await response.Content.ReadAsStringAsync();
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        //return JsonConvert.DeserializeObject<string>(result);
+        //        return result;
+        //    }
+        //    //return JsonConvert.DeserializeObject<string>(result);
+        //    return null;
+        //}
+
+        public async Task<ApiResponseNew<AuthenticateResponse>> Authenticate(AuthenticateRequest model)
         {
             var json = JsonConvert.SerializeObject(model);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -38,11 +57,10 @@ namespace Ecommerce.ApiIntegration
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                //return JsonConvert.DeserializeObject<string>(result);
-                return result;
+                var data = JsonConvert.DeserializeObject<ApiOkResponse<AuthenticateResponse>>(result);
+                return data;
             }
-            //return JsonConvert.DeserializeObject<string>(result);
-            return null;
+            return JsonConvert.DeserializeObject<ApiBadRequestResponse<AuthenticateResponse>>(result);
         }
     }
 }

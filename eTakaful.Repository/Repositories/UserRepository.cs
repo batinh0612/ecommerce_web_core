@@ -15,14 +15,18 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.Extensions.Configuration;
 
 namespace Ecommerce.Repository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
+        private readonly IConfiguration configuration;
+
         //private readonly AppSettings _appSettings;
-        public UserRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public UserRepository(ApplicationDbContext dbContext, IConfiguration configuration) : base(dbContext)
         {
+            this.configuration = configuration;
             //_appSettings = appSettings.Value;
         }
 
@@ -91,15 +95,37 @@ namespace Ecommerce.Repository
         private string generateJwtToken(User user)
         {
             // generate token that is valid for 7 days
+            //var tokenHandler = new JwtSecurityTokenHandler();
+            //var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+            //    Expires = DateTime.UtcNow.AddDays(7),
+            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            //};
+            //var token = tokenHandler.CreateToken(tokenDescriptor);
+            //return tokenHandler.WriteToken(token);
+
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            var key = Encoding.UTF8.GetBytes("035131513513ACNMCM");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { 
+                    //new Claim("id", user.Id.ToString()) 
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.GivenName, user.FirstName),
+                    new Claim(ClaimTypes.Surname, user.LastName)
+                }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature
+                    )
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
+
             return tokenHandler.WriteToken(token);
         }
 

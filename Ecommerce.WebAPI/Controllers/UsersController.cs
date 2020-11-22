@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Service.Interface;
 using Ecommerce.WebAPI.Infrastructure.Helper;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -56,26 +57,27 @@ namespace Ecommerce.WebAPI.Controllers
 
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<ApiResponse> Authenticate([FromBody]AuthenticateRequest model)
+        public async Task<ApiResponseNew<AuthenticateResponse>> Authenticate([FromBody]AuthenticateRequest model)
         {
             var response = await _userService.Authenticate2(model);
 
             if (response == null)
-                throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);
+                //throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);
+                return new ApiBadRequestResponse<AuthenticateResponse>("Username or password incorrect");
 
-            return new ApiResponse("Token", response, 200);
+            return new ApiOkResponse<AuthenticateResponse>("Token", response);
         }
 
-        [HttpPost("register")]
-        [AllowAnonymous]
-        public async Task<ApiResponse> Register([FromBody] UserRegisterDto dto)
-        {
-            var user = await _userService.Register(dto);
+        //[HttpPost("register")]
+        //[AllowAnonymous]
+        //public async Task<ApiResponse> Register([FromBody] UserRegisterDto dto)
+        //{
+        //    var user = await _userService.Register(dto);
 
-            if (user == null)
-                throw new ApiException("Register user failure", 200);
+        //    if (user == null)
+        //        throw new ApiException("Register user failure", 200);
 
-            return new ApiResponse("Register user successful", user, 200);
-        }
+        //    return new ApiResponse("Register user successful", user, 200);
+        //}
     }
 }

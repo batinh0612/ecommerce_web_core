@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Ecommerce.ApiIntegration;
@@ -13,6 +14,7 @@ using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using Flurl.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,9 +45,26 @@ namespace Ecommerce.Admin
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            //services.AddAuthentication().AddCookie(options =>
+            //{
+            //    options.LoginPath = "/Login/Index";
+            //    options.LogoutPath = "/Logout/Logout";
+            //});
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddHttpClient();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.LoginPath = "/Login/Index";
+                options.AccessDeniedPath = "/Login/Logout";
+                options.SlidingExpiration = true;
+            });
 
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
 
@@ -80,7 +99,7 @@ namespace Ecommerce.Admin
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
 

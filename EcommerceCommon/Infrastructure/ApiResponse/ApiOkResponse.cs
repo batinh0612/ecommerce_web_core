@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 
 namespace EcommerceCommon.Infrastructure.ApiResponse
 {
-    public class ApiOkResponse : ApiResponse
+    public class ApiOkResponse<T> : ApiResponseNew<T>
     {
-        public object Result { get; }
-
-        public ApiOkResponse(object result) : base(200)
+        public ApiOkResponse()
         {
             IsSuccessed = true;
-            Result = result;
+        }
+        public ApiOkResponse(string message , T resultObj)/* : base(200)*/
+        {
+            IsSuccessed = true;
+            Message = message;
+            ResultObj = resultObj;
         }
     }
 }

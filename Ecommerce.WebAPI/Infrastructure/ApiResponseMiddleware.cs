@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Ecommerce.WebAPI.Infrastructure.Extensions;
+//using Ecommerce.WebAPI.Infrastructure.Extensions;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
