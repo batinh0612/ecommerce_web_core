@@ -11,11 +11,24 @@ namespace EcommerceCommon.Infrastructure.ApiResponse
         {
             IsSuccessed = true;
         }
+
+        public ApiOkResponse(string message)
+        {
+            IsSuccessed = true;
+            Message = message;
+        }
         public ApiOkResponse(string message , T resultObj)/* : base(200)*/
         {
             IsSuccessed = true;
             Message = message;
             ResultObj = resultObj;
+        }
+        public ApiOkResponse(string message, T resultObj, int statusCode)
+        {
+            IsSuccessed = true;
+            Message = message;
+            ResultObj = resultObj;
+            StatusCode = statusCode;
         }
     }
 }

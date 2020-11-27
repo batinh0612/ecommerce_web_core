@@ -1,7 +1,6 @@
 ﻿using Ecommerce.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Ecommerce.Domain;
 using System.Linq;
 using Ecommerce.Repository.Interfaces;
@@ -11,10 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
 using EcommerceCommon.Infrastructure.Dto.User;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 
 namespace Ecommerce.Repository
@@ -28,32 +23,6 @@ namespace Ecommerce.Repository
         {
             this.configuration = configuration;
             //_appSettings = appSettings.Value;
-        }
-
-        public async Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model)
-        {
-            var user = await DbContext.Users.SingleOrDefaultAsync(x => x.Username == model.Username);
-
-            if (user == null)
-            {
-                throw new Exception("Username incorrect");
-            }
-
-            //byte[] passwordHash;
-            //byte[] passwordSalt;
-            var result = AuthenUserHelper.VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt);
-
-            if (!result)
-            {
-                throw new Exception("Username or password incorrect");
-            }
-
-            // authentication successful so generate jwt token
-            var token = generateJwtToken(user);
-
-            var authenticate = new AuthenticateResponse(user, token);
-
-            return authenticate;
         }
 
         /// <summary>
@@ -92,67 +61,30 @@ namespace Ecommerce.Repository
             return user;
         }
 
-        private string generateJwtToken(User user)
-        {
-            // generate token that is valid for 7 days
-            //var tokenHandler = new JwtSecurityTokenHandler();
-            //var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
-            //var tokenDescriptor = new SecurityTokenDescriptor
-            //{
-            //    Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            //    Expires = DateTime.UtcNow.AddDays(7),
-            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            //};
-            //var token = tokenHandler.CreateToken(tokenDescriptor);
-            //return tokenHandler.WriteToken(token);
+        //private string generateJwtToken(User user)
+        //{
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    var key = Encoding.UTF8.GetBytes("035131513513ACNMCM");
+        //    var tokenDescriptor = new SecurityTokenDescriptor
+        //    {
+        //        Subject = new ClaimsIdentity(new[] { 
+        //            //new Claim("id", user.Id.ToString()) 
+        //            new Claim(ClaimTypes.Name, user.Username),
+        //            new Claim(ClaimTypes.Email, user.Email),
+        //            new Claim(ClaimTypes.GivenName, user.FirstName),
+        //            new Claim(ClaimTypes.Surname, user.LastName)
+        //        }),
+        //        Expires = DateTime.UtcNow.AddDays(7),
+        //        SigningCredentials = new SigningCredentials(
+        //            new SymmetricSecurityKey(key),
+        //            SecurityAlgorithms.HmacSha256Signature
+        //            )
+        //    };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes("035131513513ACNMCM");
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new[] { 
-                    //new Claim("id", user.Id.ToString()) 
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.GivenName, user.FirstName),
-                    new Claim(ClaimTypes.Surname, user.LastName)
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(key),
-                    SecurityAlgorithms.HmacSha256Signature
-                    )
-            };
+        //    var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-            return tokenHandler.WriteToken(token);
-        }
-
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public User Authenticate(string username, string password)
-        {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return null;
-
-            var user = DbContext.Users.SingleOrDefault(x => x.Username == username);
-
-            // check if username exists
-            if (user == null)
-                return null;
-
-            // check if password is correct
-            if (!AuthenUserHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
-
-            // authentication successful
-            return user;
-        }
+        //    return tokenHandler.WriteToken(token);
+        //}
 
         /// <summary>
         /// Create

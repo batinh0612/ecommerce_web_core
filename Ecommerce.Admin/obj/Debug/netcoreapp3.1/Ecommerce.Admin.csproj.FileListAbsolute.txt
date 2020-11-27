@@ -445,7 +445,6 @@ D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.cspr
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.AssemblyInfoInputs.cache
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.AssemblyInfo.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.csproj.CoreCompileInputs.cache
-D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.MvcApplicationPartsAssemblyInfo.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.MvcApplicationPartsAssemblyInfo.cache
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.RazorAssemblyInfo.cache
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.RazorAssemblyInfo.cs
@@ -914,3 +913,9 @@ D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.cspr
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.genruntimeconfig.cache
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\Create.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\Edit.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Index.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Create.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Edit.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Details.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\Details.cshtml.g.cs

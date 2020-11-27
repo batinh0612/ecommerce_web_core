@@ -5,7 +5,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-//using Ecommerce.WebAPI.Infrastructure.Extensions;
+using Ecommerce.WebAPI.Infrastructure.Extensions;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -199,8 +199,10 @@ namespace Ecommerce.WebAPI.Infrastructure
             {
                 Wrappers.ApiResponse apiResponse = JsonConvert.DeserializeObject<Wrappers.ApiResponse>(bodyText);
                 if ((apiResponse.StatusCode != code || apiResponse.Result != null) ||
-                    (apiResponse.StatusCode == code && apiResponse.Result == null))
+                    (apiResponse.StatusCode == code && apiResponse.Result == null)) {
                     jsonString = ConvertToJSONString(GetSucessResponse(apiResponse));
+                }
+                    
                 else
                     jsonString = ConvertToJSONString(code, bodyContent);
             }
@@ -211,6 +213,12 @@ namespace Ecommerce.WebAPI.Infrastructure
 
             context.Response.ContentType = "application/json";
             return context.Response.WriteAsync(jsonString);
+        }
+
+        private object ConvertToObject(Wrappers.ApiResponse apiResponse)
+        {
+            var result = JsonConvert.DeserializeObject(apiResponse.Result.ToString());
+            return new Wrappers.ApiResponse(apiResponse.Message, result, apiResponse.StatusCode);
         }
 
         private string ConvertToJSONString(int code, object content)

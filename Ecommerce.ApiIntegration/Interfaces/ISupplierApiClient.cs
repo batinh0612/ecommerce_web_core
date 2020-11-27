@@ -1,12 +1,6 @@
-﻿using Ecommerce.Domain.Models;
-using Ecommerce.WebAPI.Infrastructure.Wrappers;
-//using Ecommerce.WebAPI.Infrastructure.ApiResponse;
-//using EcommerceCommon.Infrastructure.ApiResponse;
+﻿using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.ApiIntegration.Interfaces
@@ -17,13 +11,35 @@ namespace Ecommerce.ApiIntegration.Interfaces
         /// Get all suppliers
         /// </summary>
         /// <returns></returns>
-        Task<List<Supplier>> GetAllSuppliers();
+        Task<ApiResponse> GetAllSuppliers();
+
+        /// <summary>
+        /// Get by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResponse> GetById(Guid id);
 
         /// <summary>
         /// Create
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<Supplier> Create(SupplierDto dto);
+        Task<ApiResponse> Create(SupplierDto dto);
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<ApiResponse> Update(Guid id, SupplierDto dto);
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResponse> Delete(Guid id);
     }
 }

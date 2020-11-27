@@ -1,0 +1,71 @@
+﻿@model EcommerceCommon.Infrastructure.Dto.Supplier.SupplierDto
+
+@{
+    ViewData["Title"] = "Thêm mới nhà sản xuất";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới nhà sản xuất</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Thêm mới nhà sản xuất</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <a asp-action="Index" class="btn btn-success">Về danh sách</a>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CodeName" class="control-label"></label>
+                                <input asp-for="CodeName" class="form-control" />
+                                <span asp-validation-for="CodeName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="control-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Fax" class="control-label"></label>
+                                <input asp-for="Fax" class="form-control" />
+                                <span asp-validation-for="Fax" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</section>
+

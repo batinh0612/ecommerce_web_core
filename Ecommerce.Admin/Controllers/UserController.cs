@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.ApiIntegration.Interfaces;
-using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Admin.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -52,6 +51,22 @@ namespace Ecommerce.Admin.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<JsonResult> Delete(Guid id)
+        {
+            var result = await userApiClient.Delete(id);
+
+            return Json(new
+            {
+                status = !result.IsError
+            });
         }
 
         /// <summary>

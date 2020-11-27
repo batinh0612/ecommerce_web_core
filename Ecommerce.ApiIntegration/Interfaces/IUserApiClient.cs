@@ -15,6 +15,15 @@ namespace Ecommerce.ApiIntegration.Interfaces
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<ApiResponseNew<AuthenticateResponse>> Authenticate(AuthenticateRequest model);
+        //Task<ApiResponseNew<AuthenticateResponse>> Authenticate(AuthenticateRequest model);
+
+        Task<ApiResponse> Authenticate(LoginRequest request);
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<ApiResponse> Delete(Guid id);
     }
 }

@@ -1,8 +1,10 @@
 ﻿@model Ecommerce.Admin.Models.NavigationViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
+    <ul class="navbar-nav col-md-3">
         <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
@@ -15,7 +17,7 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <form class="form-inline ml-2">
         <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Tìm kiếm..." aria-label="Search">
             <div class="input-group-append">
@@ -25,12 +27,12 @@
             </div>
         </div>
     </form>
-    <div class="col-md-4">
+    <div class="col-md-3">
 
     </div>
     @*Language*@
     <form asp-controller="Dashboard" asp-action="Language" method="post">
-        <input type="hidden" name="ReturnUrl" value="@Context.Request.Path"/>
+        <input type="hidden" name="ReturnUrl" value="@Context.Request.Path" />
         <select onchange="this.form.submit()" class="form-control" asp-for="CurrentLanguageId" asp-items="@(new SelectList(Model.Languages, "Id", "Name", Model.CurrentLanguageId))"></select>
     </form>
 
@@ -125,6 +127,22 @@
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                 <i class="fas fa-th-large"></i>
             </a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                @*<a class="dropdown-item" href="/Profile/Index">@HttpContextAccessor.HttpContext.Session.GetString("Username")</a>*@
+                <a href="#" class="dropdown-item">Cập nhật thông tin</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">Đổi mật khẩu</a>
+                <div class="dropdown-divider"></div>
+                <form method="post" action="/Login/Logout">
+                    <button type="submit" class="dropdown-item">Đăng xuất</button>
+                </form>
+            </div>
         </li>
     </ul>
 </nav>

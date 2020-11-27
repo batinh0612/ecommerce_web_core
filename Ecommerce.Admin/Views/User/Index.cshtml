@@ -64,7 +64,7 @@
                                 <td>
                                     @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-action" })
                                     @Html.ActionLink("Xem chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-action" })
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-action" })
+                                    <a href="#" data-id="@item.Id" class="btn btn-danger btn-action btn-delete">Xoá</a>
                                 </td>
                             </tr>
                         }
@@ -81,6 +81,9 @@
     <script src="/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="/js/bootbox.min.js"></script>
+    <script src="/js/controller/userController.js"></script>
     <script>
         $(function () {
             $("#example1").DataTable({

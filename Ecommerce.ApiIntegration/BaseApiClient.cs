@@ -1,4 +1,6 @@
 ﻿using EcommerceCommon.Utilities.Constants;
+using Flurl;
+using Flurl.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -32,10 +34,10 @@ namespace Ecommerce.ApiIntegration
         /// <returns></returns>
         protected async Task<TResponse> GetAsync<TResponse>(string url)
         {
-            //var sessions = _httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Token);
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Token);
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstant.AppSettings.BaseAddress]);
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.GetAsync(url);
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
@@ -74,15 +76,30 @@ namespace Ecommerce.ApiIntegration
             throw new Exception(body);
         }
 
+        public async Task<T> PostAsync<T>(string segment, object dto)
+        {
+            var url = _configuration[SystemConstant.AppSettings.BaseAddress];
+            var token = _httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Token);
+            var response = await url.AppendPathSegment(segment).WithOAuthBearerToken(token).PostJsonAsync(dto).ReceiveJson<T>();
+            return response;
+        }
+
+        public async Task<T> FlurlGetAsync<T>(string segment)
+        {
+            var url = _configuration[SystemConstant.AppSettings.BaseAddress];
+            var token = _httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Token);
+            return await url.AppendPathSegment(segment).WithOAuthBearerToken(token).GetJsonAsync<T>();
+        }
+
         public async Task<bool> Delete(string url)
         {
-            //var sessions = _httpContextAccessor
-            //   .HttpContext
-            //   .Session
-            //   .GetString(SystemConstant.AppSettings.Token);
+            var sessions = _httpContextAccessor
+               .HttpContext
+               .Session
+               .GetString(SystemConstant.AppSettings.Token);
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration[SystemConstant.AppSettings.BaseAddress]);
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
 
             var response = await client.DeleteAsync(url);
             if (response.IsSuccessStatusCode)

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.Dto;
 using EcommerceCommon.Infrastructure.Dto.User;
-using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
 
 namespace Ecommerce.Service.Interface
@@ -15,17 +13,9 @@ namespace Ecommerce.Service.Interface
         /// <summary>
         /// Authenticate
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        User Authenticate(string username, string password);
-
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model);
+        Task<string> Authenticate(LoginRequest request);
 
         /// <summary>
         /// Register

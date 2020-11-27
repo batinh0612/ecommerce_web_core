@@ -44,7 +44,7 @@ namespace Ecommerce.Domain
             await SeedCustomer(_context);
 
             await SeedOrder(_context);
-            await SeedOrderDetail(_context);
+            //await SeedOrderDetail(_context);
 
             await SeedUser(_context);
 

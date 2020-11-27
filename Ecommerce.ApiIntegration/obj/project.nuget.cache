@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "meXjXIazSyEsmc2larD4Lw49geFCM/udECEzLEqLpNHFaoDZCrcFiNPh032SlFnZriJmFk6cU6ELaEujjgZtbg==",
+  "dgSpecHash": "e2Apc0UrsNJ2a5e0DHwTbv7m1kxti1U+gqdY3QGrgH98XVzgQtO97+QEDhk3KOCxvSl7WIFIaWRd/ts2ChsG7Q==",
   "success": true,
   "projectFilePath": "D:\\EcommerceWebCore\\Ecommerce.ApiIntegration\\Ecommerce.ApiIntegration.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\castle.core\\4.2.1\\castle.core.4.2.1.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\flurl\\3.0.0\\flurl.3.0.0.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\flurl.http\\3.0.0\\flurl.http.3.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\jwt\\7.3.0\\jwt.7.3.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.applicationinsights\\2.16.0\\microsoft.applicationinsights.2.16.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",

@@ -196,7 +196,6 @@ D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.cs
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfoInputs.cache
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.AssemblyInfo.cs
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.csproj.CoreCompileInputs.cache
-D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cs
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cache
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.Manifest.cache
 D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\staticwebassets\Ecommerce.WebAPI.StaticWebAssets.xml

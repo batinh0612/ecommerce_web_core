@@ -12,6 +12,6 @@ namespace Ecommerce.Repository.Interfaces
         /// Get all
         /// </summary>
         /// <returns></returns>
-        Task<List<ManufactureListItem>> GetAll();
+        Task<List<ManufactureListItem>> GetAllManufactures();
     }
 }

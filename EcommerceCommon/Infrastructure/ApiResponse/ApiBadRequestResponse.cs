@@ -16,11 +16,11 @@ namespace EcommerceCommon.Infrastructure.ApiResponse
             Message = message;
         }
 
-        public ApiBadRequestResponse(IEnumerable<string> errors)
-        {
-            IsSuccessed = false;
-            Errors = errors;
-        }
+        //public ApiBadRequestResponse(IEnumerable<string> errors)
+        //{
+        //    IsSuccessed = false;
+        //    Errors = errors;
+        //}
 
         //public ApiBadRequestResponse(ModelStateDictionary modelState) : base(400)
         //{

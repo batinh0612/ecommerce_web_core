@@ -3636,6 +3636,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "7.0.0",
           "Ecommerce.Domain": "1.0.0",
           "Ecommerce.Repository": "1.0.0",
+          "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "System.IdentityModel.Tokens.Jwt": "6.8.0"
         },
         "compile": {

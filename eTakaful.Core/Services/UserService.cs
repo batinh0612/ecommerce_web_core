@@ -11,8 +11,8 @@ using Ecommerce.Service.Dto;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.Dto.User;
 using EcommerceCommon.Infrastructure.Helper;
-using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
+using EcommerceCommon.Utilities.Configurations;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
@@ -22,33 +22,49 @@ namespace Ecommerce.Service.Services
     {
         private readonly IUserRepository _userReponsitory;
         private readonly IMapper _mapper;
+        private readonly Tokens _tokens;
 
-        public UserService(IUserRepository userReponsitory, IMapper mapper, IOptions<AppSettings> appSettings) : base(userReponsitory)
+        public UserService(IUserRepository userReponsitory, IMapper mapper, IOptions<AppSettings> appSettings, Tokens tokens) : base(userReponsitory)
         {
             _userReponsitory = userReponsitory;
             _mapper = mapper;
-
+            _tokens = tokens;
         }
 
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public User Authenticate(string username, string password)
+        public async Task<string> Authenticate(LoginRequest request)
         {
-            return _userReponsitory.Authenticate(username, password);
-        }
+            var user = await _userReponsitory.FindAsync(x => x.Username == request.Username);
 
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model)
-        {
-            return await _userReponsitory.Authenticate2(model);
+            if (user == null)
+                return null;
+
+            var result = AuthenUserHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
+
+            if (!result)
+            {
+                return null;
+            }
+
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                //new Claim(ClaimTypes.Role, string.Join(";", roles)),
+                new Claim(ClaimTypes.Name, request.Username)
+            };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokens.Key));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                _tokens.Issuer,
+                _tokens.Issuer,
+                claims,
+                expires: DateTime.Now.AddHours(3),
+                signingCredentials: creds
+                );
+
+            var resultToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return resultToken;
         }
 
         /// <summary>

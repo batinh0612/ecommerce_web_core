@@ -10,7 +10,7 @@ using Ecommerce.Repository.Interfaces;
 
 namespace Ecommerce.Service.Services
 {
-    public class EcommerceServices<T> :  IServices<T> where T : class
+    public class EcommerceServices<T> : IServices<T> where T : class
     {
         private readonly IRepository<T> _baseReponsitory;
 
@@ -38,7 +38,8 @@ namespace Ecommerce.Service.Services
 
         public async Task<IQueryable<T>> GetAllAsync()
         {
-            return await _baseReponsitory.GetAllAsync();
+            var result = await _baseReponsitory.GetAllAsync();
+            return result;
         }
 
         public async Task<T> AddAsync(T entity)

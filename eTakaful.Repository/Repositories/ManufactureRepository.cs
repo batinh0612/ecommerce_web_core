@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Domain;
+using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
 using EcommerceCommon.Infrastructure.Dto.Manufacture;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +11,14 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Repository
 {
-    public class ManufactureRepository : IManufactureRepository
+    public class ManufactureRepository : BaseRepository<Manufacture>, IManufactureRepository
     {
-        private readonly ApplicationDbContext DbContext;
-        public ManufactureRepository(ApplicationDbContext dbContext)
+        public ManufactureRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
-            DbContext = dbContext;
+
         }
 
-        public async Task<List<ManufactureListItem>> GetAll()
+        public async Task<List<ManufactureListItem>> GetAllManufactures()
         {
             var manufactures = DbContext.Manufactures.Select(x => new ManufactureListItem() { 
                 Id = x.Id,

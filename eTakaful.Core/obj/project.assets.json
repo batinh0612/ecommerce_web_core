@@ -8750,6 +8750,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 7.0.0",
       "Ecommerce.Domain >= 1.0.0",
       "Ecommerce.Repository >= 1.0.0",
+      "Microsoft.AspNetCore.Hosting.Abstractions >= 2.2.0",
       "System.IdentityModel.Tokens.Jwt >= 6.8.0"
     ]
   },
@@ -8806,6 +8807,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "Microsoft.AspNetCore.Hosting.Abstractions": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

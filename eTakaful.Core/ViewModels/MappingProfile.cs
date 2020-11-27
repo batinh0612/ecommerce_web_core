@@ -2,6 +2,7 @@ using AutoMapper;
 using Ecommerce.Domain.Models;
 using Ecommerce.Service.Dto;
 using Ecommerce.Service.ViewModels;
+using EcommerceCommon.Infrastructure.Dto.Manufacture;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
 using EcommerceCommon.Infrastructure.ViewModel.Product;
 using EcommerceCommon.Infrastructure.ViewModel.Supplier;
@@ -33,6 +34,7 @@ namespace Ecommerce.Core.ViewModels
             CreateMap<UserDto, User>();
             CreateMap<RoleDto, Role>();
             CreateMap<SupplierDto, Supplier>();
+            CreateMap<ManufactureDto, Manufacture>();
         }
     }
 }

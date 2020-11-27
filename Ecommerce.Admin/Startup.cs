@@ -1,24 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 using AutoMapper;
 using Ecommerce.ApiIntegration;
 using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
-using Ecommerce.Domain.Models;
 using Ecommerce.Repository;
 using Ecommerce.Repository.Common;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
-using Flurl.Http;
+using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,25 +39,14 @@ namespace Ecommerce.Admin
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
-            //services.AddAuthentication().AddCookie(options =>
-            //{
-            //    options.LoginPath = "/Login/Index";
-            //    options.LogoutPath = "/Logout/Logout";
-            //});
-
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddHttpClient();
 
-            services.ConfigureApplicationCookie(options =>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-
-                options.LoginPath = "/Login/Index";
-                options.AccessDeniedPath = "/Login/Logout";
-                options.SlidingExpiration = true;
+                options.LoginPath = "/Login/Index/";
+                options.AccessDeniedPath = "/User/Forbidden/";
             });
 
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
@@ -87,7 +70,10 @@ namespace Ecommerce.Admin
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
@@ -140,6 +126,9 @@ namespace Ecommerce.Admin
 
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<ISupplierApiClient, SupplierApiClient>();
+            services.AddTransient<IManufactureApiClient, ManufactureApiClient>();
+
+            services.AddSingleton<Tokens>();
         }
     }
 }

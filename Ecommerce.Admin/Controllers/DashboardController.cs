@@ -6,13 +6,14 @@ using Ecommerce.Admin.Models;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Utilities.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
 namespace Ecommerce.Admin.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : BaseController
     {
         private readonly IDashboardService _dashboardService;
         private readonly IConfiguration _configuration;
@@ -29,7 +30,6 @@ namespace Ecommerce.Admin.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            HttpContext.Session.SetString(SystemConstant.DefaultLanguageId, _configuration["DefaultLanguageId"]);
             var models = new DashboardViewModel
             {
                 TotalOrder = await _dashboardService.GetTotalOrder(),

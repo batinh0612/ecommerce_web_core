@@ -34,32 +34,70 @@ namespace Ecommerce.Admin.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Index(AuthenticateRequest model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View();
+        //    }
+
+        //    var token = await userApiClient.Authenticate(model);
+
+        //    if (token == null)
+        //    {
+        //        ModelState.AddModelError("", "Token...");
+        //        return View();
+        //    }
+
+        //    var userPrincipal = this.ValidateToken(token.ResultObj.Token);
+
+        //    var authProperties = new AuthenticationProperties
+        //    {
+        //        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+        //        IsPersistent = false
+        //    };
+
+        //    HttpContext.Session.SetString(SystemConstant.AppSettings.Token, token.ResultObj.Token);
+
+
+        //    await HttpContext.SignInAsync(
+        //            CookieAuthenticationDefaults.AuthenticationScheme,
+        //            userPrincipal,
+        //            authProperties
+        //        );
+
+        //    TempData["Username"] = model.Username;
+
+        //    return RedirectToAction("Index", "Dashboard");
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Index(AuthenticateRequest model)
+        public async Task<IActionResult> Index(LoginRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
+            var result = await userApiClient.Authenticate(request);
 
-            var token = await userApiClient.Authenticate(model);
-
-            if (token == null)
+            if (result == null)
             {
-                ModelState.AddModelError("", "Token...");
+                ModelState.AddModelError("", "Unauthorize");
                 return View();
             }
 
-            var userPrincipal = this.ValidateToken(token.ResultObj.Token);
-
+            var userPrincipal = this.ValidateToken(result.Result.ToString());
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
 
-            HttpContext.Session.SetString(SystemConstant.AppSettings.Token, token.ResultObj.Token);
 
+
+            HttpContext.Session.SetString(SystemConstant.AppSettings.DefaultLanguageId, configuration["DefaultLanguageId"]);
+            HttpContext.Session.SetString(SystemConstant.AppSettings.Token, result.Result.ToString());
 
             await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
@@ -67,10 +105,36 @@ namespace Ecommerce.Admin.Controllers
                     authProperties
                 );
 
-            TempData["Username"] = model.Username;
+            //TempData["Username"] = request.Username;
+            HttpContext.Session.SetString("Username", request.Username);
 
             return RedirectToAction("Index", "Dashboard");
         }
+
+        /// <summary>
+        /// Get token
+        /// </summary>
+        /// <param name="jwtToken"></param>
+        /// <returns></returns>
+        //private ClaimsPrincipal ValidateToken(string jwtToken)
+        //{
+        //    IdentityModelEventSource.ShowPII = true;
+
+        //    TokenValidationParameters validationParameters = new TokenValidationParameters();
+
+        //    validationParameters.ValidateLifetime = true;
+        //    validationParameters.ValidateAudience = true;
+        //    validationParameters.ValidateIssuer = true;
+
+        //    validationParameters.ValidAudience = "https://webapi.tedu.com.vn";
+        //    validationParameters.ValidIssuer = "https://webapi.tedu.com.vn";
+        //    validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("035131513513ACNMCM"));
+
+        //    ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out SecurityToken validateToken);
+
+        //    return principal;
+        //}
+
 
         /// <summary>
         /// Get token
@@ -81,19 +145,26 @@ namespace Ecommerce.Admin.Controllers
         {
             IdentityModelEventSource.ShowPII = true;
 
+            SecurityToken validateToken;
             TokenValidationParameters validationParameters = new TokenValidationParameters();
 
             validationParameters.ValidateLifetime = true;
-            validationParameters.ValidateAudience = true;
-            validationParameters.ValidateIssuer = true;
 
-            validationParameters.ValidAudience = "https://webapi.tedu.com.vn";
-            validationParameters.ValidIssuer = "https://webapi.tedu.com.vn";
-            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("035131513513ACNMCM"));
+            validationParameters.ValidAudience = configuration["Tokens:Issuer"];
+            validationParameters.ValidIssuer = configuration["Tokens:Issuer"];
+            validationParameters.IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"]));
 
-            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out SecurityToken validateToken);
+            ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validateToken);
 
             return principal;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove(SystemConstant.AppSettings.Token);
+            return RedirectToAction("Index", "Login");
         }
     }
 }

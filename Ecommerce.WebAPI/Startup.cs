@@ -5,36 +5,36 @@ using Ecommerce.Repository;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
-//using Ecommerce.WebAPI.Infrastructure.Extensions;
-using Ecommerce.WebAPI.Infrastructure.Helper;
+using Ecommerce.WebAPI.Infrastructure.Extensions;
+using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            
+            var builder = new ConfigurationBuilder()
+                          .SetBasePath(env.ContentRootPath)
+                          .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -42,45 +42,39 @@ namespace Ecommerce.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddCors();
             services.AddAutoMapper(typeof(MappingProfile));
 
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            //var section = Configuration.GetSection("Jwt:Key");
-            //var sectionValue = section.Value;
-
-            string secreat = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
+            }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = true,
+                    ValidateLifetime = false,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "https://webapi.tedu.com.vn",
-                    ValidAudience = "https://webapi.tedu.com.vn",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secreat))
+                    ValidIssuer = Configuration["Tokens:Issuer"],
+                    ValidAudience = Configuration["Tokens:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"])) //Configuration["JwtToken:SecretKey"]  
                 };
-                options.Audience = "https://webapi.tedu.com.vn";
-                options.RequireHttpsMetadata = false;
             });
 
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                    //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-                    //options.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
                 }
             );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer("Server=DESKTOP-LCP472S;Database=Ecommerce;Integrated Security=SSPI;"));
 
             #region JWT
             // configure strongly typed settings objects
@@ -123,11 +117,18 @@ namespace Ecommerce.WebAPI
             //    };
             //});
             #endregion
-            
-
 
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IApplicationDbContextInitializer, ApplicationDbContextInitializer>();
+
+            var settings = new Tokens
+            {
+                //AdminEmail = Configuration["AdminEmail"]
+                Key = Configuration["Tokens:Key"],
+                Issuer = Configuration["Tokens:Issuer"]
+            };
+
+            services.AddSingleton(settings);
 
             ConfigureCoreAndRepositoryService(services);
 
@@ -200,16 +201,15 @@ namespace Ecommerce.WebAPI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-        
 
-      
             app.UseAuthentication();
             app.UseRouting();
-
-            app.UseMiddleware<JwtMiddleware>();
+            //app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
-            //app.UseApiResponseAndExceptionWrapper();
+
+
+            app.UseApiResponseAndExceptionWrapper();
 
             app.UseEndpoints(endpoints =>
             {
@@ -225,8 +225,6 @@ namespace Ecommerce.WebAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ecommerce API V1");
             });
-
-
         }
 
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
@@ -248,6 +246,9 @@ namespace Ecommerce.WebAPI
 
             services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<ISupplierService, SupplierService>();
+
+            services.AddScoped<IManufactureRepository, ManufactureRepository>();
+            services.AddScoped<IManufactureService, ManufactureService>();
         }
     }
 }

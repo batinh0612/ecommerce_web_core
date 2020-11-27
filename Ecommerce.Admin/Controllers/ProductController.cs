@@ -70,7 +70,7 @@ namespace Ecommerce.Admin.Controllers
                 Value = x.Id.ToString()
             });
 
-            var manufactures = await _manufactureService.GetAll();
+            var manufactures = await _manufactureService.GetAllManufactures();
 
             ViewBag.Manufactures = manufactures.Select(x => new SelectListItem() { 
                 Text = x.Name,
@@ -101,7 +101,7 @@ namespace Ecommerce.Admin.Controllers
                     Value = x.Id.ToString()
                 });
 
-                var manufactures = await _manufactureService.GetAll();
+                var manufactures = await _manufactureService.GetAllManufactures();
 
                 ViewBag.Manufactures = manufactures.Select(x => new SelectListItem()
                 {

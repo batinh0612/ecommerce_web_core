@@ -19,21 +19,6 @@ namespace Ecommerce.Repository.Interfaces
         Task<User> Register(UserRegisterDto dto);
 
         /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task<AuthenticateResponse> Authenticate2(AuthenticateRequest model);
-
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        User Authenticate(string username, string password);
-
-        /// <summary>
         /// Create
         /// </summary>
         /// <param name="user"></param>

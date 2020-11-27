@@ -2,11 +2,16 @@
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.User;
+using EcommerceCommon.Utilities.Constants;
+using Flurl;
+using Flurl.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,51 +21,40 @@ namespace Ecommerce.ApiIntegration
     {
         private readonly IHttpClientFactory httpClientFactory;
         private readonly IConfiguration configuration;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public UserApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public UserApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             this.httpClientFactory = httpClientFactory;
             this.configuration = configuration;
+            this.httpContextAccessor = httpContextAccessor;
+        }
+
+        public async Task<ApiResponse> Authenticate(LoginRequest request)
+        {
+            var url = configuration[SystemConstant.AppSettings.BaseAddress];
+            var response = await url.AppendPathSegment("/api/Users/Authenticate").PostJsonAsync(request).ReceiveJson<ApiResponse>();
+            return response;
         }
 
         /// <summary>
-        /// Authenticate
+        /// Delete
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        //public async Task<string> Authenticate(AuthenticateRequest model)
-        //{
-        //    var json = JsonConvert.SerializeObject(model);
-        //    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-
-        //    var client = httpClientFactory.CreateClient();
-        //    client.BaseAddress = new Uri(configuration["BaseAddress"]);
-        //    var response = await client.PostAsync("/api/Users/Authenticate", httpContent);
-        //    var result = await response.Content.ReadAsStringAsync();
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        //return JsonConvert.DeserializeObject<string>(result);
-        //        return result;
-        //    }
-        //    //return JsonConvert.DeserializeObject<string>(result);
-        //    return null;
-        //}
-
-        public async Task<ApiResponseNew<AuthenticateResponse>> Authenticate(AuthenticateRequest model)
+        public async Task<ApiResponse> Delete(Guid id)
         {
-            var json = JsonConvert.SerializeObject(model);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-
+            var session = httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Token);
             var client = httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri(configuration["BaseAddress"]);
-            var response = await client.PostAsync("/api/Users/Authenticate", httpContent);
-            var result = await response.Content.ReadAsStringAsync();
+            client.BaseAddress = new Uri(configuration[SystemConstant.AppSettings.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", session);
+            var response = await client.DeleteAsync($"api/Users/delete-user/{id}");
+            var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                var data = JsonConvert.DeserializeObject<ApiOkResponse<AuthenticateResponse>>(result);
-                return data;
+                return JsonConvert.DeserializeObject<ApiResponse>(body);
             }
-            return JsonConvert.DeserializeObject<ApiBadRequestResponse<AuthenticateResponse>>(result);
+            return JsonConvert.DeserializeObject<ApiResponse>(body);
         }
     }
 }

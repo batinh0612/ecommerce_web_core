@@ -23,6 +23,10 @@ namespace Ecommerce.Service.Interface
         /// <returns></returns>
         Task<Supplier> Create(SupplierDto dto);
 
+        /// <summary>
+        /// Get all supplier async
+        /// </summary>
+        /// <returns></returns>
         Task<List<Supplier>> GetAllSuppliersAsync();
     }
 }

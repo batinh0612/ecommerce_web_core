@@ -1,83 +1,52 @@
 ﻿using Ecommerce.Service.Interface;
-using Ecommerce.WebAPI.Infrastructure.Helper;
+using Ecommerce.WebAPI.Infrastructure.Extensions;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
-using EcommerceCommon.Infrastructure.ApiResponse;
 using EcommerceCommon.Infrastructure.Dto.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+using System;
 using System.Threading.Tasks;
 
 namespace Ecommerce.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    [Microsoft.AspNetCore.Authorization.Authorize]
     public class UsersController : ControllerBase
     {
-        private readonly AuthencationSetting _authencationSetting;
         private readonly IUserService _userService;
-        private readonly IConfiguration _configuration;
 
-        public UsersController(IUserService userService, IOptions<AuthencationSetting> authencationSetting, IConfiguration configuration)
+        public UsersController(IUserService userService)
         {
-            _authencationSetting = authencationSetting.Value;
             _userService = userService;
-            _configuration = configuration;
         }
-
-        //[AllowAnonymous]
-        //[HttpPost("login")]
-        //public ApiResponse Login([FromBody] UserLoginDto userDto)
-        //{
-        //    //var user = await _userService.Authenticate(userDto.Username, userDto.Password, userDto.SessionId);
-
-        //    //if (user == null)
-        //    //    throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);
-
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING"));
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(new Claim[]
-        //        {
-        //            new Claim(ClaimTypes.Name, "SyNV"),
-        //            new Claim(ClaimTypes.Role, "admin")
-        //        }),
-        //        Expires = DateTime.UtcNow.AddDays(7),
-        //        SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
-        //    };
-        //    var token = tokenHandler.CreateToken(tokenDescriptor);
-        //    var tokenString = tokenHandler.WriteToken(token);
-
-        //    return new ApiResponse("Token", tokenString, 200);
-        //}
 
         [HttpPost("authenticate")]
-        [AllowAnonymous]
-        public async Task<ApiResponseNew<AuthenticateResponse>> Authenticate([FromBody]AuthenticateRequest model)
+        public async Task<ApiResponse> Authenticate([FromBody] LoginRequest request)
         {
-            var response = await _userService.Authenticate2(model);
+            if (!ModelState.IsValid)
+            {
+                throw new ApiException(ModelState.AllErrors());
+            }
 
-            if (response == null)
-                //throw new ApiException("Tên đăng nhập hoặc mật khẩu không chính xác", 200);
-                return new ApiBadRequestResponse<AuthenticateResponse>("Username or password incorrect");
+            var token = await _userService.Authenticate(request);
+            if (string.IsNullOrEmpty(token))
+            {
+                throw new ApiException("Token null");
+            }
 
-            return new ApiOkResponse<AuthenticateResponse>("Token", response);
+            return new ApiResponse("Authentication", token, 200);
         }
 
-        //[HttpPost("register")]
-        //[AllowAnonymous]
-        //public async Task<ApiResponse> Register([FromBody] UserRegisterDto dto)
-        //{
-        //    var user = await _userService.Register(dto);
+        [HttpDelete("delete-user/{id}")]
+        [Authorize]
+        public async Task<ApiResponse> Delete(Guid id)
+        {
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null)
+                return new ApiResponse($"Cannot found user with id: {id}");
 
-        //    if (user == null)
-        //        throw new ApiException("Register user failure", 200);
-
-        //    return new ApiResponse("Register user successful", user, 200);
-        //}
+            await _userService.DeleteAsync(user);
+            return new ApiResponse("Delete user successful");
+        }
     }
 }
