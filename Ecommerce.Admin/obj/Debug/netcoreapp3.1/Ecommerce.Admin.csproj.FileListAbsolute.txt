@@ -919,3 +919,10 @@ D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufact
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Edit.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Manufacture\Details.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\Details.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Ecommerce.Admin.MvcApplicationPartsAssemblyInfo.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\ChangePassword.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginChangePassword.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Profile.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Login\UserAccessDenied.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Create.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Edit.cshtml.g.cs

@@ -1,17 +1,14 @@
 ﻿using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
-using Ecommerce.Domain.Models;
-using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.Dto.Manufacture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ecommerce.Admin.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ManufactureController : BaseController
     {
         private readonly IManufactureApiClient manufactureApiClient;
@@ -40,7 +37,7 @@ namespace Ecommerce.Admin.Controllers
             }
             return RedirectToAction("Index", "Dashboard");
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             return View();
@@ -64,7 +61,7 @@ namespace Ecommerce.Admin.Controllers
 
             return View(dto);
         }
-
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var manufacture = await manufactureApiClient.GetById(id);

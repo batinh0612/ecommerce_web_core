@@ -10,6 +10,7 @@ using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +29,8 @@ namespace Ecommerce.WebAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
-            
             var builder = new ConfigurationBuilder()
                           .SetBasePath(env.ContentRootPath)
                           .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -75,6 +75,15 @@ namespace Ecommerce.WebAPI
             );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                //options.Cookie.HttpOnly = true;
+                //options.Cookie.IsEssential = true;
+            });
 
             #region JWT
             // configure strongly typed settings objects
@@ -121,9 +130,9 @@ namespace Ecommerce.WebAPI
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IApplicationDbContextInitializer, ApplicationDbContextInitializer>();
 
+
             var settings = new Tokens
             {
-                //AdminEmail = Configuration["AdminEmail"]
                 Key = Configuration["Tokens:Key"],
                 Issuer = Configuration["Tokens:Issuer"]
             };
@@ -198,18 +207,17 @@ namespace Ecommerce.WebAPI
                 app.UseHsts();
             }
 
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseAuthentication();
             app.UseRouting();
-            //app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
 
-
             app.UseApiResponseAndExceptionWrapper();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -229,26 +237,32 @@ namespace Ecommerce.WebAPI
 
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IServices<>), typeof(EcommerceServices<>));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductSevice, ProductService>();
+            services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));
 
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRoleServices, RoleService>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductSevice, ProductService>();
 
-            services.AddScoped<ISupplierRepository, SupplierRepository>();
-            services.AddScoped<ISupplierService, SupplierService>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
 
-            services.AddScoped<IManufactureRepository, ManufactureRepository>();
-            services.AddScoped<IManufactureService, ManufactureService>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IRoleServices, RoleService>();
+
+            services.AddTransient<ISupplierRepository, SupplierRepository>();
+            services.AddTransient<ISupplierService, SupplierService>();
+
+            services.AddTransient<IManufactureRepository, ManufactureRepository>();
+            services.AddTransient<IManufactureService, ManufactureService>();
+
+            services.AddTransient<UserName>();
         }
     }
 }

@@ -1,5 +1,8 @@
 using System;
+using System.Security.Claims;
 using AutoMapper;
+using Ecommerce.Admin.CustomHandler;
+//using Ecommerce.Admin.CustomHandler;
 using Ecommerce.ApiIntegration;
 using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
@@ -10,6 +13,7 @@ using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,14 +43,26 @@ namespace Ecommerce.Admin
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            //services.AddHttpContextAccessor();
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddHttpClient();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                options.LoginPath = "/Login/Index/";
-                options.AccessDeniedPath = "/User/Forbidden/";
+                options.Cookie.Name = "UserLoginCookie"; // Name of cookie     
+                options.LoginPath = "/Login/Index"; // Path for the redirect to user login page    
+                options.AccessDeniedPath = "/Login/UserAccessDenied";
+            });
+
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy("UserPolicy", policyBuilder =>
+                {
+                    policyBuilder.UserRequireCustomClaim(ClaimTypes.Email);
+                    //policyBuilder.UserRequireCustomClaim(ClaimTypes.DateOfBirth);
+                });
             });
 
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
@@ -81,12 +97,7 @@ namespace Ecommerce.Admin
 
             app.UseSession();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Login}/{action=Index}/{id?}");
-            });
+            Endpoints(app);
         }
 
         /// <summary>
@@ -95,7 +106,7 @@ namespace Ecommerce.Admin
         /// <param name="services"></param>
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));
@@ -115,6 +126,9 @@ namespace Ecommerce.Admin
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
 
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IRoleServices, RoleService>();
+
             services.AddTransient<ISupplierRepository, SupplierRepository>();
             services.AddTransient<ISupplierService, SupplierService>();
 
@@ -128,7 +142,56 @@ namespace Ecommerce.Admin
             services.AddTransient<ISupplierApiClient, SupplierApiClient>();
             services.AddTransient<IManufactureApiClient, ManufactureApiClient>();
 
-            services.AddSingleton<Tokens>();
+            services.AddTransient<Tokens>();
+
+            services.AddScoped<IAuthorizationHandler, PoliciesAuthorizationHandler>();
+            services.AddScoped<IAuthorizationHandler, RolesAuthorizationHandler>();
+        }
+
+        private void Endpoints(IApplicationBuilder app)
+        {
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "Product details",
+                    pattern: "/product-details/{id}",
+                    new
+                    {
+                        controller = "Product",
+                        action = "Details"
+                    });
+
+                endpoints.MapControllerRoute(
+                    name: "Supplier details",
+                    pattern: "/supplier-details/{id}",
+                    new
+                    {
+                        controller = "Supplier",
+                        action = "Details"
+                    });
+
+                endpoints.MapControllerRoute(
+                    name: "Manufacture details",
+                    pattern: "/manufacture-details/{id}",
+                    new
+                    {
+                        controller = "Manufacture",
+                        action = "Details"
+                    });
+
+                endpoints.MapControllerRoute(
+                   name: "Edit user",
+                   pattern: "/edit-user/{id}",
+                   new
+                   {
+                       controller = "User",
+                       action = "Edit"
+                   });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
+            });
         }
     }
 }

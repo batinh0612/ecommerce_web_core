@@ -10,19 +10,20 @@ using Microsoft.EntityFrameworkCore;
 using EcommerceCommon.Infrastructure.ViewModel;
 using EcommerceCommon.Infrastructure.ViewModel.User;
 using EcommerceCommon.Infrastructure.Dto.User;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+using EcommerceCommon.Utilities.Constants;
 
 namespace Ecommerce.Repository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        private readonly IConfiguration configuration;
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private ISession _session => httpContextAccessor.HttpContext.Session;
 
-        //private readonly AppSettings _appSettings;
-        public UserRepository(ApplicationDbContext dbContext, IConfiguration configuration) : base(dbContext)
+        public UserRepository(ApplicationDbContext dbContext, 
+            IHttpContextAccessor httpContextAccessor) : base(dbContext)
         {
-            this.configuration = configuration;
-            //_appSettings = appSettings.Value;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace Ecommerce.Repository
         {
             if (DbContext.Users.Any(x => x.Username == dto.Username))
             {
-                throw new Exception("Username \"" + dto.Username + "\" is already taken");
+                return null;
             }
 
             byte[] passwordHash;
@@ -42,17 +43,21 @@ namespace Ecommerce.Repository
 
             AuthenUserHelper.CreatePasswordHash(dto.Password, out passwordHash, out passwordSalt);
 
+            var role = DbContext.Roles.SingleOrDefault(x => x.Name == "Admin").Id;
+
             var user = new User()
             {
                 Username = dto.Username,
                 Address = dto.Address,
-                Avatar = dto.Avatar,
+                //Avatar = dto.Avatar,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Email = dto.Email,
                 Phone = dto.Phone,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
+                CreatedBy = _session.GetString(SystemConstant.AppSettings.Username),
+                RoleId = role
             };
 
             await DbContext.Users.AddAsync(user);
@@ -60,31 +65,6 @@ namespace Ecommerce.Repository
 
             return user;
         }
-
-        //private string generateJwtToken(User user)
-        //{
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.UTF8.GetBytes("035131513513ACNMCM");
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(new[] { 
-        //            //new Claim("id", user.Id.ToString()) 
-        //            new Claim(ClaimTypes.Name, user.Username),
-        //            new Claim(ClaimTypes.Email, user.Email),
-        //            new Claim(ClaimTypes.GivenName, user.FirstName),
-        //            new Claim(ClaimTypes.Surname, user.LastName)
-        //        }),
-        //        Expires = DateTime.UtcNow.AddDays(7),
-        //        SigningCredentials = new SigningCredentials(
-        //            new SymmetricSecurityKey(key),
-        //            SecurityAlgorithms.HmacSha256Signature
-        //            )
-        //    };
-
-        //    var token = tokenHandler.CreateToken(tokenDescriptor);
-
-        //    return tokenHandler.WriteToken(token);
-        //}
 
         /// <summary>
         /// Create
@@ -114,42 +94,48 @@ namespace Ecommerce.Repository
             return user;
         }
 
-        /// <summary>
-        /// Update
-        /// </summary>
-        /// <param name="userParam"></param>
-        /// <param name="password"></param>
-        public void Update(User userParam, string password = null)
+        public async Task<int> Edit(Guid id, UserUpdateDto dto)
         {
-            var user = DbContext.Users.Find(userParam.Id);
-
+            var user = DbContext.Users.Find(id);
             if (user == null)
-                throw new Exception("User not found");
+            {
+                throw new Exception("Không tìm thấy người dùng");
+            }
 
-            if (userParam.Username != user.Username)
+            if (dto.Username != user.Username)
             {
                 // username has changed so check if the new username is already taken
-                if (DbContext.Users.Any(x => x.Username == userParam.Username))
-                    throw new Exception("Username " + userParam.Username + " is already taken");
+                if (DbContext.Users.Any(x => x.Username == dto.Username))
+                    throw new Exception("Username " + dto.Username + " is already taken");
+            }
+
+            if (dto.Password != dto.ConfirmPassword)
+            {
+                throw new Exception("Mật khẩu phải khớp nhau");
             }
 
             // update user properties
-            user.FirstName = userParam.FirstName;
-            user.LastName = userParam.LastName;
-            user.Username = userParam.Username;
+            user.FirstName = dto.FirstName;
+            user.LastName = dto.LastName;
+            user.Username = dto.Username;
+            user.Phone = dto.Phone;
+            user.Email = dto.Email;
+            user.Address = dto.Address;
+            user.UpdatedBy = httpContextAccessor.HttpContext.Session.GetString("Username");
+            user.UpdatedDate = DateTime.Now;
 
             // update password if it was entered
-            if (!string.IsNullOrWhiteSpace(password))
+            if (!string.IsNullOrWhiteSpace(dto.Password))
             {
                 byte[] passwordHash, passwordSalt;
-                AuthenUserHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+                AuthenUserHelper.CreatePasswordHash(dto.Password, out passwordHash, out passwordSalt);
 
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
             }
 
             DbContext.Users.Update(user);
-            DbContext.SaveChanges();
+            return await DbContext.SaveChangesAsync();
         }
 
         /// <summary>
@@ -204,7 +190,8 @@ namespace Ecommerce.Repository
                 Email = x.Email,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                Phone = x.Phone
+                Phone = x.Phone,
+                IsDelete = x.IsDeleted
             }).ToListAsync();
 
 
@@ -235,6 +222,32 @@ namespace Ecommerce.Repository
             };
 
             return userViewModel;
+        }
+
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name="change"></param>
+        /// <returns></returns>
+        public async Task<User> ChangePassword(ChangePassword change)
+        {
+            //var username = httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Username);
+            
+            return await DbContext.Users.SingleOrDefaultAsync(x => x.Username == "admin" || x.Username == "batinh");
+        }
+
+        /// <summary>
+        /// Change status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> ChangeStatus(Guid id)
+        {
+            var user = await DbContext.Users.FindAsync(id);
+
+            user.IsDeleted = !user.IsDeleted;
+            await DbContext.SaveChangesAsync();
+            return user.IsDeleted;
         }
     }
 }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.Domain;
-using Ecommerce.Domain.Models;
-using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.Dto.Category;
 using EcommerceCommon.Utilities.Constants;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,7 +33,10 @@ namespace Ecommerce.Admin.Controllers
 
             var categories = _categoryService.GetListCategories(languageId);
 
-            ViewBag.Success = TempData["result"];
+            if (TempData["result"] != null)
+            {
+                ViewBag.Success = TempData["result"];
+            }
 
             return View(categories);
         }

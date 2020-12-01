@@ -204,8 +204,10 @@ namespace Ecommerce.Repository
                         from pt in ptt.DefaultIfEmpty()
                         join pic in DbContext.ProductInCategories on p.Id equals pic.ProductId into picc
                         from pic in picc.DefaultIfEmpty()
-                        join s in DbContext.Suppliers on p.SupplierId equals s.Id
-                        join m in DbContext.Manufactures on p.ManufactureId equals m.Id
+                        join s in DbContext.Suppliers on p.SupplierId equals s.Id into ss
+                        from s in ss.DefaultIfEmpty()
+                        join m in DbContext.Manufactures on p.ManufactureId equals m.Id into mm
+                        from m in mm.DefaultIfEmpty()
                         where p.Id == id
                         select new { p, pic, s, m, pt, pi };
 
@@ -217,7 +219,7 @@ namespace Ecommerce.Repository
                 Height = x.p.Height,
                 Name = x.pt.Name,
                 PercentDiscount = x.p.PercentDiscount,
-                Price = x.p.Price,
+                Price = x.p.Price == 0 ? 0 : x.p.Price,
                 Quantity = x.p.Quantity,
                 Keyword = x.pt.Keyword,
                 Id = x.p.Id,

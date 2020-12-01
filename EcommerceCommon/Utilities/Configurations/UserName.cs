@@ -4,8 +4,8 @@ using System.Text;
 
 namespace EcommerceCommon.Utilities.Configurations
 {
-    public class EmailSettings
+    public class UserName
     {
-        public string AdminEmail { get; set; } // encapsulate as needed
+        public string Username { get; set; } // encapsulate as needed
     }
 }

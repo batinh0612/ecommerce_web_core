@@ -34,5 +34,7 @@ namespace EcommerceCommon.Infrastructure.ViewModel.User
         [DataType(DataType.Date)]
         [Display(Name = "Ngày tạo")]
         public DateTime CreatedDate { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Ecommerce.Admin.Models;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.ViewModel;
@@ -13,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Ecommerce.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardController : BaseController
     {
         private readonly IDashboardService _dashboardService;

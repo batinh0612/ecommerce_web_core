@@ -23,48 +23,81 @@ namespace Ecommerce.Service.Services
         private readonly IUserRepository _userReponsitory;
         private readonly IMapper _mapper;
         private readonly Tokens _tokens;
+        private readonly IRoleRepository _roleRepository;
 
-        public UserService(IUserRepository userReponsitory, IMapper mapper, IOptions<AppSettings> appSettings, Tokens tokens) : base(userReponsitory)
+        public UserService(IUserRepository userReponsitory, 
+            IMapper mapper, 
+            IOptions<AppSettings> appSettings,
+            Tokens tokens,
+            IRoleRepository roleRepository) : base(userReponsitory)
         {
             _userReponsitory = userReponsitory;
             _mapper = mapper;
             _tokens = tokens;
+            _roleRepository = roleRepository;
         }
 
         public async Task<string> Authenticate(LoginRequest request)
         {
             var user = await _userReponsitory.FindAsync(x => x.Username == request.Username);
-
             if (user == null)
                 return null;
 
-            var result = AuthenUserHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
+            if (user.IsDeleted == true)
+            {
+                 return "Tài khoản đang bị khóa";
+            }
 
+            var result = AuthenUserHelper.VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
             if (!result)
             {
                 return null;
             }
 
+            var roles = await _roleRepository.GetAllAsync();
             var claims = new[]
             {
+                new Claim("Username", user.Username),
+                new Claim(ClaimTypes.Name, (user.FirstName + " " + user.LastName)),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.GivenName, user.FirstName),
-                //new Claim(ClaimTypes.Role, string.Join(";", roles)),
-                new Claim(ClaimTypes.Name, request.Username)
+                new Claim(ClaimTypes.Role, string.Join(";", roles))
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokens.Key));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 _tokens.Issuer,
                 _tokens.Issuer,
                 claims,
                 expires: DateTime.Now.AddHours(3),
-                signingCredentials: creds
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokens.Key)),
+                SecurityAlgorithms.HmacSha256)
                 );
 
             var resultToken = new JwtSecurityTokenHandler().WriteToken(token);
             return resultToken;
+        }
+
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name="change"></param>
+        /// <returns></returns>
+        public async Task<User> ChangePassword(ChangePassword change)
+        {
+            var user = await _userReponsitory.ChangePassword(change);
+
+            if (change.Password.Equals(change.ConfirmPassword))
+            {
+                byte[] passwordHash;
+                byte[] passwordSalt;
+                AuthenUserHelper.CreatePasswordHash(change.Password, out passwordHash, out passwordSalt);
+
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+
+                await _userReponsitory.UpdateAsync(user);
+                return user;
+            }
+            return null;
         }
 
         /// <summary>
@@ -77,6 +110,17 @@ namespace Ecommerce.Service.Services
         {
             var user = _mapper.Map<User>(userDto);
             return _userReponsitory.Create(user, password);
+        }
+
+        /// <summary>
+        /// Edit
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<int> Edit(Guid id, UserUpdateDto dto)
+        {
+            return await _userReponsitory.Edit(id, dto);
         }
 
         /// <summary>
@@ -122,10 +166,21 @@ namespace Ecommerce.Service.Services
         /// </summary>
         /// <param name="userDto"></param>
         /// <param name="password"></param>
-        public void Update(UserDto userDto, string password = null)
+        //public void Update(UserDto userDto, string password = null)
+        //{
+        //    var user = _mapper.Map<User>(userDto);
+        //    _userReponsitory.Update(user, password);
+        //}
+
+
+        /// <summary>
+        /// Change statuss
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> ChangeStatus(Guid id)
         {
-            var user = _mapper.Map<User>(userDto);
-            _userReponsitory.Update(user,password);
+            return await _userReponsitory.ChangeStatus(id);
         }
     }
 }

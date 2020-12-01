@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Ecommerce.ApiIntegration.Interfaces;
-using Ecommerce.Domain.Models;
 using EcommerceCommon.Infrastructure.Dto.Supplier;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce.Admin.Controllers
 {
+    //[Authorize(Policy = "UserPolicy")]
+    //[Authorize(Roles = "Admin")]
     public class SupplierController : BaseController
     {
         private readonly ISupplierApiClient supplierApiClient;
@@ -16,6 +18,7 @@ namespace Ecommerce.Admin.Controllers
             this.supplierApiClient = supplierApiClient;
         }
 
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Index()
         {
             var suppliers = await supplierApiClient.GetAllSuppliers();
@@ -28,7 +31,8 @@ namespace Ecommerce.Admin.Controllers
 
             return RedirectToAction("Index", "Dashboard");
         }
-
+        //[Authorize(Policy = "UserPolicy")]
+        [Authorize(Roles ="User, Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +58,7 @@ namespace Ecommerce.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> Edit(Guid id)
         {
             var supplier = await supplierApiClient.GetById(id);
@@ -75,7 +80,7 @@ namespace Ecommerce.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(Guid id)
         {
             var supplier = await supplierApiClient.GetById(id);

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.Dto.Product;
 using EcommerceCommon.Utilities.Constants;

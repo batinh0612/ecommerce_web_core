@@ -14,15 +14,15 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                        <li class="nav-item submenu dropdown active">
+                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="/Category/Index">Shop Category</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/Product/Details">Product Details</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/Product/Checkout">Product Checkout</a></li>
-                                <li class="nav-item active"><a class="nav-link" href="/Cart/Index">Shopping Cart</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/Cart/Index">Shopping Cart</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/Cart/Confirm">Confirmation</a></li>
                             </ul>
                         </li>
@@ -66,9 +66,29 @@
     </div>
 </header>
 
-<script>
-    $(".collapse .nav-item").click(function () {
-        $(".collapse .nav-item").removeClass("active");
-        $(this).addClass("active");
-    });
-</script>
+@section Scripts{
+    <script>
+        //$(".submenu ul li").click(function () {
+        //    $(".submenu ul li").removeClass("active");
+        //    $(this).addClass("active");
+        //});
+
+        //$('.dropdown-menu').on('click', 'li', function () {
+        //    $('.dropdown-menu li').removeClass('active');
+        //    $(this).addClass('active');
+        //});
+
+        $(document).ready(function () {
+            $('.dropdown-menu li a').click(function (e) {
+
+                $('.dropdown-menu li a').removeClass('active');
+
+                var $parent = $(this);
+                if (!$parent.hasClass('active')) {
+                    $parent.addClass('active');
+                }
+                e.preventDefault();
+            });
+        });
+    </script>
+}

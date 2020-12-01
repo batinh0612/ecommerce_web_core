@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using EcommerceCommon.Utilities.Constants
 @inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
@@ -6,8 +7,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/site.css" />
 
 
@@ -57,10 +58,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="~/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">@HttpContextAccessor.HttpContext.Session.GetString("Username")</a>
+                        <a href="/User/Profile" class="d-block">@HttpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Username)</a>
                     </div>
                 </div>
 
@@ -110,20 +111,6 @@
                                             @*<i class="right fas fa-angle-left"></i>*@
                                         </p>
                                     </a>
-                                    @*<ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a asp-controller="Product" asp-action="Index" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Danh sách</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a asp-controller="Product" asp-action="Create" class="nav-link">
-                                                    <i class="far fa-dot-circle nav-icon"></i>
-                                                    <p>Thêm mới</p>
-                                                </a>
-                                            </li>
-                                        </ul>*@
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">

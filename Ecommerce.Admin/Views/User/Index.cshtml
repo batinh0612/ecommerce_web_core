@@ -16,6 +16,9 @@
     .btn-action {
         line-height: 1 !important;
     }
+    .btn-active:hover {
+        color: white !important;
+    }
 </style>
 
 <section class="content-header">
@@ -41,6 +44,12 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                @if (@ViewBag.Success != null)
+                {
+                    <div id="msgSuccess" class="alert alert-success" role="alert">
+                        @ViewBag.Success
+                    </div>
+                }
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -48,25 +57,25 @@
                             <th>Họ tên</th>
                             <th>Điện thoại</th>
                             <th>Email</th>
-                            <th>Địa chỉ</th>
+                            <th>Trạng thái</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>@item.Username</td>
-                                <td>@(item.FirstName + " " + item.LastName)</td>
-                                <td>@item.Phone</td>
-                                <td>@item.Email</td>
-                                <td>@item.Address</td>
-                                <td>
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-action" })
-                                    @Html.ActionLink("Xem chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-action" })
-                                    <a href="#" data-id="@item.Id" class="btn btn-danger btn-action btn-delete">Xoá</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@item.Username</td>
+                            <td>@(item.FirstName + " " + item.LastName)</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td><a href="#" data-id="@item.Id" class="btn btn-action btn-active btn-outline-success status">@(item.IsDelete ? "Khóa" : "Kích hoạt") </a></td>
+                            <td>
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-action" })
+                                @Html.ActionLink("Xem chi tiết", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-action" })
+                                <a href="#" data-id="@item.Id" class="btn btn-danger btn-action btn-delete">Xoá</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -85,6 +94,30 @@
     <script src="/js/bootbox.min.js"></script>
     <script src="/js/controller/userController.js"></script>
     <script>
+        $('.btn-active').off('click').on('click', function (e) {
+            e.preventDefault();
+            var btn = $(this);
+            var id = btn.data('id');
+            $.ajax({
+                url: "/User/ChangeStatus",
+                data: { id: id },
+                dataType: "json",
+                type: "POST",
+                success: function (response) {
+                    console.log(response);
+                    if (response.status == true) {
+                        btn.text('Khóa');
+                    } else {
+                        btn.text('Kích hoạt');
+                    }
+                }
+            });
+        });
+
+        setTimeout(function () {
+            $("#msgSuccess").fadeOut();
+        }, 3000);
+
         $(function () {
             $("#example1").DataTable({
                 "paging": true,

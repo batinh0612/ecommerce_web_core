@@ -24,8 +24,20 @@ namespace Ecommerce.Service.Interface
         /// <returns></returns>
         Task<User> Register(UserRegisterDto dto);
 
-        //IEnumerable<User> GetAll();
-        //User GetById(int id);
+        /// <summary>
+        /// Edit
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        Task<int> Edit(Guid id, UserUpdateDto dto);
+
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name="change"></param>
+        /// <returns></returns>
+        Task<User> ChangePassword(ChangePassword change);
 
         /// <summary>
         /// Create
@@ -40,7 +52,7 @@ namespace Ecommerce.Service.Interface
         /// </summary>
         /// <param name="user"></param>
         /// <param name="password"></param>
-        void Update(UserDto user, string password = null);
+        //void Update(UserDto user, string password = null);
 
         /// <summary>
         /// Delete
@@ -60,5 +72,12 @@ namespace Ecommerce.Service.Interface
         /// <param name="id"></param>
         /// <returns></returns>
         Task<UserViewModel> GetUserById(Guid id);
+
+        /// <summary>
+        /// Change status
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> ChangeStatus(Guid id);
     }
 }

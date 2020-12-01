@@ -13,6 +13,7 @@ namespace EcommerceCommon.Utilities.Constants
             public const string DefaultLanguageId = "DefaultLanguageId";
             public const string Token = "Token";
             public const string BaseAddress = "BaseAddress";
+            public const string Username = "Username";
         }
     }
 }

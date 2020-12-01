@@ -3,6 +3,7 @@
         user.registerEvents();
     },
     registerEvents: function () {
+
         $('.btn-delete').off('click').on('click', function () {
             var id = $(this).data('id');
             bootbox.confirm({
