@@ -215,3 +215,4 @@ D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCor
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 D:\EcommerceWebCore\Ecommerce.WebAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\EcommerceWebCore\Ecommerce.WebAPI\obj\Debug\netcoreapp3.1\Ecommerce.WebAPI.MvcApplicationPartsAssemblyInfo.cs

@@ -1,30 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Ecommerce.Web.Models;
-using Ecommerce.Service.Interface;
 using AutoMapper;
+using Ecommerce.ApiIntegration.Interfaces;
+using EcommerceCommon.Infrastructure.ViewModel.Product;
+using Ecommerce.Service.Interface;
 
 namespace Ecommerce.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly IProductSevice _productService;
-        //private readonly ICategoryService _categoryService;
         private readonly IMapper _mapper;
+        private readonly IProductApiClient _productApiClient;
+        private readonly IProductSevice productSevice;
 
-        public HomeController(IMapper mapper)
+        public HomeController(IMapper mapper, IProductApiClient productApiClient, IProductSevice  productSevice)
         {
             _mapper = mapper;
+            _productApiClient = productApiClient;
+            this.productSevice = productSevice;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var newProduct = await _productApiClient.NewProductHomePage();
+            //var newP = await productSevice.NewProductHomePage();
+            var homePage = new HomePageViewModel
+            {
+                LatestProducts = (List<ProductHomePageViewModel>)newProduct.Result
+                //LatestProducts = newP
+            };
+            return View(homePage);
         }
 
         public IActionResult Privacy()

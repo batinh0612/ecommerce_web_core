@@ -11,6 +11,7 @@ namespace Ecommerce.Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+        #region Admin
         /// <summary>
         /// Create
         /// </summary>
@@ -70,6 +71,11 @@ namespace Ecommerce.Repository.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> Delete(Guid id);
+        #endregion
+
+        #region Home page
+        Task<List<ProductHomePageViewModel>> NewProductHomePage();
+        #endregion
     }
 
 }

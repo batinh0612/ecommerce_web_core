@@ -10,6 +10,7 @@ namespace Ecommerce.Service.Interface
 {
     public  interface IProductSevice : IServices<Product>
     {
+        #region Admin
         Task<List<ProductViewModel>> GetProductByCategoryIdAndOrderByView(Guid categoryId);
 
         Task<bool> GrowUpViewByProductId(Guid productId);
@@ -58,5 +59,15 @@ namespace Ecommerce.Service.Interface
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> Delete(Guid id);
+        #endregion
+
+
+        #region Home page
+        /// <summary>
+        /// New product home page
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductHomePageViewModel>> NewProductHomePage();
+        #endregion
     }
 }

@@ -2,6 +2,7 @@ using AutoMapper;
 using Ecommerce.Core.ViewModels;
 using Ecommerce.Domain;
 using Ecommerce.Repository;
+using Ecommerce.Repository.Common;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
@@ -84,48 +85,6 @@ namespace Ecommerce.WebAPI
                 //options.Cookie.HttpOnly = true;
                 //options.Cookie.IsEssential = true;
             });
-
-            #region JWT
-            // configure strongly typed settings objects
-            //var appSettingsSection = Configuration.GetSection("AppSettings");
-            //services.Configure<AuthencationSetting>(appSettingsSection);
-
-            //// configure jwt authentication
-            //var appSettings = appSettingsSection.Get<AuthencationSetting>();
-            ////var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(x =>
-            //{
-            //    x.Events = new JwtBearerEvents
-            //    {
-            //        //OnTokenValidated = context =>
-            //        //{
-            //        //    var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-            //        //    var userId = Guid.Parse(context.Principal.Identity.Name);
-            //        //    var user = userService.GetById(userId);
-            //        //    if (user == null)
-            //        //    {
-            //        //        // return unauthorized if user no longer exists
-            //        //        context.Fail("Unauthorized");
-            //        //    }
-            //        //    return Task.CompletedTask;
-            //        //}
-            //    };
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        //IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
-            //});
-            #endregion
 
             // Configure Entity Framework Initializer for seeding
             services.AddTransient<IApplicationDbContextInitializer, ApplicationDbContextInitializer>();
@@ -261,6 +220,8 @@ namespace Ecommerce.WebAPI
 
             services.AddTransient<IManufactureRepository, ManufactureRepository>();
             services.AddTransient<IManufactureService, ManufactureService>();
+
+            services.AddTransient<IStorageRepository, StorageRepository>();
 
             services.AddTransient<UserName>();
         }

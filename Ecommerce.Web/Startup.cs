@@ -1,15 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
+using Ecommerce.ApiIntegration;
+using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
 using Ecommerce.Repository;
+using Ecommerce.Repository.Common;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
+using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,14 +31,21 @@ namespace Ecommerce.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
+            services.AddHttpClient();
+            
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //ConfigureCoreAndRepositoryService(services);
+            ConfigureCoreAndRepositoryService(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,11 +59,17 @@ namespace Ecommerce.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
@@ -66,19 +81,27 @@ namespace Ecommerce.Web
 
         private void ConfigureCoreAndRepositoryService(IServiceCollection services)
         {
-            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IServices<>), typeof(EcommerceServices<>));
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductSevice, ProductService>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<IStorageRepository, StorageRepository>();
 
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRoleServices, RoleService>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductSevice, ProductService>();
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IRoleServices, RoleService>();
+
+            services.AddTransient<Tokens>();
+
         }
     }
 }

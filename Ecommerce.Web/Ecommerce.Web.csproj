@@ -10,12 +10,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.ApiIntegration\Ecommerce.ApiIntegration.csproj" />
     <ProjectReference Include="..\EcommerceCommon\EcommerceCommon.csproj" />
     <ProjectReference Include="..\eTakaful.Core\Ecommerce.Service.csproj" />
     <ProjectReference Include="..\eTakaful.Domain\Ecommerce.Domain.csproj" />

@@ -2,7 +2,6 @@ using System;
 using System.Security.Claims;
 using AutoMapper;
 using Ecommerce.Admin.CustomHandler;
-//using Ecommerce.Admin.CustomHandler;
 using Ecommerce.ApiIntegration;
 using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.Domain;
@@ -141,6 +140,7 @@ namespace Ecommerce.Admin
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<ISupplierApiClient, SupplierApiClient>();
             services.AddTransient<IManufactureApiClient, ManufactureApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
 
             services.AddTransient<Tokens>();
 

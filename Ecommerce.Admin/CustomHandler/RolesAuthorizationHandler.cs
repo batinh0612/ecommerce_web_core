@@ -1,6 +1,4 @@
-﻿using Ecommerce.Admin.Models;
-using Ecommerce.Domain;
-using Ecommerce.Service.Interface;
+﻿using Ecommerce.Service.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using System.Linq;

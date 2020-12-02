@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Domain;
 using Ecommerce.Domain.Enums;
@@ -29,6 +28,7 @@ namespace Ecommerce.Repository
             _storageRepository = storageRepository;
         }
 
+        #region Admin
         /// <summary>
         /// Create
         /// </summary>
@@ -389,5 +389,41 @@ namespace Ecommerce.Repository
             await DbContext.SaveChangesAsync();
             return true;
         }
+        #endregion
+
+        #region Home page
+        public async Task<List<ProductHomePageViewModel>> NewProductHomePage()
+        {
+            DateTime startDateTime;
+            DateTime endDateTime;
+
+            startDateTime = DateTime.Today;//Today at 00:00:00
+            endDateTime = DateTime.Today.AddDays(1).AddTicks(-1);//Today at 23:59:59
+
+            var query = await (from p in DbContext.Products
+                               join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId /*into ptt*/
+                               join pi in DbContext.ProductImages.Where(x => x.MainImage == true) on p.Id equals pi.ProductId
+                               join s in DbContext.Suppliers on p.SupplierId equals s.Id into ss
+                               from s in ss.DefaultIfEmpty()
+                               select new ProductHomePageViewModel
+                               {
+                                   Id = p.Id,
+                                   Code = string.IsNullOrEmpty(p.Code) ? "" : p.Code,
+                                   Name = string.IsNullOrEmpty(pt.Name) ? "" : pt.Name,
+                                   Height = p.Height,
+                                   Quantity = p.Quantity,
+                                   ShortDescription = pt.ShortDescription,
+                                   Sku = p.Sku,
+                                   Price = p.Price,
+                                   SupplierName = string.IsNullOrEmpty(s.Name) ? "" : s.Name,
+                                   Views = p.Views,
+                                   CreatedDate = p.CreatedDate,
+                                   PublicationDate = p.PublicationDate,
+                                   Description = string.IsNullOrEmpty(pt.Description) ? "" : pt.Description,
+                                   ImageLink = pi.ImageLink
+                               }).OrderByDescending(x => x.CreatedDate).Take(4).ToListAsync();
+            return query;
+        }
+        #endregion
     }
 }

@@ -36,5 +36,9 @@
     <ProjectReference Include="..\eTakaful.Domain\Ecommerce.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\user-content\" />
+  </ItemGroup>
+
 
 </Project>

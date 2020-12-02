@@ -26,6 +26,7 @@ namespace Ecommerce.Repository
             this.httpContextAccessor = httpContextAccessor;
         }
 
+        #region Admin
         /// <summary>
         /// Register
         /// </summary>
@@ -232,7 +233,7 @@ namespace Ecommerce.Repository
         public async Task<User> ChangePassword(ChangePassword change)
         {
             //var username = httpContextAccessor.HttpContext.Session.GetString(SystemConstant.AppSettings.Username);
-            
+
             return await DbContext.Users.SingleOrDefaultAsync(x => x.Username == "admin" || x.Username == "batinh");
         }
 
@@ -249,5 +250,10 @@ namespace Ecommerce.Repository
             await DbContext.SaveChangesAsync();
             return user.IsDeleted;
         }
+        #endregion
+
+        #region Home page
+
+        #endregion
     }
 }

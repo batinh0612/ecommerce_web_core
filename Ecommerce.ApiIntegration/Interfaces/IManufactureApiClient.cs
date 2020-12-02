@@ -1,11 +1,6 @@
-﻿using Ecommerce.Domain.Models;
-using Ecommerce.WebAPI.Infrastructure.Wrappers;
-using EcommerceCommon.Infrastructure.ApiResponse;
+﻿using Ecommerce.WebAPI.Infrastructure.Wrappers;
 using EcommerceCommon.Infrastructure.Dto.Manufacture;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecommerce.ApiIntegration.Interfaces

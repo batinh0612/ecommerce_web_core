@@ -25,6 +25,7 @@ namespace Ecommerce.Service.Services
             _productReponsitory = productReponsitory;
         }
 
+        #region Admin
         /// <summary>
         /// Create
         /// </summary>
@@ -103,5 +104,13 @@ namespace Ecommerce.Service.Services
         {
             return await _productReponsitory.Update(dto);
         }
+        #endregion
+
+        #region Home page
+        public async Task<List<ProductHomePageViewModel>> NewProductHomePage()
+        {
+            return await _productReponsitory.NewProductHomePage();
+        }
+        #endregion
     }
 }
