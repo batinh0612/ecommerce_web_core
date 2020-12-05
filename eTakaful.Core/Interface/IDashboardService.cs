@@ -38,7 +38,7 @@ namespace Ecommerce.Service.Interface
         /// Get product view
         /// </summary>
         /// <returns></returns>
-        Task<List<MostViewProductViewModel>> GetProductView();
+        Task<List<MostViewProductViewModel>> GetProductView(string languageId);
 
         /// <summary>
         /// Get new order

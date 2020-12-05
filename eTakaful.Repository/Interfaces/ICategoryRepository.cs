@@ -28,7 +28,7 @@ namespace Ecommerce.Repository.Interfaces
        /// Get all
        /// </summary>
        /// <returns></returns>
-       Task<List<CategoryListItem>> GetAllCategories();
+       Task<List<CategoryListItem>> GetAllCategories(string languageId);
 
        /// <summary>
        /// Get list categories

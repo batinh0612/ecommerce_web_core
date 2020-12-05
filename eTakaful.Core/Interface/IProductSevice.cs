@@ -68,6 +68,13 @@ namespace Ecommerce.Service.Interface
         /// </summary>
         /// <returns></returns>
         Task<List<ProductHomePageViewModel>> NewProductHomePage();
+
+        /// <summary>
+        /// Featured Product Home Page
+        /// </summary>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take);
         #endregion
     }
 }

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Ecommerce.Domain.Models;
-using Ecommerce.Repository;
 using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
-using Ecommerce.Service.ViewModels;
 using EcommerceCommon.Infrastructure.Dto.Product;
 using EcommerceCommon.Infrastructure.ViewModel.Product;
 
@@ -107,10 +104,24 @@ namespace Ecommerce.Service.Services
         #endregion
 
         #region Home page
+        /// <summary>
+        /// New Product Home Page
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ProductHomePageViewModel>> NewProductHomePage()
         {
             return await _productReponsitory.NewProductHomePage();
         }
+
+        /// <summary>
+        /// Featured Product Home Page
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take)
+        {
+            return await _productReponsitory.FeaturedProductHomePage(take);
+        }
+        
         #endregion
     }
 }

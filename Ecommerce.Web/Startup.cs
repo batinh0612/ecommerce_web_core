@@ -9,6 +9,7 @@ using Ecommerce.Repository.Interfaces;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using EcommerceCommon.Utilities.Configurations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,11 +40,18 @@ namespace Ecommerce.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.Cookie.Name = "UserLoginCookie"; // Name of cookie     
+                options.LoginPath = "/Login/Index"; // Path for the redirect to user login page    
+                options.AccessDeniedPath = "/Login/UserAccessDenied";
+            });
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
             services.AddHttpClient();
             
             services.AddAutoMapper(typeof(Ecommerce.Core.ViewModels.MappingProfile));
-
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             ConfigureCoreAndRepositoryService(services);
         }
@@ -85,6 +93,7 @@ namespace Ecommerce.Web
 
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<IStorageRepository, StorageRepository>();
+            services.AddTransient<IUserApiClient, UserApiClient>();
 
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));

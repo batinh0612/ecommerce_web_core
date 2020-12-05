@@ -44,9 +44,9 @@ namespace Ecommerce.Service.Services
         /// Get product view
         /// </summary>
         /// <returns></returns>
-        public async Task<List<MostViewProductViewModel>> GetProductView()
+        public async Task<List<MostViewProductViewModel>> GetProductView(string languageId)
         {
-            return await _productRepository.GetProductView();
+            return await _productRepository.GetProductView(languageId);
         }
 
         /// <summary>

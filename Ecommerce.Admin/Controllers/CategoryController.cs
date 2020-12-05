@@ -60,7 +60,8 @@ namespace Ecommerce.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var categories = await _categoryService.GetAllCategories();
+            var language = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
+            var categories = await _categoryService.GetAllCategories(language);
 
             ViewBag.Categories = categories.Select(x => new SelectListItem() { 
                 Text = x.Name,
@@ -81,7 +82,8 @@ namespace Ecommerce.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var categories = await _categoryService.GetAllCategories();
+                var languageId = HttpContext.Session.GetString(SystemConstant.DefaultLanguageId);
+                var categories = await _categoryService.GetAllCategories(languageId);
 
                 ViewBag.Categories = categories.Select(x => new SelectListItem()
                 {

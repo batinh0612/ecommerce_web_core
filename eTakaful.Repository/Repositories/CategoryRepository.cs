@@ -51,10 +51,11 @@ namespace Ecommerce.Repository
         /// Get all categories
         /// </summary>
         /// <returns></returns>
-        public async Task<List<CategoryListItem>> GetAllCategories()
+        public async Task<List<CategoryListItem>> GetAllCategories(string languageId)
         {
             var categories = await (from c in DbContext.Categories
                                    join ct in DbContext.CategoryTranslations on c.Id equals ct.CategoryId
+                                   where ct.LanguageId == languageId
                                    select new CategoryListItem()
                                    {
                                        Id = c.Id,

@@ -10,6 +10,6 @@ namespace Ecommerce.Web.Models
     {
         public List<ProductHomePageViewModel> LatestProducts { get; set; }
 
-        public List<ProductHomePageViewModel> FeatureProducts { get; set; }
+        public List<ProductHomePageViewModel> FeaturedProducts { get; set; }
     }
 }

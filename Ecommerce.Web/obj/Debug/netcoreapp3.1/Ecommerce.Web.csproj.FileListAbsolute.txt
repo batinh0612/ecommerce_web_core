@@ -999,3 +999,4 @@ D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.dll
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.ApiIntegration.pdb
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.pdb
 D:\EcommerceWebCore\Ecommerce.Web\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.xml
+D:\EcommerceWebCore\Ecommerce.Web\obj\Debug\netcoreapp3.1\Razor\Views\Login\Index.cshtml.g.cs

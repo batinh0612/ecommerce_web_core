@@ -15,5 +15,10 @@ namespace EcommerceCommon.Utilities.Constants
             public const string BaseAddress = "BaseAddress";
             public const string Username = "Username";
         }
+
+        public class Take
+        {
+            public const int TakeFeaturedProduct = 8;
+        }
     }
 }

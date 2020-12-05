@@ -28,12 +28,13 @@ namespace Ecommerce.Admin.Controllers
         /// <returns></returns>
         public async Task<IActionResult> Index()
         {
+            var languageId = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
             var models = new DashboardViewModel
             {
                 TotalOrder = await _dashboardService.GetTotalOrder(),
                 NewUserRegisters = await _dashboardService.GetUserRegisters(),
                 NewProduct = await _dashboardService.GetNewProduct(),
-                MostViewProducts = await _dashboardService.GetProductView(),
+                MostViewProducts = await _dashboardService.GetProductView(languageId),
                 NewOrders = await _dashboardService.GetNewOrder()
             };
             return View(models);

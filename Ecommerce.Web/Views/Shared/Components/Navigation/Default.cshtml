@@ -1,4 +1,7 @@
-﻿<!-- Start Header Area -->
+﻿@using Microsoft.AspNetCore.Http
+@using EcommerceCommon.Utilities.Constants
+@inject IHttpContextAccessor httpContext
+<!-- Start Header Area -->
 <header class="header_area sticky-header">
     <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -44,6 +47,10 @@
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="/Contact/Index">Contact</a></li>
+                        @if (httpContext.HttpContext.Session.GetString("Username") != null)
+                        {
+                            <li class="nav-item"><a class="nav-link" href="/Contact/Index">@httpContext.HttpContext.Session.GetString(SystemConstant.AppSettings.Username)</a></li>
+                        }
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>

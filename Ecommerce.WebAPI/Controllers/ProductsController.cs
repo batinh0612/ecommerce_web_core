@@ -1,6 +1,5 @@
 ﻿using Ecommerce.Service.Interface;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,19 +20,44 @@ namespace Ecommerce.WebAPI.Controllers
             _productSevice = productSevice;
         }
 
-        [HttpGet("get-latest-products")]
+        [HttpGet]
+        [Route("get-latest-products")]
         public async Task<ApiResponse> LatestProducts()
+        {
+            var result = await _productSevice.NewProductHomePage();
+
+            return new ApiResponse("List new product", result, 200);
+        }
+
+
+        [HttpGet("get-featured-products/{take}")]
+        public async Task<ApiResponse> FeaturedProducts(int take)
         {
             try
             {
-                var result = await _productSevice.NewProductHomePage();
+                var result = await _productSevice.FeaturedProductHomePage(take);
 
-                var api = new ApiResponse("List new product", result, 200);
+                var api = new ApiResponse("List featured product", result, 200);
                 return api;
             }
             catch (Exception ex)
             {
+                throw new ApiException(ex);
+            }
+        }
 
+
+        [HttpGet("{id}")]
+        public async Task<ApiResponse> ProductDetails(Guid id)
+        {
+            try
+            {
+                var product = await _productSevice.GetProductById(id);
+                var api = new ApiResponse("Product details", product, 200);
+                return api;
+            }
+            catch (Exception ex)
+            {
                 throw new ApiException(ex);
             }
         }

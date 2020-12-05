@@ -29,7 +29,7 @@ namespace Ecommerce.Service.Interface
         /// Get all categories
         /// </summary>
         /// <returns></returns>
-        Task<List<CategoryListItem>> GetAllCategories();
+        Task<List<CategoryListItem>> GetAllCategories(string languageId);
 
         /// <summary>
         /// Get list categories

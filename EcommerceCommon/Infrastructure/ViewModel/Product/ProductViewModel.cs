@@ -74,6 +74,9 @@ namespace EcommerceCommon.Infrastructure.ViewModel.Product
         [Display(Name = "Nhà sản xuất")]
         public string ManufactureName { get; set; }
 
+        [Display(Name = "Danh mục sản phẩm")]
+        public string CategoryName { get; set; }
+
         public Guid? CategoryId { get; set; }
 
         public IFormFile ThumbnailImage { get; set; }

@@ -60,9 +60,9 @@ namespace Ecommerce.Service.Services
         /// Get all categories
         /// </summary>
         /// <returns></returns>
-        public async Task<List<CategoryListItem>> GetAllCategories()
+        public async Task<List<CategoryListItem>> GetAllCategories(string languageId)
         {
-            return await _categoryRepository.GetAllCategories();
+            return await _categoryRepository.GetAllCategories(languageId);
         }
 
         /// <summary>

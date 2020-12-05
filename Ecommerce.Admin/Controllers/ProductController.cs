@@ -38,7 +38,7 @@ namespace Ecommerce.Admin.Controllers
                 ViewBag.Success = TempData["result"];
             }
 
-            var categories = await _categoryService.GetAllCategories();
+            var categories = await _categoryService.GetAllCategories(languageId);
 
             ViewBag.Categories = categories.Select(x => new SelectListItem()
             {
@@ -75,7 +75,8 @@ namespace Ecommerce.Admin.Controllers
                 Value = x.Id.ToString()
             });
 
-            var categories = await _categoryService.GetAllCategories();
+            var languageId = HttpContext.Session.GetString(SystemConstant.DefaultLanguageId);
+            var categories = await _categoryService.GetAllCategories(languageId);
 
             ViewBag.Categories = categories.Select(x => new SelectListItem() { 
                 Text = x.Name,
@@ -107,7 +108,8 @@ namespace Ecommerce.Admin.Controllers
                     Value = x.Id.ToString()
                 });
 
-                var categories = await _categoryService.GetAllCategories();
+                var languageId = HttpContext.Session.GetString(SystemConstant.DefaultLanguageId);
+                var categories = await _categoryService.GetAllCategories(languageId);
 
                 ViewBag.Categories = categories.Select(x => new SelectListItem()
                 {

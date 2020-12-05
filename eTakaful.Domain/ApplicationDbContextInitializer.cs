@@ -44,7 +44,7 @@ namespace Ecommerce.Domain
             await SeedCustomer(_context);
 
             await SeedOrder(_context);
-            //await SeedOrderDetail(_context);
+            await SeedOrderDetail(_context);
 
             await SeedUser(_context);
 
@@ -61,7 +61,27 @@ namespace Ecommerce.Domain
                 context.Suppliers.Add(new Supplier { 
                     Name = "Tiki",
                     CodeName = "Tiki",
-                    Phone = "0968684457"
+                    Phone = "0968684457",
+                    Email = "tiki@gmail.com",
+                    Fax = "Lorem Ipsum is simply"
+                });
+
+                context.Suppliers.Add(new Supplier
+                {
+                    Name = "Lazada",
+                    CodeName = "CNXKMKCX",
+                    Phone = "0968684457",
+                    Email = "lazada@gmail.com",
+                    Fax = "Lorem Ipsum is simply"
+                });
+
+                context.Suppliers.Add(new Supplier
+                {
+                    Name = "Shopee",
+                    CodeName = "MGKFXM",
+                    Phone = "0968684457",
+                    Email = "shopee@gmail.com",
+                    Fax = "Lorem Ipsum is simply"
                 });
 
                 await context.SaveChangesAsync();
@@ -92,11 +112,11 @@ namespace Ecommerce.Domain
 
         private async Task SeedProduct(ApplicationDbContext context)
         {
-            var manufature = await context.Manufactures.FirstOrDefaultAsync(x => x.Name == "LG");
-            var supplier = await context.Suppliers.FirstOrDefaultAsync(x => x.Name == "Tiki");
-
             if (!context.Products.Any())
             {
+                var manufature = await context.Manufactures.FirstOrDefaultAsync(x => x.Name == "LG");
+                var supplier = await context.Suppliers.FirstOrDefaultAsync(x => x.Name == "Tiki");
+
                 context.Products.Add(new Product { 
                     SupplierId = supplier.Id,
                     ManufactureId = manufature.Id,
@@ -241,6 +261,69 @@ namespace Ecommerce.Domain
                     ProductId = product4.Id
                 });
 
+
+
+
+                context.ProductTranslations.Add(new ProductTranslation
+                {
+                    ProductStatus = ProductStatusEnum.New,
+                    ShortDescription = "Short description",
+                    Description = "Description",
+                    Name = "Samsung s10",
+                    Keyword = "samsung",
+                    Details = "Detail product",
+                    LanguageId = "en",
+                    SeoAlias = "seo",
+                    SeoDescription = "description",
+                    SeoTitle = "title",
+                    ProductId = product1.Id
+                });
+
+                context.ProductTranslations.Add(new ProductTranslation
+                {
+                    ProductStatus = ProductStatusEnum.New,
+                    ShortDescription = "Short description",
+                    Description = "Description",
+                    Name = "Lg s10",
+                    Keyword = "samsung",
+                    Details = "Detail product",
+                    LanguageId = "en",
+                    SeoAlias = "seo",
+                    SeoDescription = "description",
+                    SeoTitle = "title",
+                    ProductId = product2.Id
+                });
+
+                context.ProductTranslations.Add(new ProductTranslation
+                {
+                    ProductStatus = ProductStatusEnum.New,
+                    ShortDescription = "Short description",
+                    Description = "Description",
+                    Name = "Samsung s10",
+                    Keyword = "samsung",
+                    Details = "Detail product",
+                    LanguageId = "en",
+                    SeoAlias = "seo",
+                    SeoDescription = "description",
+                    SeoTitle = "title",
+                    ProductId = product3.Id
+                });
+
+                context.ProductTranslations.Add(new ProductTranslation
+                {
+                    ProductStatus = ProductStatusEnum.New,
+                    ShortDescription = "Short description",
+                    Description = "Description",
+                    Name = "Xiaomi",
+                    Keyword = "samsung",
+                    Details = "Detail product",
+                    LanguageId = "en",
+                    SeoAlias = "seo",
+                    SeoDescription = "description",
+                    SeoTitle = "title",
+                    ProductId = product4.Id
+                });
+
                 await context.SaveChangesAsync();
             }
         }
@@ -311,7 +394,7 @@ namespace Ecommerce.Domain
                     Description = "Điện lạnh",
                     MetaTitle = "dien-lanh",
                     CategoryId = category1.Id,
-                    LanguageId = "vi",
+                    LanguageId = "vi"
                 });
 
                 context.CategoryTranslations.Add(new CategoryTranslation
@@ -498,7 +581,8 @@ namespace Ecommerce.Domain
         //    }
         //}
 
-        private async Task SeedUser(ApplicationDbContext context) {
+        private async Task SeedUser(ApplicationDbContext context)
+        {
             if (!context.Users.Any())
             {
                 context.Add(new User { 
@@ -608,6 +692,16 @@ namespace Ecommerce.Domain
                     Name = "Samsung",
                     Phone = "0984236412",
                     Email = "samsung@gmail.com",
+                    CodeName = "CMXNCX",
+                    Fax = "cjdasdad",
+                    CommonStatus = Status.Active,
+                });
+
+                context.Add(new Manufacture
+                {
+                    Name = "Canon",
+                    Phone = "0984236412",
+                    Email = "canon@gmail.com",
                     CodeName = "NFCMXNC",
                     Fax = "cjdasdad",
                     CommonStatus = Status.Active,
@@ -622,14 +716,12 @@ namespace Ecommerce.Domain
             if (!context.ProductInCategories.Any())
             {
                 var product1 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
-                var product2 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
+                var product2 = await context.Products.FirstOrDefaultAsync(x => x.Code == "NDKCM");
                 var product3 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CMXM");
                 var product4 = await context.Products.FirstOrDefaultAsync(x => x.Code == "MSCCS");
 
                 var category1 = await context.CategoryTranslations.FirstOrDefaultAsync(x => x.Name == "Máy tính bảng");
                 var category2 = await context.CategoryTranslations.FirstOrDefaultAsync(x => x.Name == "Điện lạnh");
-                //var category3 = await context.CategoryTranslations.FirstOrDefaultAsync(x => x.Name == "Iphone 12");
-                //var category4 = await context.CategoryTranslations.FirstOrDefaultAsync(x => x.Name == "Iphone 11");
 
                 context.ProductInCategories.Add(new ProductInCategory() { 
                     ProductId = product1.Id,

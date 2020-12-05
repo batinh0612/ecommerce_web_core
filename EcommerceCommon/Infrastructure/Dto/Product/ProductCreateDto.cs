@@ -97,5 +97,7 @@ namespace EcommerceCommon.Infrastructure.Dto.Product
         [Display(Name = "Ảnh")]
         [Required(ErrorMessage = "Bạn phải chọn ảnh")]
         public IFormFile ThumnailImage { get; set; }
+
+        public string LanguageId { get; set; }
     }
 }

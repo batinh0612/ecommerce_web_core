@@ -555,6 +555,8 @@ namespace Ecommerce.Domain.Migrations
 
                     b.Property<bool>("IsDeleted");
 
+                    b.Property<bool>("IsFeatured");
+
                     b.Property<Guid>("ManufactureId");
 
                     b.Property<int?>("PercentDiscount");

@@ -14,6 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\user-content\13447fc0-f454-4e25-a40f-ce6f9f74062b.jpg" />
+    <Content Remove="wwwroot\user-content\99e94c42-9cb8-4b4d-80f8-b3306b884508.jpg" />
+    <Content Remove="wwwroot\user-content\c48fe1d5-439f-4df7-a392-57e084884bc6.jpg" />
+    <Content Remove="wwwroot\user-content\dd613ffb-1606-44c9-bae1-c4cf4daf235d.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="HttpStatusCodeExceptionMiddleware.cs" />
   </ItemGroup>
 

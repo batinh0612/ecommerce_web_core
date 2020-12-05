@@ -44,7 +44,7 @@ namespace Ecommerce.Repository.Interfaces
         /// Get Product View
         /// </summary>
         /// <returns></returns>
-        Task<List<MostViewProductViewModel>> GetProductView();
+        Task<List<MostViewProductViewModel>> GetProductView(string languageId);
 
         /// <summary>
         /// Get new product
@@ -74,7 +74,20 @@ namespace Ecommerce.Repository.Interfaces
         #endregion
 
         #region Home page
+        /// <summary>
+        /// New Product HomePage
+        /// </summary>
+        /// <returns></returns>
         Task<List<ProductHomePageViewModel>> NewProductHomePage();
+
+        /// <summary>
+        /// Featured Product Home Page
+        /// </summary>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take);
+
+
         #endregion
     }
 

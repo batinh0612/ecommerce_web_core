@@ -36,6 +36,40 @@ namespace Ecommerce.Repository
         /// <returns></returns>
         public async Task<bool> Create(ProductCreateDto dto)
         {
+
+            var languages = DbContext.Languages;
+            var translations = new List<ProductTranslation>();
+            foreach (var language in languages)
+            {
+                if (dto.LanguageId == language.Id)
+                {
+                    translations.Add(new ProductTranslation()
+                    {
+                        Description = dto.Description,
+                        Details = dto.Details,
+                        Keyword = dto.Keyword,
+                        Name = dto.Name,
+                        SeoAlias = dto.SeoAlias,
+                        SeoDescription = dto.SeoDescription,
+                        SeoTitle = dto.SeoTitle,
+                        ShortDescription = dto.ShortDescription,
+                        ProductStatus = ProductStatusEnum.New,
+                        LanguageId = dto.LanguageId
+                    });
+                }
+                else
+                {
+                    translations.Add(new ProductTranslation()
+                    {
+                        Name = "N/A",
+                        ShortDescription = "N/A",
+                        Description = "N/A",
+                        Details = "N/A",
+                        ProductStatus = ProductStatusEnum.New,
+                        LanguageId = language.Id
+                    });
+                }
+            }
             var product = new Product()
             {
                 Code = dto.Code,
@@ -59,22 +93,7 @@ namespace Ecommerce.Repository
                         CategoryId = dto.CategoryId
                     }
                 },
-                ProductTranslations = new List<ProductTranslation>()
-                {
-                    new ProductTranslation()
-                    {
-                        Description = dto.Description,
-                        Details = dto.Details,
-                        Keyword = dto.Keyword,
-                        Name = dto.Name,
-                        SeoAlias = dto.SeoAlias,
-                        SeoDescription = dto.SeoDescription,
-                        SeoTitle = dto.SeoTitle,
-                        ShortDescription = dto.ShortDescription,
-                        ProductStatus = ProductStatusEnum.New,
-                        LanguageId = "vi"
-                    }
-                }
+                ProductTranslations = translations
             };
 
             if (dto.ThumnailImage != null)
@@ -103,12 +122,12 @@ namespace Ecommerce.Repository
         {
 
             var query = from p in DbContext.Products
-                        join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId into ptt
-                        from pt in ptt.DefaultIfEmpty()
+                        join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId /*into ptt*/
+                        //from pt in ptt.DefaultIfEmpty()
                         join pic in DbContext.ProductInCategories on p.Id equals pic.ProductId into picc
                         from pic in picc.DefaultIfEmpty()
-                            //join c in DbContext.Categories on pic.CategoryId equals c.Id into cc
-                            //from c in cc.DefaultIfEmpty()
+                        join pi in DbContext.ProductImages on p.Id equals pi.ProductId into pii
+                        from pi in pii.DefaultIfEmpty()
                         join s in DbContext.Suppliers on p.SupplierId equals s.Id
                         where pt.LanguageId == languageId
                         select new { p, pt, pic, s };
@@ -199,17 +218,20 @@ namespace Ecommerce.Repository
         public async Task<ProductViewModel> GetProductById(Guid id)
         {
             var query = from p in DbContext.Products
-                        join pi in DbContext.ProductImages on p.Id equals pi.ProductId
+                        join pi in DbContext.ProductImages on p.Id equals pi.ProductId into pii
+                        from pi in pii.DefaultIfEmpty()
                         join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId into ptt
                         from pt in ptt.DefaultIfEmpty()
                         join pic in DbContext.ProductInCategories on p.Id equals pic.ProductId into picc
                         from pic in picc.DefaultIfEmpty()
+                        join ct in DbContext.CategoryTranslations on pic.CategoryId equals ct.CategoryId into ctt
+                        from ct in ctt.DefaultIfEmpty()
                         join s in DbContext.Suppliers on p.SupplierId equals s.Id into ss
                         from s in ss.DefaultIfEmpty()
                         join m in DbContext.Manufactures on p.ManufactureId equals m.Id into mm
                         from m in mm.DefaultIfEmpty()
                         where p.Id == id
-                        select new { p, pic, s, m, pt, pi };
+                        select new { p, pic, s, m, pt, pi, ct};
 
             var productViewModel = await query.Select(x => new ProductViewModel()
             {
@@ -236,7 +258,8 @@ namespace Ecommerce.Repository
                 SeoDescription = x.pt.SeoDescription,
                 SeoTitle = x.pt.SeoTitle,
                 SeoAlias = x.pt.SeoAlias,
-                ImageLink = x.pi.ImageLink
+                ImageLink = x.pi.ImageLink,
+                CategoryName = x.ct.Name
             }).FirstOrDefaultAsync();
 
             return productViewModel;
@@ -246,7 +269,7 @@ namespace Ecommerce.Repository
         /// Get View Product
         /// </summary>
         /// <returns></returns>
-        public async Task<List<MostViewProductViewModel>> GetProductView()
+        public async Task<List<MostViewProductViewModel>> GetProductView(string languageId)
         {
             var product = await (
                     from p in DbContext.Products.Where(x => x.IsDeleted == false)/*.OrderByDescending(x => x.Views).Take(5)*/
@@ -256,6 +279,7 @@ namespace Ecommerce.Repository
                     join c in DbContext.Categories on pic.CategoryId equals c.Id
                     join ct in DbContext.CategoryTranslations on c.Id equals ct.CategoryId
                     join s in DbContext.Suppliers on p.SupplierId equals s.Id
+                    where pt.LanguageId == languageId && ct.LanguageId == languageId
                     orderby p.Views descending
                     select new MostViewProductViewModel
                     {
@@ -351,6 +375,18 @@ namespace Ecommerce.Repository
                     thumbnailImage.ImageLink = await this.SaveFile(dto.ThumbnailImage);
                     DbContext.ProductImages.Update(thumbnailImage);
                 }
+                else
+                {
+                    var productImage = new ProductImage
+                    {
+                        FileSize = dto.ThumbnailImage.Length,
+                        ImageLink = await this.SaveFile(dto.ThumbnailImage),
+                        MainImage = true,
+                        ProductId = dto.Id
+                    };
+                    DbContext.ProductImages.Add(productImage);
+                    DbContext.SaveChanges();
+                }
             }
 
             DbContext.ProductTranslations.Update(productTranslation);
@@ -364,28 +400,25 @@ namespace Ecommerce.Repository
         /// <returns></returns>
         public async Task<bool> Delete(Guid id)
         {
-            var product = await DbContext.Products.FindAsync(id);
+            var product = DbContext.Products.Find(id);
+            var productImage = DbContext.ProductImages.SingleOrDefault(x => x.ProductId == id);
+            var productTransaltion = DbContext.ProductTranslations.Where(x => x.ProductId == id);
+            var productInCategory = DbContext.ProductInCategories.Where(x => x.ProductId == id);
             if (product == null)
             {
                 throw new EcommerceException($"Cannot find product with id: {id}");
             }
-            var productImages = await DbContext.ProductImages.Where(x => x.ProductId == id).ToListAsync();
+            var productImages = DbContext.ProductImages.Where(x => x.ProductId == id).ToList();
 
             foreach (var item in productImages)
             {
                 await _storageRepository.DeleteFileAsync(item.ImageLink);
             }
 
-            try
-            {
-                DbContext.Products.Remove(product);
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
-
+            DbContext.ProductTranslations.RemoveRange(productTransaltion);
+            DbContext.ProductImages.Remove(productImage);
+            DbContext.ProductInCategories.RemoveRange(productInCategory);
+            DbContext.Products.Remove(product);
             await DbContext.SaveChangesAsync();
             return true;
         }
@@ -394,17 +427,12 @@ namespace Ecommerce.Repository
         #region Home page
         public async Task<List<ProductHomePageViewModel>> NewProductHomePage()
         {
-            DateTime startDateTime;
-            DateTime endDateTime;
-
-            startDateTime = DateTime.Today;//Today at 00:00:00
-            endDateTime = DateTime.Today.AddDays(1).AddTicks(-1);//Today at 23:59:59
-
             var query = await (from p in DbContext.Products
                                join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId /*into ptt*/
                                join pi in DbContext.ProductImages.Where(x => x.MainImage == true) on p.Id equals pi.ProductId
-                               join s in DbContext.Suppliers on p.SupplierId equals s.Id into ss
-                               from s in ss.DefaultIfEmpty()
+                               join s in DbContext.Suppliers on p.SupplierId equals s.Id /*into ss*/
+                               //from s in ss.DefaultIfEmpty()
+                               where pt.LanguageId == "vi"
                                select new ProductHomePageViewModel
                                {
                                    Id = p.Id,
@@ -422,6 +450,34 @@ namespace Ecommerce.Repository
                                    Description = string.IsNullOrEmpty(pt.Description) ? "" : pt.Description,
                                    ImageLink = pi.ImageLink
                                }).OrderByDescending(x => x.CreatedDate).Take(4).ToListAsync();
+            return query;
+        }
+
+        public async Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take)
+        {
+            var query = await (from p in DbContext.Products
+                               join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
+                               join pi in DbContext.ProductImages.Where(x => x.MainImage == true) on p.Id equals pi.ProductId
+                               join s in DbContext.Suppliers on p.SupplierId equals s.Id/* into ss*/
+                               //from s in ss.DefaultIfEmpty()
+                               where p.IsFeatured == true && pt.LanguageId == "vi"
+                               select new ProductHomePageViewModel
+                               {
+                                   Id = p.Id,
+                                   Code = string.IsNullOrEmpty(p.Code) ? "" : p.Code,
+                                   Name = string.IsNullOrEmpty(pt.Name) ? "" : pt.Name,
+                                   Height = p.Height,
+                                   Quantity = p.Quantity,
+                                   ShortDescription = pt.ShortDescription,
+                                   Sku = p.Sku,
+                                   Price = p.Price,
+                                   SupplierName = string.IsNullOrEmpty(s.Name) ? "" : s.Name,
+                                   Views = p.Views,
+                                   CreatedDate = p.CreatedDate,
+                                   PublicationDate = p.PublicationDate,
+                                   Description = string.IsNullOrEmpty(pt.Description) ? "" : pt.Description,
+                                   ImageLink = pi.ImageLink
+                               }).Take(take).ToListAsync();
             return query;
         }
         #endregion
