@@ -28,6 +28,8 @@ namespace Ecommerce.Domain.Models
         [ForeignKey("Role")]
         public Guid? RoleId { get; set; }
         public virtual Role Role { get; set; }
+
+        public virtual ICollection<Cart> Carts { get; set; }
         #endregion
     }
 }

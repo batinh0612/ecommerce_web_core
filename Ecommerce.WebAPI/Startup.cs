@@ -4,6 +4,7 @@ using Ecommerce.Domain;
 using Ecommerce.Repository;
 using Ecommerce.Repository.Common;
 using Ecommerce.Repository.Interfaces;
+using Ecommerce.Repository.Repositories;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using Ecommerce.WebAPI.Infrastructure.Extensions;
@@ -208,6 +209,11 @@ namespace Ecommerce.WebAPI
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductSevice, ProductService>();
+
+            services.AddTransient<ICartRepository, CartRepository>();
+            services.AddTransient<ICartService, CartService>();
+
+            services.AddTransient<ICartDetailRepository, CartDetailRepository>();
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();

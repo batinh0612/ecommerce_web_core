@@ -38,5 +38,8 @@ namespace Ecommerce.Domain
         public DbSet<User> Users { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<CategoryTranslation> CategoryTranslations { get; set; }
+        public DbSet<ProductColor> ProductColors { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<ProductAttribute> ProductAttributes { get; set; }
     }
 }

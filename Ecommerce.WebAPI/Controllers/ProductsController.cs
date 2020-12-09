@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Service.Interface;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Utilities.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -52,7 +53,8 @@ namespace Ecommerce.WebAPI.Controllers
         {
             try
             {
-                var product = await _productSevice.GetProductById(id);
+                var languageId = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
+                var product = await _productSevice.GetProductById(id, languageId);
                 var api = new ApiResponse("Product details", product, 200);
                 return api;
             }

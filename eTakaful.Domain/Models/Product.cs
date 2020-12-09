@@ -23,9 +23,6 @@ namespace Ecommerce.Domain.Models
         public int Views { get; set; }
         [MaxLength(128)]
         public DateTime? ExpirationDate { get; set; }
-        public double Weight { get; set; }
-        public double Height { get; set; }
-        public double Width { get; set; }
         public bool IsFeatured { get; set; }
         #endregion
 
@@ -46,6 +43,8 @@ namespace Ecommerce.Domain.Models
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<ProductInCategory> ProductInCategories { get; set; }
         public virtual ICollection<ProductTranslation> ProductTranslations { get; set; }
+
+        public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         #endregion
     }
 }

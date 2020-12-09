@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Ecommerce.Domain.Models;
 using EcommerceCommon.Infrastructure.Dto.Product;
 using EcommerceCommon.Infrastructure.ViewModel;
+using EcommerceCommon.Infrastructure.ViewModel.Cart;
 using EcommerceCommon.Infrastructure.ViewModel.Product;
 
 namespace Ecommerce.Repository.Interfaces
@@ -50,7 +51,7 @@ namespace Ecommerce.Repository.Interfaces
         /// Get new product
         /// </summary>
         /// <returns></returns>
-        Task<List<ProductViewModel>> GetNewProduct();
+        Task<List<ProductViewModel>> GetNewProduct(string languageId);
 
         /// <summary>
         /// Get all products
@@ -63,7 +64,7 @@ namespace Ecommerce.Repository.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ProductViewModel> GetProductById(Guid id);
+        Task<ProductViewModel> GetProductById(Guid id, string languageId);
 
         /// <summary>
         /// Delete
@@ -87,7 +88,17 @@ namespace Ecommerce.Repository.Interfaces
         /// <returns></returns>
         Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take);
 
+        /// <summary>
+        /// List item color
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductColorItem>> ListItemProductColor();
 
+        /// <summary>
+        /// List item size
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductColorItem>> ListItemProductSize();
         #endregion
     }
 

@@ -54,14 +54,18 @@ namespace Ecommerce.Service.Services
                 return null;
             }
 
-            var roles = await _roleRepository.GetAllAsync();
+            var roles = await _roleRepository.GetAllRolesString();
             var claims = new[]
             {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim("Username", user.Username),
                 new Claim(ClaimTypes.Name, (user.FirstName + " " + user.LastName)),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, string.Join(";", roles))
             };
+
+            //var appIdentity = new ClaimsIdentity();
+            //appIdentity.AddClaims(claims);
 
             var token = new JwtSecurityToken(
                 _tokens.Issuer,

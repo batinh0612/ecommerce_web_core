@@ -6,7 +6,7 @@ namespace Ecommerce.Domain.Enums
 {
     public enum ShoppingCartEnum
     {
-        InOrder,
-        NotOrder
+        PreOrder = 0,
+        Ordered = 1
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Domain;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace Ecommerce.Repository
         public RoleRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<List<string>> GetAllRolesString()
+        {
+            var roles = await DbContext.Roles.Select(x => x.Name).ToListAsync();
+            return roles;
         }
 
         //public Role Add(Role entity, bool isSave)

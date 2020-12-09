@@ -19,12 +19,12 @@ namespace Ecommerce.Domain.Models
 
         #region Realtionship
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
         public virtual User User { get; set; }
 
-        [ForeignKey("Couspon")]
-        public Guid CousponId { get; set; }
-        public virtual Couspon Couspon { get; set; }
+        //[ForeignKey("Couspon")]
+        //public Guid CousponId { get; set; }
+        //public virtual Couspon Couspon { get; set; }
 
         public virtual ICollection<CartDetail> CartDetails { get; set; }
         #endregion

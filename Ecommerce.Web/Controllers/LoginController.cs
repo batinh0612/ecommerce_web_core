@@ -69,7 +69,17 @@ namespace Ecommerce.Web.Controllers
                     userPrincipal,
                     authProperties
                 );
+            //var currentUser = HttpContext.User;
 
+            //if (currentUser.HasClaim(c => c.Type == ClaimTypes.NameIdentifier))
+            //{
+            //    var userId = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            //}
+            //var identity = HttpContext.User.Identity as ClaimsIdentity;
+            //IEnumerable<Claim> claim = identity.Claims;
+            //var userId = claim.Where(x => x.Type == "Username").FirstOrDefault().Value;
+
+            //HttpContext.Session.SetString("UserId", userId);
             HttpContext.Session.SetString(SystemConstant.AppSettings.Username, request.Username);
             return RedirectToAction("Index", "Home");
         }

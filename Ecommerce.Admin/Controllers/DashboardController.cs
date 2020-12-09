@@ -33,7 +33,7 @@ namespace Ecommerce.Admin.Controllers
             {
                 TotalOrder = await _dashboardService.GetTotalOrder(),
                 NewUserRegisters = await _dashboardService.GetUserRegisters(),
-                NewProduct = await _dashboardService.GetNewProduct(),
+                NewProduct = await _dashboardService.GetNewProduct(languageId),
                 MostViewProducts = await _dashboardService.GetProductView(languageId),
                 NewOrders = await _dashboardService.GetNewOrder()
             };
@@ -56,7 +56,8 @@ namespace Ecommerce.Admin.Controllers
         /// <returns></returns>
         public async Task<IActionResult> NewProduct()
         {
-            var newProduct = await _dashboardService.GetNewProduct();
+            var languageId = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
+            var newProduct = await _dashboardService.GetNewProduct(languageId);
             return View(newProduct);
         }
 

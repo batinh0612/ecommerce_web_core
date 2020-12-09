@@ -127,10 +127,10 @@ namespace Ecommerce.Domain
                     Code = "CNMSC11X",
                     Price = 1500000,
                     Quantity = 50,
-                    Width = 5,
-                    Height = 10,
+                    //Width = 5,
+                    //Height = 10,
                     CreatedDate = DateTime.Now,
-                    Weight = 4,
+                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -145,10 +145,10 @@ namespace Ecommerce.Domain
                     Code = "NDKCM",
                     Price = 2000000,
                     Quantity = 30,
-                    Width = 5,
-                    Height = 2,
+                    //Width = 5,
+                    //Height = 2,
                     CreatedDate = DateTime.Now,
-                    Weight = 4,
+                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -163,10 +163,10 @@ namespace Ecommerce.Domain
                     Code = "CMXM",
                     Price = 1700000,
                     Quantity = 30,
-                    Width = 5,
-                    Height = 2,
+                    //Width = 5,
+                    //Height = 2,
                     CreatedDate = DateTime.Now,
-                    Weight = 4,
+                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -181,10 +181,10 @@ namespace Ecommerce.Domain
                     Code = "MSCCS",
                     Price = 1300000,
                     Quantity = 30,
-                    Width = 5,
-                    Height = 2,
+                    //Width = 5,
+                    //Height = 2,
                     CreatedDate = DateTime.Now,
-                    Weight = 4,
+                    //Weight = 4,
                     PercentDiscount = 10,
                 });
 

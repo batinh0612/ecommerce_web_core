@@ -1,1 +1,3 @@
-﻿<StaticWebAssets Version="1.0" />
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="_content/Ecommerce.WebAPI" Path="D:\EcommerceWebCore\Ecommerce.WebAPI\wwwroot\" />
+</StaticWebAssets>

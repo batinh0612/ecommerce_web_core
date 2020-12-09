@@ -73,9 +73,9 @@ namespace Ecommerce.Service.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ProductViewModel> GetProductById(Guid id)
+        public async Task<ProductViewModel> GetProductById(Guid id, string languageId)
         {
-            return await _productReponsitory.GetProductById(id);
+            return await _productReponsitory.GetProductById(id, languageId);
         }
 
         public async Task<bool> GrowUpViewByProductId(Guid productId)
@@ -87,9 +87,9 @@ namespace Ecommerce.Service.Services
         /// New product
         /// </summary>
         /// <returns></returns>
-        public async Task<List<ProductViewModel>> NewProduct()
+        public async Task<List<ProductViewModel>> NewProduct(string languageId)
         {
-            return await _productReponsitory.GetNewProduct();
+            return await _productReponsitory.GetNewProduct(languageId);
         }
 
         /// <summary>
@@ -121,7 +121,17 @@ namespace Ecommerce.Service.Services
         {
             return await _productReponsitory.FeaturedProductHomePage(take);
         }
-        
+
+
+        public async Task<List<ProductColorItem>> ListItemProductColor()
+        {
+            return await _productReponsitory.ListItemProductColor();
+        }
+
+        public async Task<List<ProductColorItem>> ListItemProductSize()
+        {
+            return await _productReponsitory.ListItemProductSize();
+        }
         #endregion
     }
 }

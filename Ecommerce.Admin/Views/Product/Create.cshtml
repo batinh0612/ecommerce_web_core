@@ -4,7 +4,8 @@
     ViewData["Title"] = "Thêm mới sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 <style>
     .padd-left {
         padding-left: 0px !important;
@@ -115,11 +116,6 @@
                                 </select>
                                 <span asp-validation-for="ManufactureId" class="text-danger"></span>
                             </div>
-                            @*<div class="form-group">
-            <label asp-for="ProductStatus" class="control-label"></label>
-            <input asp-for="ProductStatus" class="form-control" />
-            <span asp-validation-for="ProductStatus" class="text-danger"></span>
-        </div>*@
                             <div class="form-group">
                                 <label asp-for="Keyword" class="control-label"></label>
                                 <input asp-for="Keyword" class="form-control" />
@@ -155,27 +151,26 @@
                                 <input asp-for="SeoAlias" class="form-control" />
                                 <span asp-validation-for="SeoAlias" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Weight" class="control-label"></label>
-                                <input asp-for="Weight" class="form-control" />
-                                <span asp-validation-for="Weight" class="text-danger"></span>
+                            <div class="form-group col-md-5 padd-left">
+                                <label asp-for="ProductSizeId" class="control-label"></label>
+                                <select asp-for="ProductSizeId" class="form-control" asp-items="ViewBag.ListSizes">
+                                    <option>--Chọn nhà cung cấp--</option>
+                                </select>
+                                <span asp-validation-for="ProductSizeId" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Height" class="control-label"></label>
-                                <input asp-for="Height" class="form-control" />
-                                <span asp-validation-for="Height" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Width" class="control-label"></label>
-                                <input asp-for="Width" class="form-control" />
-                                <span asp-validation-for="Width" class="text-danger"></span>
+                            <div class="form-group col-md-5 padd-left">
+                                <label asp-for="ProductColorId" class="control-label"></label>
+                                <select asp-for="ProductColorId" class="form-control" asp-items="@ViewBag.ListColors">
+                                    <option>--Chọn nhà cung cấp--</option>
+                                </select>
+                                <span asp-validation-for="ProductColorId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ThumnailImage" class="control-label"></label>
                                 <input type="file" asp-for="ThumnailImage" class="form-control" />
                                 <span asp-validation-for="ThumnailImage" class="text-danger"></span>
                             </div>
-
+                            <input type="hidden" asp-for="LanguageId" value="@HttpContextAccessor.HttpContext.Session.GetString("DefaultLanguageId")" />
                             <div class="form-group">
                                 <input type="submit" value="Thêm mới" class="btn btn-primary" />
                             </div>

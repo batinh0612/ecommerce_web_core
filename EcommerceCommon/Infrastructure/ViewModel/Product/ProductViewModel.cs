@@ -55,14 +55,14 @@ namespace EcommerceCommon.Infrastructure.ViewModel.Product
         [Display(Name = "Chi tiết")]
         public string Details { get; set; }
 
-        [Display(Name = "Cân nặng")]
-        public double Weight { get; set; }
+        [Display(Name = "Size")]
+        public string Size { get; set; }
 
-        [Display(Name = "Chiều cao")]
-        public double Height { get; set; }
+        [Display(Name = "Màu sắc")]
+        public string Color { get; set; }
 
-        [Display(Name = "Chiều rộng")]
-        public double Width { get; set; }
+        [Display(Name = "Trong kho")]
+        public double CountStock { get; set; }
 
         public string SeoDescription { get; set; }
         public string SeoTitle { get; set; }

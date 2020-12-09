@@ -1,9 +1,11 @@
-﻿@model EcommerceCommon.Infrastructure.ViewModel.Product.ProductViewModel
+﻿@model Ecommerce.Web.Models.ProductDetailViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @inject Microsoft.Extensions.Configuration.IConfiguration _config;
+
+
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -28,45 +30,52 @@
             <div class="col-lg-6">
                 <div class="s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.ImageLink" alt="">
+                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.Details.ImageLink" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.ImageLink" alt="">
+                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.Details.ImageLink" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.ImageLink" alt="">
+                        <img class="img-fluid" src="@_config["BaseAddress"]/@Model.Details.ImageLink" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1">
-                <div class="s_product_text">
-                    <h3>@Model.Name</h3>
-                    <h2>@Model.Price.ToString("N0")</h2>
-                    <ul class="list">
-                        <li><a class="active" href="#"><span>Danh mục</span> : @Model.CategoryName</a></li>
-                        <li><a href="#"><span>Tình trạng</span> : @Model.ProductStatus</a></li>
-                    </ul>
-                    <p>
-                        @Model.Description
-                    </p>
-                    <div class="product_count">
-                        <label for="qty">Số lượng:</label>
-                        <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                class="increase items-count" type="button">
-                            <i class="lnr lnr-chevron-up"></i>
-                        </button>
-                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                class="reduced items-count" type="button">
-                            <i class="lnr lnr-chevron-down"></i>
-                        </button>
+                <form action="/Cart/AddCart" method="post">
+                    <input type="hidden" name="ProductId" value="@Model.Details.Id" />
+                    <div class="s_product_text">
+                        <h3>@Model.Details.Name</h3>
+                        <h2>@Model.Details.Price.ToString("N0")</h2>
+                        <ul class="list">
+                            <li><a class="active" href="#"><span>Danh mục</span> : @Model.Details.CategoryName</a></li>
+                            <li><a href="#"><span>Tình trạng</span> : @Model.Details.ProductStatus</a></li>
+                        </ul>
+                        <p>
+                            @Model.Details.Description
+                        </p>
+                        <select name="ProductSizeId" asp-items="@ViewBag.ListSizes">
+                        </select>
+                        <select name="ProductColorId" asp-items="@ViewBag.ListColors">
+                        </select>
+                        <div class="product_count">
+                            <label for="qty">Số lượng:</label>
+                            <input type="text" name="Quantity" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                    class="increase items-count" type="button">
+                                <i class="lnr lnr-chevron-up"></i>
+                            </button>
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                    class="reduced items-count" type="button">
+                                <i class="lnr lnr-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="card_area d-flex align-items-center">
+                            <button type="submit" class="primary-btn">Thêm vào giỏ hàng</button>
+                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+                        </div>
                     </div>
-                    <div class="card_area d-flex align-items-center">
-                        <a class="primary-btn" href="#">Thêm vào giỏ hàng</a>
-                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -94,7 +103,7 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-                @Html.Raw(@Model.Details)
+                @Html.Raw(@Model.Details.Details)
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <div class="table-responsive">

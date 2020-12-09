@@ -54,7 +54,8 @@ namespace Ecommerce.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
-            var product = await _productSevice.GetProductById(id);
+            var languageId = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
+            var product = await _productSevice.GetProductById(id, languageId);
             return View(product);
         }
 
@@ -71,6 +72,20 @@ namespace Ecommerce.Admin.Controllers
             var manufactures = await _manufactureService.GetAllManufactures();
 
             ViewBag.Manufactures = manufactures.Select(x => new SelectListItem() { 
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
+
+            var colors = await _productSevice.ListItemProductColor();
+            ViewBag.ListColors = colors.Select(x => new SelectListItem()
+            {
+                Text = x.Name,
+                Value = x.Id.ToString()
+            });
+
+            var sizes = await _productSevice.ListItemProductSize();
+            ViewBag.ListSizes = sizes.Select(x => new SelectListItem()
+            {
                 Text = x.Name,
                 Value = x.Id.ToString()
             });
@@ -108,6 +123,20 @@ namespace Ecommerce.Admin.Controllers
                     Value = x.Id.ToString()
                 });
 
+                var colors = await _productSevice.ListItemProductColor();
+                ViewBag.ListColors = colors.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                });
+
+                var sizes = await _productSevice.ListItemProductSize();
+                ViewBag.ListSizes = sizes.Select(x => new SelectListItem()
+                {
+                    Text = x.Name,
+                    Value = x.Id.ToString()
+                });
+
                 var languageId = HttpContext.Session.GetString(SystemConstant.DefaultLanguageId);
                 var categories = await _categoryService.GetAllCategories(languageId);
 
@@ -116,6 +145,7 @@ namespace Ecommerce.Admin.Controllers
                     Text = x.Name,
                     Value = x.Id.ToString()
                 });
+
                 return View(dto);
             }
 
@@ -135,7 +165,8 @@ namespace Ecommerce.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var product = await _productSevice.GetProductById(id);
+            var languageId = HttpContext.Session.GetString(SystemConstant.AppSettings.DefaultLanguageId);
+            var product = await _productSevice.GetProductById(id, languageId);
 
             var productUpdate = new ProductUpdateDto()
             {

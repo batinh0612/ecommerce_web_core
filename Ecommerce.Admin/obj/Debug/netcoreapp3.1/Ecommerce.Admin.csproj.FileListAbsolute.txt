@@ -926,3 +926,5 @@ D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Pro
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Login\UserAccessDenied.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Create.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Edit.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\bin\Debug\netcoreapp3.1\Ecommerce.Admin.StaticWebAssets.xml

@@ -18,8 +18,10 @@ namespace Ecommerce.Domain.Models
         public virtual Cart Cart { get; set; }
 
         [ForeignKey("Product")]
-        public Guid ProductId { get; set; }
+        public Guid? ProductId { get; set; }
         public virtual Product Product { get; set; }
+
+        public Guid ProductAttributeId { get; set; }
         #endregion
     }
 }

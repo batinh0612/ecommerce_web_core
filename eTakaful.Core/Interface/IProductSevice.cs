@@ -32,13 +32,13 @@ namespace Ecommerce.Service.Interface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ProductViewModel> GetProductById(Guid id);
+        Task<ProductViewModel> GetProductById(Guid id, string languageId);
 
         /// <summary>
         /// New products
         /// </summary>
         /// <returns></returns>
-        Task<List<ProductViewModel>> NewProduct();
+        Task<List<ProductViewModel>> NewProduct(string languageId);
 
         /// <summary>
         /// Create
@@ -75,6 +75,18 @@ namespace Ecommerce.Service.Interface
         /// <param name="take"></param>
         /// <returns></returns>
         Task<List<ProductHomePageViewModel>> FeaturedProductHomePage(int take);
+
+        /// <summary>
+        /// List item color
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductColorItem>> ListItemProductColor();
+
+        /// <summary>
+        /// List item size
+        /// </summary>
+        /// <returns></returns>
+        Task<List<ProductColorItem>> ListItemProductSize();
         #endregion
     }
 }

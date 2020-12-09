@@ -35,9 +35,9 @@ namespace Ecommerce.Service.Services
         /// Get new product in date
         /// </summary>
         /// <returns></returns>
-        public async Task<List<ProductViewModel>> GetNewProduct()
+        public async Task<List<ProductViewModel>> GetNewProduct(string languageId)
         {
-            return await _productRepository.GetNewProduct();
+            return await _productRepository.GetNewProduct(languageId);
         }
 
         /// <summary>

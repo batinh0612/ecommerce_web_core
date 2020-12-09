@@ -28,8 +28,6 @@ namespace Ecommerce.Domain.Migrations
 
                     b.Property<int>("CommonStatus");
 
-                    b.Property<Guid>("CousponId");
-
                     b.Property<string>("CreatedBy");
 
                     b.Property<DateTime>("CreatedDate")
@@ -51,13 +49,11 @@ namespace Ecommerce.Domain.Migrations
 
                     b.Property<DateTime?>("UpdatedDate");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<Guid?>("UserId");
 
                     b.Property<decimal>("VoucherCode");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CousponId");
 
                     b.HasIndex("CustomerId");
 
@@ -86,7 +82,9 @@ namespace Ecommerce.Domain.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<Guid>("ProductId");
+                    b.Property<Guid>("ProductAttributeId");
+
+                    b.Property<Guid?>("ProductId");
 
                     b.Property<int>("Quantity");
 
@@ -551,8 +549,6 @@ namespace Ecommerce.Domain.Migrations
                     b.Property<DateTime?>("ExpirationDate")
                         .HasMaxLength(128);
 
-                    b.Property<double>("Height");
-
                     b.Property<bool>("IsDeleted");
 
                     b.Property<bool>("IsFeatured");
@@ -578,10 +574,6 @@ namespace Ecommerce.Domain.Migrations
 
                     b.Property<int>("Views");
 
-                    b.Property<double>("Weight");
-
-                    b.Property<double>("Width");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ManufactureId");
@@ -589,6 +581,66 @@ namespace Ecommerce.Domain.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Models.ProductAttribute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CommonStatus");
+
+                    b.Property<int>("CountStock");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<Guid?>("ProductColorId");
+
+                    b.Property<Guid>("ProductId");
+
+                    b.Property<Guid?>("ProductSizeId");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductAttributes");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Models.ProductColor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CommonStatus");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductColors");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.ProductImage", b =>
@@ -705,6 +757,33 @@ namespace Ecommerce.Domain.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ProductRating");
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Models.ProductSize", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CommonStatus");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.Property<DateTime?>("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductSizes");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.ProductTranslation", b =>
@@ -864,11 +943,6 @@ namespace Ecommerce.Domain.Migrations
 
             modelBuilder.Entity("Ecommerce.Domain.Models.Cart", b =>
                 {
-                    b.HasOne("Ecommerce.Domain.Models.Couspon", "Couspon")
-                        .WithMany()
-                        .HasForeignKey("CousponId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Ecommerce.Domain.Models.Customer")
                         .WithMany("Carts")
                         .HasForeignKey("CustomerId");
@@ -878,9 +952,8 @@ namespace Ecommerce.Domain.Migrations
                         .HasForeignKey("ProductId");
 
                     b.HasOne("Ecommerce.Domain.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.CartDetail", b =>
@@ -892,8 +965,7 @@ namespace Ecommerce.Domain.Migrations
 
                     b.HasOne("Ecommerce.Domain.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.CategoryTranslation", b =>
@@ -990,6 +1062,14 @@ namespace Ecommerce.Domain.Migrations
                     b.HasOne("Ecommerce.Domain.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Ecommerce.Domain.Models.ProductAttribute", b =>
+                {
+                    b.HasOne("Ecommerce.Domain.Models.Product", "Product")
+                        .WithMany("ProductAttributes")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

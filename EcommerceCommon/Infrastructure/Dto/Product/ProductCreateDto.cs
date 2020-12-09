@@ -57,17 +57,16 @@ namespace EcommerceCommon.Infrastructure.Dto.Product
         [Required(ErrorMessage = "Bạn phải nhập mô tả ngắn")]
         public string ShortDescription { get; set; }
 
-        [Display(Name = "Cân nặng")]
-        [Required(ErrorMessage = "Bạn phải chọn cân nặng")]
-        public double Weight { get; set; }
 
-        [Display(Name = "Chiều dài")]
-        [Required(ErrorMessage = "Bạn phải chọn chiều dài")]
-        public double Height { get; set; }
+        [Display(Name = "Màu sắc")]
+        [Required(ErrorMessage = "Bạn phải chọn màu sắc")]
+        public Guid ProductColorId { get; set; }
 
-        [Display(Name = "Chiều rộng")]
-        [Required(ErrorMessage = "Bạn phải chọn chiều rộng")]
-        public double Width { get; set; }
+        [Display(Name = "Size")]
+        [Required(ErrorMessage = "Bạn phải chọn size")]
+        public Guid ProductSizeId { get; set; }
+
+        public int CountStock { get; set; }
 
         [Display(Name = "Nhà cung cấp")]
         [Required(ErrorMessage = "Bạn phải chọn nhà cung cấp")]

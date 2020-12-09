@@ -26,7 +26,7 @@ namespace Ecommerce.Service.Interface
         /// Get new product
         /// </summary>
         /// <returns></returns>
-        Task<List<ProductViewModel>> GetNewProduct();
+        Task<List<ProductViewModel>> GetNewProduct(string languageId);
 
         /// <summary>
         /// Total income system
