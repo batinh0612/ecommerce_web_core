@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using AutoMapper;
 using Ecommerce.ApiIntegration;
 using Ecommerce.ApiIntegration.Interfaces;
@@ -11,6 +12,7 @@ using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Ecommerce.Web
 {
@@ -41,13 +44,29 @@ namespace Ecommerce.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
 
+
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //.AddJwtBearer(options =>
+            //{
+            //    options.TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = true,
+            //        ValidateAudience = true,
+            //        ValidateLifetime = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidIssuer = Configuration["Tokens:Issuer"],
+            //        ValidAudience = Configuration["Tokens:Issuer"],
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+            //    };
+            //});
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.Cookie.Name = "UserLoginCookie"; // Name of cookie     
                 options.LoginPath = "/Login/Index"; // Path for the redirect to user login page    
                 options.AccessDeniedPath = "/Login/UserAccessDenied";
             });
-
+            services.AddMvc();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddHttpClient();

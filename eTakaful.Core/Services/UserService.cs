@@ -64,13 +64,13 @@ namespace Ecommerce.Service.Services
                 new Claim(ClaimTypes.Role, string.Join(";", roles))
             };
 
-            //var appIdentity = new ClaimsIdentity();
-            //appIdentity.AddClaims(claims);
+            var appIdentity = new ClaimsIdentity();
+            appIdentity.AddClaims(claims);
 
             var token = new JwtSecurityToken(
                 _tokens.Issuer,
                 _tokens.Issuer,
-                claims,
+                appIdentity.Claims,
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokens.Key)),
                 SecurityAlgorithms.HmacSha256)

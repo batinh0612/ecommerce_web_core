@@ -195,8 +195,13 @@ namespace Ecommerce.Admin
                    });
 
                 endpoints.MapControllerRoute(
+                    name: "/",
+                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Login}/{action=Index}/{id?}");
+
             });
         }
     }

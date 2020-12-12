@@ -69,6 +69,11 @@ namespace Ecommerce.Web.Controllers
                     userPrincipal,
                     authProperties
                 );
+
+            var cl = HttpContext.User.Claims.ToList();
+
+            //var claims = HttpContext.User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
+
             //var currentUser = HttpContext.User;
 
             //if (currentUser.HasClaim(c => c.Type == ClaimTypes.NameIdentifier))
