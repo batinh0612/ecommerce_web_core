@@ -159,6 +159,15 @@ namespace Ecommerce.Admin
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "List product",
+                    pattern: "/list-product",
+                    new
+                    {
+                        controller = "Product",
+                        action = "Index"
+                    });
+
+                endpoints.MapControllerRoute(
                     name: "Product details",
                     pattern: "/product-details/{id}",
                     new
@@ -192,6 +201,15 @@ namespace Ecommerce.Admin
                    {
                        controller = "User",
                        action = "Edit"
+                   });
+
+                endpoints.MapControllerRoute(
+                   name: "Change password",
+                   pattern: "/change-password",
+                   new
+                   {
+                       controller = "User",
+                       action = "ChangePassword"
                    });
 
                 endpoints.MapControllerRoute(

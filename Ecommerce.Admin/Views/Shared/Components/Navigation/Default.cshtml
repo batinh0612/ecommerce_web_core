@@ -135,12 +135,12 @@
             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 @*<a class="dropdown-item" href="/Profile/Index">@HttpContextAccessor.HttpContext.Session.GetString("Username")</a>*@
-                <a href="/User/Profile" class="dropdown-item">Cập nhật thông tin</a>
+                <a href="/User/Profile" class="dropdown-item"><i class="fas fa-user"></i> Cập nhật thông tin</a>
                 <div class="dropdown-divider"></div>
-                <a href="/User/ChangePassword" class="dropdown-item">Đổi mật khẩu</a>
+                <a href="/User/ChangePassword" class="dropdown-item"><i class="fas fa-unlock"></i> Đổi mật khẩu</a>
                 <div class="dropdown-divider"></div>
                 <form method="post" action="/Login/Logout">
-                    <button type="submit" class="dropdown-item">Đăng xuất</button>
+                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
                 </form>
             </div>
         </li>

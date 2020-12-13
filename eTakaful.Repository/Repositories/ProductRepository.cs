@@ -190,7 +190,6 @@ namespace Ecommerce.Repository
                                {
                                    Code = string.IsNullOrEmpty(p.Code) ? "" : p.Code,
                                    Name = string.IsNullOrEmpty(pt.Name) ? "" : pt.Name,
-                                   //Height = p.Height,
                                    Quantity = p.Quantity,
                                    ShortDescription = pt.ShortDescription,
                                    Sku = p.Sku,
@@ -225,7 +224,8 @@ namespace Ecommerce.Repository
         public async Task<ProductViewModel> GetProductById(Guid id, string languageId)
         {
             var query = from p in DbContext.Products
-                        join pa in DbContext.ProductAttributes on p.Id equals pa.ProductId
+                        join pa in DbContext.ProductAttributes on p.Id equals pa.ProductId into paa
+                        from pa in paa.DefaultIfEmpty()
                         join pi in DbContext.ProductImages on p.Id equals pi.ProductId into pii
                         from pi in pii.DefaultIfEmpty()
                         join pt in DbContext.ProductTranslations.Where(x => x.LanguageId == languageId) on p.Id equals pt.ProductId into ptt
@@ -246,7 +246,6 @@ namespace Ecommerce.Repository
                 Code = x.p.Code,
                 Description = x.pt.Description,
                 ExpirationDate = x.p.ExpirationDate,
-                //Height = x.p.Height,
                 Name = x.pt.Name,
                 PercentDiscount = x.p.PercentDiscount,
                 Price = x.p.Price == 0 ? 0 : x.p.Price,
@@ -258,7 +257,7 @@ namespace Ecommerce.Repository
                 ShortDescription = x.pt.ShortDescription,
                 Sku = x.p.Sku,
                 Views = x.p.Views,
-                CountStock = x.pa.CountStock,
+                //CountStock = x.pa.CountStock,
                 //Color = x.pa.ProductColorId,
                 //Size = x.pa
                 Details = x.pt.Details,

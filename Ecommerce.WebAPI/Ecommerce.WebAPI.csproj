@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Project IT\EcommerceWebCore\Ecommerce.WebAPI\Ecommerce.WebAPI.xml</DocumentationFile>
+    <DocumentationFile>D:\EcommerceWebCore\Ecommerce.WebAPI\Ecommerce.WebAPI.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
 

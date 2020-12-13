@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "4d+WWVyUx+PnGSLxJ0h8lyjEjHU7Hs8Y8Tle90uqDikRoeCv3VAcmNQipKZDUNai01vkzmcxXxs62Zc147o0SA==",
-  "success": false,
+  "dgSpecHash": "DUz8pG/34ka+b77zIlZ8BZoTFAtHMujAEbeVU8geGYF9Pn9nJiDcLBvfpLdwDZ4sdqfIUai5IQvxIpTUJuiVHA==",
+  "success": true,
   "projectFilePath": "D:\\EcommerceWebCore\\Ecommerce.Web\\Ecommerce.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
@@ -12,17 +12,14 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\jwt\\7.3.0\\jwt.7.3.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.applicationinsights\\2.16.0\\microsoft.applicationinsights.2.16.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\3.1.8\\microsoft.aspnetcore.connections.abstractions.3.1.8.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.1\\microsoft.aspnetcore.cryptography.internal.5.0.1.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.1\\microsoft.aspnetcore.cryptography.keyderivation.5.0.1.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.abstractions\\2.2.0\\microsoft.aspnetcore.diagnostics.abstractions.2.2.0.nupkg.sha512",
@@ -33,8 +30,6 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.http.extensions\\2.2.0\\microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.http.features\\3.1.9\\microsoft.aspnetcore.http.features.3.1.9.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.2.0\\microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.1\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.1.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\5.0.0\\microsoft.aspnetcore.jsonpatch.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.localization\\2.2.0\\microsoft.aspnetcore.localization.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.mvc\\2.2.0\\microsoft.aspnetcore.mvc.2.2.0.nupkg.sha512",
@@ -72,17 +67,17 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.0\\microsoft.entityframeworkcore.5.0.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.0\\microsoft.entityframeworkcore.analyzers.5.0.0.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.1\\microsoft.entityframeworkcore.5.0.1.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.1\\microsoft.entityframeworkcore.abstractions.5.0.1.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.1\\microsoft.entityframeworkcore.analyzers.5.0.1.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.proxies\\2.2.0\\microsoft.entityframeworkcore.proxies.2.2.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.1\\microsoft.entityframeworkcore.relational.5.0.1.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.0\\microsoft.entityframeworkcore.relational.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.0\\microsoft.entityframeworkcore.sqlserver.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.0\\microsoft.extensions.dependencyinjection.5.0.0.nupkg.sha512",
+    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\5.0.1\\microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.6\\microsoft.extensions.dependencymodel.3.1.6.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\2.2.0\\microsoft.extensions.fileproviders.abstractions.2.2.0.nupkg.sha512",
@@ -90,8 +85,6 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\2.2.0\\microsoft.extensions.filesystemglobbing.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\2.2.0\\microsoft.extensions.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.http\\5.0.0\\microsoft.extensions.http.5.0.0.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.identity.core\\5.0.1\\microsoft.extensions.identity.core.5.0.1.nupkg.sha512",
-    "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.identity.stores\\5.0.1\\microsoft.extensions.identity.stores.5.0.1.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.localization\\2.2.0\\microsoft.extensions.localization.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\2.2.0\\microsoft.extensions.localization.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
@@ -244,15 +237,5 @@
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
     "C:\\Users\\BaTinhNguyen\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.10\\microsoft.netcore.app.host.win-x64.3.1.10.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Detected package downgrade: Microsoft.EntityFrameworkCore from 5.0.1 to 5.0.0. Reference the package directly from the project to select a different version. \r\n Ecommerce.Web -> Ecommerce.Domain -> Microsoft.AspNetCore.Identity.EntityFrameworkCore 5.0.1 -> Microsoft.EntityFrameworkCore.Relational 5.0.1 -> Microsoft.EntityFrameworkCore (>= 5.0.1) \r\n Ecommerce.Web -> Microsoft.EntityFrameworkCore (>= 5.0.0)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  "logs": []
 }

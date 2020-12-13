@@ -62,7 +62,7 @@ namespace EcommerceCommon.Infrastructure.ViewModel.Product
         public string Color { get; set; }
 
         [Display(Name = "Trong kho")]
-        public double CountStock { get; set; }
+        public int CountStock { get; set; }
 
         public string SeoDescription { get; set; }
         public string SeoTitle { get; set; }
