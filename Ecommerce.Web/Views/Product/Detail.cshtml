@@ -1,11 +1,17 @@
 ﻿@model Ecommerce.Web.Models.ProductDetailViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Microsoft.AspNetCore.Http
 @inject Microsoft.Extensions.Configuration.IConfiguration _config;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor;
 
-
+<style>
+    .margin-bot{
+        margin-bottom: 20px;
+    }
+</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -43,6 +49,7 @@
             <div class="col-lg-5 offset-lg-1">
                 <form action="/Cart/AddCart" method="post">
                     <input type="hidden" name="ProductId" value="@Model.Details.Id" />
+                    <input type="hidden" name="UserId" value="@httpContextAccessor.HttpContext.Session.GetString("UserId")" />
                     <div class="s_product_text">
                         <h3>@Model.Details.Name</h3>
                         <h2>@Model.Details.Price.ToString("N0")</h2>
@@ -53,13 +60,10 @@
                         <p>
                             @Model.Details.Description
                         </p>
-                        <select name="ProductSizeId" asp-items="@ViewBag.ListSizes">
-                        </select>
-                        <select name="ProductColorId" asp-items="@ViewBag.ListColors">
-                        </select>
+                        
                         <div class="product_count">
                             <label for="qty">Số lượng:</label>
-                            <input type="text" name="Quantity" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                            <input type="text" name="Quantity" id="sst" min="1" maxlength="12" value="1" title="Quantity:" class="input-text qty">
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                     class="increase items-count" type="button">
                                 <i class="lnr lnr-chevron-up"></i>
@@ -68,6 +72,16 @@
                                     class="reduced items-count" type="button">
                                 <i class="lnr lnr-chevron-down"></i>
                             </button>
+                        </div>
+                        <div class="d-flex margin-bot">
+                            <label>Size:&emsp;</label>
+                            <select name="ProductSizeId" asp-items="@ViewBag.ListSizes">
+                            </select>
+                        </div>
+                        <div class="d-flex margin-bot">
+                            <label>Color:&emsp;</label>
+                            <select name="ProductColorId" asp-items="@ViewBag.ListColors">
+                            </select>
                         </div>
                         <div class="card_area d-flex align-items-center">
                             <button type="submit" class="primary-btn">Thêm vào giỏ hàng</button>

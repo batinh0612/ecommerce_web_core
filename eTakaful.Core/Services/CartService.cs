@@ -14,12 +14,16 @@ namespace Ecommerce.Service.Services
     {
         private readonly ICartRepository cartRepository;
         private readonly ICartDetailRepository cartDetailRepository;
+        private readonly IProductRepository productRepository;
 
-        public CartService(IRepository<Cart> baseReponsitory, ICartRepository cartRepository, ICartDetailRepository cartDetailRepository)
+        public CartService(IRepository<Cart> baseReponsitory, ICartRepository cartRepository,
+            ICartDetailRepository cartDetailRepository,
+            IProductRepository productRepository)
             : base(baseReponsitory)
         {
             this.cartRepository = cartRepository;
             this.cartDetailRepository = cartDetailRepository;
+            this.productRepository = productRepository;
         }
 
         public async Task<bool> AddCart(Guid ProductId, Guid? ProductSizeId, Guid? ProductColorId, int Quantity, Guid UserId, string LanguageId)
@@ -38,6 +42,7 @@ namespace Ecommerce.Service.Services
                     {
                         var discountPrice = product.Price - ((product.PercentDiscount * product.Price)/100);
                         cartNew.TotalPrice = discountPrice * Quantity;
+                        cartNew.FeeMount = ((product.PercentDiscount * product.Price) / 100) * Quantity;
                     }
                     else
                     {
@@ -60,7 +65,8 @@ namespace Ecommerce.Service.Services
             }
             else
             {
-                var cartDetail = cartDetailRepository.GetFirstOrDefaultAsync(x => x.CartId == cart.Id && x.ProductAttributeId == product.Id);
+                var cartDetail = cartDetailRepository.GetFirstOrDefaultAsync(x => x.CartId == cart.Id && x.ProductAttributeId == product.Id &&
+                x.ProductId == ProductId);
                 if (cartDetail == null)
                 {
                     if (Quantity <= product.CountStock)
@@ -76,6 +82,7 @@ namespace Ecommerce.Service.Services
                         {
                             var discountPrice = product.Price - ((product.PercentDiscount * product.Price) / 100);
                             cart.TotalPrice += discountPrice * Quantity;
+                            cart.FeeMount += ((product.PercentDiscount * product.Price) / 100) * Quantity;
                         }
                         else
                         {
@@ -99,6 +106,7 @@ namespace Ecommerce.Service.Services
                         {
                             var discountPrice = product.Price - ((product.PercentDiscount * product.Price) / 100);
                             cart.TotalPrice += discountPrice * Quantity;
+                            cart.FeeMount += ((product.PercentDiscount * product.Price) / 100) * Quantity;
                         }
                         else
                         {
@@ -115,9 +123,53 @@ namespace Ecommerce.Service.Services
             }
         }
 
-        public async Task<List<CartViewModel>> GetAllProductCart()
+        public async Task<bool> DeleteCart(Guid id)
         {
-            return await cartRepository.GetAllProductCart();
+            try
+            {
+                var cartDetail = cartDetailRepository.GetById(id);
+                await cartDetailRepository.DeleteAsync(cartDetail);
+
+                var cart = cartRepository.GetById(cartDetail.CartId);
+                var product = productRepository.GetById(cartDetail.ProductId.Value);
+                var cartDetails = await cartRepository.GetListCartDetailById(cart.Id);
+
+                decimal total = 0;
+                decimal feeMount = 0;
+                foreach (var item in cartDetails)
+                {
+                    total += item.Price * item.Quantity;
+                    feeMount -= ((product.PercentDiscount.Value * item.Price) / 100) * item.Quantity;
+                }
+                cart.TotalPrice = total;
+                cart.FeeMount = feeMount;
+                await cartRepository.UpdateAsync(cart);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<CartDetailViewModel>> GetAllProductCart(Guid UserId)
+        {
+            return await cartRepository.GetAllProductCart(UserId);
+        }
+
+        public async Task<List<CartViewModel>> GetListCart()
+        {
+            return await cartRepository.GetListCart();
+        }
+
+        public async Task<List<CartDetail>> GetListCartDetailById(Guid cartId)
+        {
+            return await cartRepository.GetListCartDetailById(cartId);
+        }
+
+        public async Task<List<CartDetailViewModel>> GetListCartDetailViewModelById(Guid cartId)
+        {
+            return await cartRepository.GetListCartDetailViewModelById(cartId);
         }
     }
 }

@@ -55,11 +55,14 @@ namespace Ecommerce.Admin.Controllers
             }
 
             var userPrincipal = this.ValidateToken(result.Result.ToString());
+            
+
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
+
 
             HttpContext.Session.SetString(SystemConstant.AppSettings.DefaultLanguageId, configuration["DefaultLanguageId"]);
             HttpContext.Session.SetString(SystemConstant.AppSettings.Token, result.Result.ToString());

@@ -21,4 +21,3 @@ D:\EcommerceWebCore\eTakaful.Domain\obj\Debug\netcoreapp3.1\Ecommerce.Domain.csp
 D:\EcommerceWebCore\eTakaful.Domain\obj\Debug\netcoreapp3.1\Ecommerce.Domain.dll
 D:\EcommerceWebCore\eTakaful.Domain\obj\Debug\netcoreapp3.1\Ecommerce.Domain.pdb
 D:\EcommerceWebCore\eTakaful.Domain\obj\Debug\netcoreapp3.1\Ecommerce.Domain.genruntimeconfig.cache
-D:\EcommerceWebCore\eTakaful.Domain\obj\Debug\netcoreapp3.1\Ecommerce.Domain.csprojAssemblyReference.cache

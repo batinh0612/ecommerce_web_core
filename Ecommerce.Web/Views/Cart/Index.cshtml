@@ -1,27 +1,38 @@
 ﻿@using EcommerceCommon.Infrastructure.ViewModel.Cart
-@model List<CartViewModel>
+@model List<CartDetailViewModel>
 @{
-    ViewData["Title"] = "Shopping Cart";
+    ViewData["Title"] = "Giỏ hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @inject Microsoft.Extensions.Configuration.IConfiguration _config;
 
-    <!-- Start Banner Area -->
-    <section class="banner-area organic-breadcrumb">
-        <div class="container">
-            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
-                <div class="col-first">
-                    <h1>Shopping Cart</h1>
-                    <nav class="d-flex align-items-center">
-                        <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="category.html">Cart</a>
-                    </nav>
-                </div>
+@section Scripts{ 
+    <script src="/js/controller/cartController.js"></script>
+    <script>
+        var cartController = new CartController();
+        cartController.initialize();
+    </script>
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shopping Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Cart</a>
+                </nav>
             </div>
         </div>
-    </section>
-    <!-- End Banner Area -->
+    </div>
+</section>
+<!-- End Banner Area -->
+
+@if (Model.Count != 0)
+{
     <!--================Cart Area =================-->
     <section class="cart_area">
         <div class="container">
@@ -38,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{ 
+                            @{
                                 decimal subTotal = 0;
                             }
                             @foreach (var item in Model)
@@ -75,7 +86,7 @@
                                     <td>
                                         <h5>@item.TotalPrice.ToString("N0")</h5>
                                     </td>
-                                    <td><button class="btn btn-danger">Xóa</button></td>
+                                    <td><button data-id="@item.Id" class="btn btn-danger btn-remove">Xóa</button></td>
                                 </tr>
                             }
                             <tr class="bottom_button">
@@ -159,3 +170,16 @@
         </div>
     </section>
     <!--================End Cart Area =================-->
+}
+else
+{
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <p>Không có sản phẩm nào trong giỏ hàng.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+}

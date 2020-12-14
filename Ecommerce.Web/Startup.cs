@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using AutoMapper;
 using Ecommerce.ApiIntegration;
 using Ecommerce.ApiIntegration.Interfaces;
@@ -12,7 +11,6 @@ using Ecommerce.Service.Interface;
 using Ecommerce.Service.Services;
 using EcommerceCommon.Utilities.Configurations;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +18,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Ecommerce.Web
 {
@@ -102,6 +99,24 @@ namespace Ecommerce.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                  name: "Product detail",
+                  pattern: "/product-detail/{id}",
+                  new
+                  {
+                      controller = "Product",
+                      action = "Detail"
+                  });
+
+                endpoints.MapControllerRoute(
+                   name: "Add cart",
+                   pattern: "/add-cart",
+                   new
+                   {
+                       controller = "Cart",
+                       action = "AddCart"
+                   });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
@@ -114,6 +129,7 @@ namespace Ecommerce.Web
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<IStorageRepository, StorageRepository>();
             services.AddTransient<IUserApiClient, UserApiClient>();
+      
 
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddTransient(typeof(IServices<>), typeof(EcommerceServices<>));
@@ -126,7 +142,9 @@ namespace Ecommerce.Web
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartService, CartService>();
 
+
             services.AddTransient<ICartDetailRepository, CartDetailRepository>();
+            services.AddTransient<ICartApiClient, CartApiClient>();
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();

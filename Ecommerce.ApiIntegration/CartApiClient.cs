@@ -1,7 +1,10 @@
 ﻿using Ecommerce.ApiIntegration.Interfaces;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Infrastructure.Dto.Cart;
+using EcommerceCommon.Infrastructure.ViewModel.Cart;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,16 +15,23 @@ namespace Ecommerce.ApiIntegration
 {
     public class CartApiClient : BaseApiClient, ICartApiClient
     {
-        protected CartApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public CartApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
             : base(httpClientFactory, configuration, httpContextAccessor)
         {
 
         }
 
-        public async Task<ApiResponse> AddCart(Guid ProductId, Guid? ProductSizeId, Guid? ProductColorId, int Quantity, Guid UserId, string LanguageId)
+        public async Task<ApiResponse> GetAllCart()
         {
-            //var response = await PostAsync<ApiResponse>("/api/add-cart");
-            throw new NotImplementedException();
+            var data = await FlurlGetAsync<ApiResponse>("/api/carts/get-all-cart");
+            var result = JsonConvert.DeserializeObject<List<CartDetailViewModel>>(data.Result.ToString());
+            return new ApiResponse(data.Message, result);
+        }
+
+        public async Task<ApiResponse> AddCart(CartDto cartDto)
+        {
+            var response = await PostAsync<ApiResponse>("/api/carts/add-cart", cartDto);
+            return response;
         }
     }
 }

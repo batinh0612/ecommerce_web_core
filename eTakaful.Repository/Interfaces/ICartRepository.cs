@@ -22,6 +22,26 @@ namespace Ecommerce.Repository.Interfaces
         /// Get all product cart
         /// </summary>
         /// <returns></returns>
-        Task<List<CartViewModel>> GetAllProductCart();
+        Task<List<CartDetailViewModel>> GetAllProductCart(Guid UserId);
+
+        /// <summary>
+        /// Get List Cart Detail By Id
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <returns></returns>
+        Task<List<CartDetail>> GetListCartDetailById(Guid cartId);
+
+        /// <summary>
+        /// Get list cart
+        /// </summary>
+        /// <returns></returns>
+        Task<List<CartViewModel>> GetListCart();
+
+        /// <summary>
+        /// GetListCartDetailViewModelById
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <returns></returns>
+        Task<List<CartDetailViewModel>> GetListCartDetailViewModelById(Guid cartId);
     }
 }

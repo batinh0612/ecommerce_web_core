@@ -55,6 +55,17 @@ namespace Ecommerce.Web.Controllers
             }
 
             var userPrincipal = this.ValidateToken(result.Result.ToString());
+            var userId = string.Empty;
+            foreach (var item in userPrincipal.Identities.ToList())
+            {
+                if (item.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier) != null)
+                {
+                    userId = item.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value;
+                }
+            }
+
+            HttpContext.Session.SetString("UserId", userId);
+
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
@@ -70,21 +81,6 @@ namespace Ecommerce.Web.Controllers
                     authProperties
                 );
 
-            var cl = HttpContext.User.Claims.ToList();
-
-            //var claims = HttpContext.User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault();
-
-            //var currentUser = HttpContext.User;
-
-            //if (currentUser.HasClaim(c => c.Type == ClaimTypes.NameIdentifier))
-            //{
-            //    var userId = currentUser.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
-            //}
-            //var identity = HttpContext.User.Identity as ClaimsIdentity;
-            //IEnumerable<Claim> claim = identity.Claims;
-            //var userId = claim.Where(x => x.Type == "Username").FirstOrDefault().Value;
-
-            //HttpContext.Session.SetString("UserId", userId);
             HttpContext.Session.SetString(SystemConstant.AppSettings.Username, request.Username);
             return RedirectToAction("Index", "Home");
         }

@@ -1,5 +1,7 @@
 ﻿using Ecommerce.Service.Interface;
 using Ecommerce.WebAPI.Infrastructure.Wrappers;
+using EcommerceCommon.Infrastructure.Dto.Cart;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,10 +22,21 @@ namespace Ecommerce.WebAPI.Controllers
             this.cartService = cartService;
         }
 
-        [HttpPost("add-cart")]
-        public async Task<ApiResponse> AddCart(Guid ProductId, Guid? ProductSizeId, Guid? ProductColorId, int Quantity, Guid UserId, string LanguageId)
+        [HttpGet("get-all-cart")]
+        [Authorize]
+        public async Task<ApiResponse> GetAllCart(Guid UserId)
         {
-            var result = await cartService.AddCart(ProductId, ProductSizeId, ProductColorId, Quantity, UserId, LanguageId);
+            var result = await cartService.GetAllProductCart(UserId);
+            return new ApiResponse("List cart", result);
+
+        }
+
+        [HttpPost("add-cart")]
+        [Authorize]
+        public async Task<ApiResponse> AddCart(CartDto cartDto)
+        {
+            var result = await cartService.AddCart(cartDto.ProductId, cartDto.ProductSizeId, 
+                cartDto.ProductColorId, cartDto.Quantity, cartDto.UserId, cartDto.LanguageId);
             if (result == true)
             {
                 return new ApiResponse("Add cart succcesful", result, 200);

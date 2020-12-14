@@ -58,18 +58,18 @@ namespace Ecommerce.Repository
         /// Get all product cart
         /// </summary>
         /// <returns></returns>
-        public async Task<List<CartViewModel>> GetAllProductCart()
+        public async Task<List<CartDetailViewModel>> GetAllProductCart(Guid UserId)
         {
             var carts = await (from c in DbContext.Carts
                                join cd in DbContext.CartDetails on c.Id equals cd.CartId
                                join p in DbContext.Products on cd.ProductId equals p.Id
                                join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
                                join pi in DbContext.ProductImages on pt.ProductId equals pi.ProductId
-                               where pi.MainImage == true && p.IsDeleted == false && pt.LanguageId == "vi" &&
+                               where c.UserId == UserId && pi.MainImage == true && p.IsDeleted == false && pt.LanguageId == "vi" &&
                                c.CartStatus == Domain.Enums.ShoppingCartEnum.PreOrder
-                               select new CartViewModel
+                               select new CartDetailViewModel
                                {
-                                   Id = c.Id,
+                                   Id = cd.Id,
                                    Quantity = cd.Quantity,
                                    ImageLink = pi.ImageLink,
                                    Name = pt.Name,
@@ -78,6 +78,52 @@ namespace Ecommerce.Repository
                                }).ToListAsync();
 
             return carts;
+        }
+
+        public async Task<List<CartViewModel>> GetListCart()
+        {
+            var query = await (from c in DbContext.Carts
+                               join u in DbContext.Users on c.UserId equals u.Id
+                               select new CartViewModel
+                               {
+                                   Id = c.Id,
+                                   Username = u.Username,
+                                   CartStatus = c.CartStatus,
+                                   FeeMount = c.FeeMount,
+                                   TotalPrice = c.TotalPrice,
+                                   FullName = (u.FirstName +" " + u.LastName),
+                                   Email = u.Email,
+                                   VoucherCode = c.VoucherCode,
+                                   ShoppingNumber = c.ShoppingNumber
+                               }).ToListAsync();
+
+            return query;
+        }
+
+        public async Task<List<CartDetail>> GetListCartDetailById(Guid cartId)
+        {
+            return await DbContext.CartDetails.Where(x => x.CartId == cartId).ToListAsync();
+        }
+
+        public async Task<List<CartDetailViewModel>> GetListCartDetailViewModelById(Guid cartId)
+        {
+            var cartDetails = await (from c in DbContext.Carts
+                               join cd in DbContext.CartDetails on c.Id equals cd.CartId
+                               join p in DbContext.Products on cd.ProductId equals p.Id
+                               join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
+                               join pi in DbContext.ProductImages on pt.ProductId equals pi.ProductId
+                               where cd.CartId == cartId && pi.MainImage == true && p.IsDeleted == false && pt.LanguageId == "vi" &&
+                               c.CartStatus == Domain.Enums.ShoppingCartEnum.PreOrder
+                               select new CartDetailViewModel
+                               {
+                                   Id = cd.Id,
+                                   Quantity = cd.Quantity,
+                                   ImageLink = pi.ImageLink,
+                                   Name = pt.Name,
+                                   Price = cd.Price,
+                                   TotalPrice = cd.Quantity * cd.Price
+                               }).ToListAsync();
+            return cartDetails;
         }
     }
 }
