@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Ecommerce.Web.Models;
 using AutoMapper;
 using Ecommerce.ApiIntegration.Interfaces;
-using EcommerceCommon.Infrastructure.ViewModel.Product;
 using Ecommerce.Service.Interface;
 using EcommerceCommon.Utilities.Constants;
 

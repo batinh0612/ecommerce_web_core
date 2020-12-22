@@ -5,6 +5,7 @@ using Ecommerce.Service.Interface;
 using EcommerceCommon.Infrastructure.ViewModel.Cart;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -129,9 +130,15 @@ namespace Ecommerce.Service.Services
             {
                 var cartDetail = cartDetailRepository.GetById(id);
                 await cartDetailRepository.DeleteAsync(cartDetail);
-
                 var cart = cartRepository.GetById(cartDetail.CartId);
                 var product = productRepository.GetById(cartDetail.ProductId.Value);
+
+                var listCartDetail = cartDetailRepository.FindBy(x => x.CartId == cart.Id).ToList();
+                if (listCartDetail.Count == 0)
+                {
+                    await cartRepository.DeleteAsync(cart);
+                }
+
                 var cartDetails = await cartRepository.GetListCartDetailById(cart.Id);
 
                 decimal total = 0;
@@ -139,7 +146,7 @@ namespace Ecommerce.Service.Services
                 foreach (var item in cartDetails)
                 {
                     total += item.Price * item.Quantity;
-                    feeMount -= ((product.PercentDiscount.Value * item.Price) / 100) * item.Quantity;
+                    feeMount = ((product.PercentDiscount.Value * item.Price) / 100) * item.Quantity;
                 }
                 cart.TotalPrice = total;
                 cart.FeeMount = feeMount;

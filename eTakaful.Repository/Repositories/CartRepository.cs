@@ -73,6 +73,7 @@ namespace Ecommerce.Repository
                                    Quantity = cd.Quantity,
                                    ImageLink = pi.ImageLink,
                                    Name = pt.Name,
+                                   PercentDiscount = p.PercentDiscount.HasValue ? p.PercentDiscount : 0,
                                    Price = cd.Price,
                                    TotalPrice = cd.Quantity * cd.Price
                                }).ToListAsync();

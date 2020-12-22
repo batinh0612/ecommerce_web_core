@@ -5,6 +5,7 @@
 }
 
 @inject Microsoft.Extensions.Configuration.IConfiguration _configuration;
+
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
@@ -208,7 +209,7 @@
                                 </a>
                                 <div class="price">
                                     <h6>@item.Price.ToString("N0")</h6>
-                                    <h6 class="l-through">$210.00</h6>
+                                    <h6 class="l-through">@item.Price.ToString("N0")</h6>
                                 </div>
                                 <div class="prd-bottom">
 
@@ -268,7 +269,7 @@
                                 </a>
                                 <div class="price">
                                     <h6>@item.Price.ToString("N0")</h6>
-                                    <h6 class="l-through">$210.00</h6>
+                                    <h6 class="l-through">@item.Price.ToString("N0")</h6>
                                 </div>
                                 <div class="prd-bottom">
                                     <a href="/Product/Detail" class="social-info">

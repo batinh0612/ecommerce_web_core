@@ -143,6 +143,7 @@ namespace Ecommerce.Repository.Interfaces
         T GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>,
                                 IOrderedQueryable<T>> orderBy = null,
                                 Func<IQueryable<T>, IIncludableQueryable<T, Object>> include = null);
+        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// AddAsync
