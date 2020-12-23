@@ -131,6 +131,11 @@ namespace Ecommerce.Domain
                     Name = "31"
                 });
 
+                context.ProductSizes.Add(new ProductSize
+                {
+                    Name = "32"
+                });
+
                 await context.SaveChangesAsync();
             }
         }
@@ -153,6 +158,11 @@ namespace Ecommerce.Domain
                     Name = "Xám"
                 });
 
+                context.ProductColors.Add(new ProductColor
+                {
+                    Name = "Vàng"
+                });
+
                 await context.SaveChangesAsync();
             }
         }
@@ -164,15 +174,17 @@ namespace Ecommerce.Domain
                 var product1 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
                 var product2 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
                 var product3 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CMXM");
-                //var product4 = await context.Products.FirstOrDefaultAsync(x => x.Code == "MSCCS");
+                var product4 = await context.Products.FirstOrDefaultAsync(x => x.Code == "MSCCS");
 
                 var productColor1 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Đen");
                 var productColor2 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Trắng");
                 var productColor3 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Xám");
+                var productColor4 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Vàng");
 
                 var productSize1 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "29");
                 var productSize2 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "30");
                 var productSize3 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "31");
+                var productSize4 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "32");
 
                 context.ProductAttributes.Add(new ProductAttribute { 
                     ProductSizeId = productSize1.Id,
@@ -194,6 +206,14 @@ namespace Ecommerce.Domain
                     ProductSizeId = productSize3.Id,
                     ProductColorId = productColor3.Id,
                     ProductId = product3.Id,
+                    CountStock = 50
+                });
+
+                context.ProductAttributes.Add(new ProductAttribute
+                {
+                    ProductSizeId = productSize4.Id,
+                    ProductColorId = productColor4.Id,
+                    ProductId = product4.Id,
                     CountStock = 50
                 });
 
