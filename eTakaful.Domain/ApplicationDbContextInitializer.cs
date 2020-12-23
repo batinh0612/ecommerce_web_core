@@ -50,10 +50,6 @@ namespace Ecommerce.Domain
             await SeedOrderDetail(_context);
 
             await SeedUser(_context);
-
-           
-            //await SeedUserProfile(_context);
-
         }
 
         #region SeedData
