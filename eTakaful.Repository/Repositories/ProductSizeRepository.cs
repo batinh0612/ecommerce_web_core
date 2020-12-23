@@ -1,9 +1,11 @@
 ﻿using Ecommerce.Domain;
 using Ecommerce.Domain.Models;
 using Ecommerce.Repository.Interfaces;
+using EcommerceCommon.Infrastructure.ViewModel.ProductSize;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Ecommerce.Repository.Repositories
 {
@@ -11,6 +13,11 @@ namespace Ecommerce.Repository.Repositories
     {
         public ProductSizeRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<ProductSizeViewModel>> GetAllSize()
+        {
+            throw new NotImplementedException();
         }
     }
 }
