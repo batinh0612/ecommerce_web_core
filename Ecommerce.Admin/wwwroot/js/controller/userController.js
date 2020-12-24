@@ -45,7 +45,8 @@
                             }
                         },
                         callback: function () {
-                            window.location.href = "/User/Index";
+                            //window.location.href = "/User/Index";
+                            $('#example1').DataTable().ajax.reload();
                         }
                     });
                 } else {
