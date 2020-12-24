@@ -22,6 +22,7 @@
                 callback: function (result) {
                     if (result) {
                         user.deleteUser(id);
+                        toastr.success('Xóa thành công');
                     }
                 }
             });
