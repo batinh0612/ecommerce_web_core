@@ -22,6 +22,7 @@
                 callback: function (result) {
                     if (result) {
                         user.deleteUser(id);
+                        toastr.success('Xóa thành công');
                     }
                 }
             });
@@ -44,7 +45,8 @@
                             }
                         },
                         callback: function () {
-                            window.location.href = "/User/Index";
+                            //window.location.href = "/User/Index";
+                            $('#example1').DataTable().ajax.reload();
                         }
                     });
                 } else {

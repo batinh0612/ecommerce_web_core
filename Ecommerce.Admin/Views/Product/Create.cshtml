@@ -10,11 +10,25 @@
     .padd-left {
         padding-left: 0px !important;
     }
+
+    .statesSelect {
+        width: 400px;
+    }
 </style>
 
+@section Css{ 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+}
+
 @section Scripts{
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="~/js/ckeditor.js"></script>
     <script>
+        $(document).ready(function () {
+            $(".statesSelect").select2();
+        });
+
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
@@ -153,14 +167,14 @@
                             </div>
                             <div class="form-group col-md-5 padd-left">
                                 <label asp-for="ProductSizeId" class="control-label"></label>
-                                <select asp-for="ProductSizeId" class="form-control" asp-items="ViewBag.ListSizes">
+                                <select asp-for="ProductSizeId" class="form-control statesSelect" asp-items="ViewBag.ListSizes" multiple>
                                     <option>--Chọn nhà cung cấp--</option>
                                 </select>
                                 <span asp-validation-for="ProductSizeId" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-5 padd-left">
                                 <label asp-for="ProductColorId" class="control-label"></label>
-                                <select asp-for="ProductColorId" class="form-control" asp-items="@ViewBag.ListColors">
+                                <select asp-for="ProductColorId" class="form-control statesSelect" asp-items="@ViewBag.ListColors" multiple>
                                     <option>--Chọn nhà cung cấp--</option>
                                 </select>
                                 <span asp-validation-for="ProductColorId" class="text-danger"></span>

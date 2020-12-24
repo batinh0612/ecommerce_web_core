@@ -38,6 +38,9 @@ namespace Ecommerce.Domain
             
             await SeedProduct(_context);
             await SeedProductTranslation(_context);
+            await SeedProducSize(_context);
+            await SeedProducColor(_context);
+            await SeedProductAttribute(_context);
 
             await SeedProductInCategory(_context);
 
@@ -47,10 +50,6 @@ namespace Ecommerce.Domain
             await SeedOrderDetail(_context);
 
             await SeedUser(_context);
-
-           
-            //await SeedUserProfile(_context);
-
         }
 
         #region SeedData
@@ -110,6 +109,114 @@ namespace Ecommerce.Domain
             }
         }
 
+        private async Task SeedProducSize(ApplicationDbContext context)
+        {
+            if (!context.ProductSizes.Any())
+            {
+                context.ProductSizes.Add(new ProductSize { 
+                    Name = "29"
+                });
+
+                context.ProductSizes.Add(new ProductSize
+                {
+                    Name = "30"
+                });
+
+                context.ProductSizes.Add(new ProductSize
+                {
+                    Name = "31"
+                });
+
+                context.ProductSizes.Add(new ProductSize
+                {
+                    Name = "32"
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedProducColor(ApplicationDbContext context)
+        {
+            if (!context.ProductColors.Any())
+            {
+                context.ProductColors.Add(new ProductColor { 
+                    Name = "Đen"
+                });
+
+                context.ProductColors.Add(new ProductColor
+                {
+                    Name = "Trắng"
+                });
+
+                context.ProductColors.Add(new ProductColor
+                {
+                    Name = "Xám"
+                });
+
+                context.ProductColors.Add(new ProductColor
+                {
+                    Name = "Vàng"
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedProductAttribute(ApplicationDbContext context)
+        {
+            if (!context.ProductAttributes.Any())
+            {
+                var product1 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
+                var product2 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CNMSC11X");
+                var product3 = await context.Products.FirstOrDefaultAsync(x => x.Code == "CMXM");
+                var product4 = await context.Products.FirstOrDefaultAsync(x => x.Code == "MSCCS");
+
+                var productColor1 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Đen");
+                var productColor2 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Trắng");
+                var productColor3 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Xám");
+                var productColor4 = await context.ProductColors.FirstOrDefaultAsync(x => x.Name == "Vàng");
+
+                var productSize1 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "29");
+                var productSize2 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "30");
+                var productSize3 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "31");
+                var productSize4 = await context.ProductSizes.FirstOrDefaultAsync(x => x.Name == "32");
+
+                context.ProductAttributes.Add(new ProductAttribute { 
+                    ProductSizeId = productSize1.Id,
+                    ProductColorId = productColor1.Id,
+                    ProductId = product1.Id,
+                    CountStock = 50
+                });
+
+                context.ProductAttributes.Add(new ProductAttribute
+                {
+                    ProductSizeId = productSize2.Id,
+                    ProductColorId = productColor2.Id,
+                    ProductId = product2.Id,
+                    CountStock = 50
+                });
+
+                context.ProductAttributes.Add(new ProductAttribute
+                {
+                    ProductSizeId = productSize3.Id,
+                    ProductColorId = productColor3.Id,
+                    ProductId = product3.Id,
+                    CountStock = 50
+                });
+
+                context.ProductAttributes.Add(new ProductAttribute
+                {
+                    ProductSizeId = productSize4.Id,
+                    ProductColorId = productColor4.Id,
+                    ProductId = product4.Id,
+                    CountStock = 50
+                });
+
+                await context.SaveChangesAsync();
+            }
+        }
+
         private async Task SeedProduct(ApplicationDbContext context)
         {
             if (!context.Products.Any())
@@ -127,10 +234,6 @@ namespace Ecommerce.Domain
                     Code = "CNMSC11X",
                     Price = 1500000,
                     Quantity = 50,
-                    //Width = 5,
-                    //Height = 10,
-                    CreatedDate = DateTime.Now,
-                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -145,10 +248,6 @@ namespace Ecommerce.Domain
                     Code = "NDKCM",
                     Price = 2000000,
                     Quantity = 30,
-                    //Width = 5,
-                    //Height = 2,
-                    CreatedDate = DateTime.Now,
-                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -163,10 +262,6 @@ namespace Ecommerce.Domain
                     Code = "CMXM",
                     Price = 1700000,
                     Quantity = 30,
-                    //Width = 5,
-                    //Height = 2,
-                    CreatedDate = DateTime.Now,
-                    //Weight = 4,
                     PercentDiscount = 10
                 });
 
@@ -181,10 +276,6 @@ namespace Ecommerce.Domain
                     Code = "MSCCS",
                     Price = 1300000,
                     Quantity = 30,
-                    //Width = 5,
-                    //Height = 2,
-                    CreatedDate = DateTime.Now,
-                    //Weight = 4,
                     PercentDiscount = 10,
                 });
 
