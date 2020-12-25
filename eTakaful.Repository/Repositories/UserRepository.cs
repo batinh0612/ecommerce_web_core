@@ -55,6 +55,7 @@ namespace Ecommerce.Repository
                 LastName = dto.LastName,
                 Email = dto.Email,
                 Phone = dto.Phone,
+                //Role = 
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 CreatedBy = _session.GetString(SystemConstant.AppSettings.Username),

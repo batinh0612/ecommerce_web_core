@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcommerceCommon.Infrastructure.Dto.User
 {
@@ -12,6 +13,7 @@ namespace EcommerceCommon.Infrastructure.Dto.User
         public string Address { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public List<string> Roles { get; set; }
         //public string Avatar { get; set; }
 
         //[Display(Name = "Tên")]

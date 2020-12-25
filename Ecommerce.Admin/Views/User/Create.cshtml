@@ -67,6 +67,13 @@
                                 <input asp-for="Phone" class="form-control" />
                                 <span asp-validation-for="Phone" class="text-danger"></span>
                             </div>
+                            <div class="form-group col-md-5 padd-left">
+                                <label asp-for="Roles" class="control-label"></label>
+                                <select asp-for="Roles" class="form-control statesSelect" asp-items="ViewBag.ListSizes" multiple>
+                                    <option>--Chọn nhà cung cấp--</option>
+                                </select>
+                                <span asp-validation-for="Roles" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label asp-for="Password" class="control-label"></label>
                                 <input type="password" asp-for="Password" class="form-control" />
@@ -90,6 +97,10 @@
 </section>
 @section Scripts{
     <script>
+        $(document).ready(function () {
+            $(".statesSelect").select2();
+        });
+
         setTimeout(function () {
             $("#msgSuccess").fadeOut();
         }, 3000);
