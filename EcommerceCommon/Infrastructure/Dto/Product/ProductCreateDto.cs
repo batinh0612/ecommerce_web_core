@@ -60,11 +60,11 @@ namespace EcommerceCommon.Infrastructure.Dto.Product
 
         [Display(Name = "Màu sắc")]
         [Required(ErrorMessage = "Bạn phải chọn màu sắc")]
-        public Guid ProductColorId { get; set; }
+        public List<Guid> ProductColorId { get; set; }
 
         [Display(Name = "Size")]
         [Required(ErrorMessage = "Bạn phải chọn size")]
-        public Guid ProductSizeId { get; set; }
+        public List<Guid> ProductSizeId { get; set; }
 
         public int CountStock { get; set; }
 

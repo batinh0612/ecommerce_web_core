@@ -150,7 +150,7 @@
                                 <textarea id="editor" asp-for="Details" class="form-control"></textarea>
                                 <span asp-validation-for="Details" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <label asp-for="SeoDescription" class="control-label"></label>
                                 <input asp-for="SeoDescription" class="form-control" />
                                 <span asp-validation-for="SeoDescription" class="text-danger"></span>
@@ -164,6 +164,11 @@
                                 <label asp-for="SeoAlias" class="control-label"></label>
                                 <input asp-for="SeoAlias" class="form-control" />
                                 <span asp-validation-for="SeoAlias" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="CountStock" class="control-label"></label>
+                                <input asp-for="CountStock" class="form-control" />
+                                <span asp-validation-for="CountStock" class="text-danger"></span>
                             </div>
                             <div class="form-group col-md-5 padd-left">
                                 <label asp-for="ProductSizeId" class="control-label"></label>

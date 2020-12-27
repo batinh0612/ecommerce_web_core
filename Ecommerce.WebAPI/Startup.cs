@@ -207,6 +207,9 @@ namespace Ecommerce.WebAPI
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
 
+            services.AddSingleton<IProductAttributeRepository, ProductAttributeRepository>();
+            services.AddSingleton<IProductAttributeService, ProductAttributeService>();
+
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductSevice, ProductService>();
 
@@ -230,6 +233,8 @@ namespace Ecommerce.WebAPI
             services.AddTransient<IStorageRepository, StorageRepository>();
 
             services.AddTransient<UserName>();
+
+
         }
     }
 }

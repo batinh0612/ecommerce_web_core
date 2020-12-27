@@ -136,6 +136,8 @@ namespace Ecommerce.Web
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
 
+            //services.AddSingleton<IProductAttributeRepository, ProductAttributeRepository>();
+
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductSevice, ProductService>();
 

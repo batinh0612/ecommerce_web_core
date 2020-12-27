@@ -120,6 +120,9 @@ namespace Ecommerce.Admin
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
 
+            services.AddSingleton<IProductAttributeRepository, ProductAttributeRepository>();
+            services.AddSingleton<IProductAttributeService, ProductAttributeService>();
+
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductSevice, ProductService>();
 
@@ -152,6 +155,8 @@ namespace Ecommerce.Admin
 
             services.AddScoped<IAuthorizationHandler, PoliciesAuthorizationHandler>();
             services.AddScoped<IAuthorizationHandler, RolesAuthorizationHandler>();
+
+           
         }
 
         private void Endpoints(IApplicationBuilder app)

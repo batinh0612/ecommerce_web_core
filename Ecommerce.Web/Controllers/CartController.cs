@@ -114,5 +114,10 @@ namespace Ecommerce.Web.Controllers
             }
             return Ok(cartDetail);
         }
+
+        public async Task<IActionResult> Checkout()
+        {
+            return View();
+        }
     }
 }

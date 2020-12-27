@@ -11,7 +11,6 @@ using Ecommerce.Repository.Common;
 using Ecommerce.Repository.Interfaces;
 using EcommerceCommon.Infrastructure.Dto.Product;
 using EcommerceCommon.Infrastructure.ViewModel;
-using EcommerceCommon.Infrastructure.ViewModel.Cart;
 using EcommerceCommon.Infrastructure.ViewModel.Product;
 using EcommerceCommon.Utilities.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +23,8 @@ namespace Ecommerce.Repository
         private readonly IStorageRepository _storageRepository;
         private const string USER_CONTENT_FOLDER_NAME = "user-content";
 
-        public ProductRepository(ApplicationDbContext dbContext, IStorageRepository storageRepository) : base(dbContext)
+        public ProductRepository(ApplicationDbContext dbContext, 
+            IStorageRepository storageRepository) : base(dbContext)
         {
             _storageRepository = storageRepository;
         }
@@ -37,7 +37,6 @@ namespace Ecommerce.Repository
         /// <returns></returns>
         public async Task<bool> Create(ProductCreateDto dto)
         {
-
             var languages = DbContext.Languages;
             var translations = new List<ProductTranslation>();
             foreach (var language in languages)
@@ -71,6 +70,7 @@ namespace Ecommerce.Repository
                     });
                 }
             }
+
             var product = new Product()
             {
                 Code = dto.Code,
@@ -91,17 +91,28 @@ namespace Ecommerce.Repository
                         CategoryId = dto.CategoryId
                     }
                 },
-                ProductAttributes = new List<ProductAttribute>()
-                {
-                    new ProductAttribute()
-                    {
-                        ProductColorId = dto.ProductColorId,
-                        ProductSizeId = dto.ProductSizeId,
-                        CountStock = dto.CountStock
-                    }
-                },
-                ProductTranslations = translations
+                ProductTranslations = translations,
+                
             };
+
+            var productAttributes = new List<ProductAttribute>();
+            foreach (var proColor in dto.ProductColorId)
+            {
+                foreach (var proSize in dto.ProductSizeId)
+                {
+                    var attribute = new ProductAttribute();
+                    attribute.CountStock = dto.CountStock;
+                    attribute.ProductId = product.Id;
+                    attribute.ProductColorId = proColor;
+                    attribute.ProductSizeId = proSize;
+
+                    DbContext.ProductAttributes.Add(attribute);
+                    productAttributes.Add(attribute);
+                }
+            }
+
+            product.ProductAttributes = productAttributes;
+
 
             if (dto.ThumnailImage != null)
             {
@@ -129,8 +140,7 @@ namespace Ecommerce.Repository
         {
 
             var query = from p in DbContext.Products
-                        join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId /*into ptt*/
-                        //from pt in ptt.DefaultIfEmpty()
+                        join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
                         join pic in DbContext.ProductInCategories on p.Id equals pic.ProductId into picc
                         from pic in picc.DefaultIfEmpty()
                         join pi in DbContext.ProductImages on p.Id equals pi.ProductId into pii
@@ -182,8 +192,7 @@ namespace Ecommerce.Repository
             endDateTime = DateTime.Today.AddDays(1).AddTicks(-1);//Today at 23:59:59
 
             var query = await (from p in DbContext.Products.Where(x => x.CreatedDate >= startDateTime && x.CreatedDate <= endDateTime)
-                               join pt in DbContext.ProductTranslations.Where(x => x.LanguageId == languageId) on p.Id equals pt.ProductId /*into ptt*/
-                               //from pt in ptt.DefaultIfEmpty()
+                               join pt in DbContext.ProductTranslations.Where(x => x.LanguageId == languageId) on p.Id equals pt.ProductId
                                join s in DbContext.Suppliers on p.SupplierId equals s.Id into ss
                                from s in ss.DefaultIfEmpty()
                                select new ProductViewModel
@@ -257,9 +266,6 @@ namespace Ecommerce.Repository
                 ShortDescription = x.pt.ShortDescription,
                 Sku = x.p.Sku,
                 Views = x.p.Views,
-                //CountStock = x.pa.CountStock,
-                //Color = x.pa.ProductColorId,
-                //Size = x.pa
                 Details = x.pt.Details,
                 ManufactureName = x.m.Name,
                 SupplierName = x.s.Name,
@@ -280,9 +286,8 @@ namespace Ecommerce.Repository
         public async Task<List<MostViewProductViewModel>> GetProductView(string languageId)
         {
             var product = await (
-                    from p in DbContext.Products.Where(x => x.IsDeleted == false)/*.OrderByDescending(x => x.Views).Take(5)*/
-                    join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId/* into ptt*/
-                    //from pt in ptt.DefaultIfEmpty()
+                    from p in DbContext.Products.Where(x => x.IsDeleted == false)
+                    join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
                     join pic in DbContext.ProductInCategories on p.Id equals pic.ProductId
                     join c in DbContext.Categories on pic.CategoryId equals c.Id
                     join ct in DbContext.CategoryTranslations on c.Id equals ct.CategoryId
@@ -412,6 +417,8 @@ namespace Ecommerce.Repository
             var productImage = DbContext.ProductImages.SingleOrDefault(x => x.ProductId == id);
             var productTransaltion = DbContext.ProductTranslations.Where(x => x.ProductId == id);
             var productInCategory = DbContext.ProductInCategories.Where(x => x.ProductId == id);
+            var productAttribute = DbContext.ProductAttributes.Where(x => x.ProductId == id);
+            var cartdetail = DbContext.CartDetails.Where(x => x.ProductId == id);
             if (product == null)
             {
                 throw new EcommerceException($"Cannot find product with id: {id}");
@@ -423,6 +430,8 @@ namespace Ecommerce.Repository
                 await _storageRepository.DeleteFileAsync(item.ImageLink);
             }
 
+            DbContext.CartDetails.RemoveRange(cartdetail);
+            DbContext.ProductAttributes.RemoveRange(productAttribute);
             DbContext.ProductTranslations.RemoveRange(productTransaltion);
             DbContext.ProductImages.Remove(productImage);
             DbContext.ProductInCategories.RemoveRange(productInCategory);
@@ -436,17 +445,15 @@ namespace Ecommerce.Repository
         public async Task<List<ProductHomePageViewModel>> NewProductHomePage()
         {
             var query = await (from p in DbContext.Products
-                               join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId /*into ptt*/
+                               join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
                                join pi in DbContext.ProductImages.Where(x => x.MainImage == true) on p.Id equals pi.ProductId
-                               join s in DbContext.Suppliers on p.SupplierId equals s.Id /*into ss*/
-                               //from s in ss.DefaultIfEmpty()
+                               join s in DbContext.Suppliers on p.SupplierId equals s.Id
                                where pt.LanguageId == "vi"
                                select new ProductHomePageViewModel
                                {
                                    Id = p.Id,
                                    Code = string.IsNullOrEmpty(p.Code) ? "" : p.Code,
                                    Name = string.IsNullOrEmpty(pt.Name) ? "" : pt.Name,
-                                   //Height = p.Height,
                                    Quantity = p.Quantity,
                                    ShortDescription = pt.ShortDescription,
                                    Sku = p.Sku,
@@ -466,15 +473,13 @@ namespace Ecommerce.Repository
             var query = await (from p in DbContext.Products
                                join pt in DbContext.ProductTranslations on p.Id equals pt.ProductId
                                join pi in DbContext.ProductImages.Where(x => x.MainImage == true) on p.Id equals pi.ProductId
-                               join s in DbContext.Suppliers on p.SupplierId equals s.Id/* into ss*/
-                               //from s in ss.DefaultIfEmpty()
+                               join s in DbContext.Suppliers on p.SupplierId equals s.Id
                                where p.IsFeatured == true && pt.LanguageId == "vi"
                                select new ProductHomePageViewModel
                                {
                                    Id = p.Id,
                                    Code = string.IsNullOrEmpty(p.Code) ? "" : p.Code,
                                    Name = string.IsNullOrEmpty(pt.Name) ? "" : pt.Name,
-                                   //Height = p.Height,
                                    Quantity = p.Quantity,
                                    ShortDescription = pt.ShortDescription,
                                    Sku = p.Sku,
@@ -507,8 +512,6 @@ namespace Ecommerce.Repository
             }).ToListAsync();
             return colors;
         }
-
-        
         #endregion
     }
 }

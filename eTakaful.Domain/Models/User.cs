@@ -31,7 +31,7 @@ namespace Ecommerce.Domain.Models
 
         public virtual ICollection<Cart> Carts { get; set; }
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        //public virtual ICollection<UserRole> UserRoles { get; set; }
         #endregion
     }
 }
