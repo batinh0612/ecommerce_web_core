@@ -22,3 +22,6 @@ D:\EcommerceWebCore\Ecommerce.ApiIntegration\obj\Debug\netcoreapp3.1\Ecommerce.A
 D:\EcommerceWebCore\Ecommerce.ApiIntegration\obj\Debug\netcoreapp3.1\Ecommerce.ApiIntegration.csproj.CopyComplete
 D:\EcommerceWebCore\Ecommerce.ApiIntegration\obj\Debug\netcoreapp3.1\Ecommerce.ApiIntegration.dll
 D:\EcommerceWebCore\Ecommerce.ApiIntegration\obj\Debug\netcoreapp3.1\Ecommerce.ApiIntegration.pdb
+D:\EcommerceWebCore\Ecommerce.ApiIntegration\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.deps.json
+D:\EcommerceWebCore\Ecommerce.ApiIntegration\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.json
+D:\EcommerceWebCore\Ecommerce.ApiIntegration\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.dev.json

@@ -929,3 +929,6 @@ D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\User\Edi
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
 D:\EcommerceWebCore\Ecommerce.Admin\bin\Debug\netcoreapp3.1\Ecommerce.Admin.StaticWebAssets.xml
 D:\EcommerceWebCore\Ecommerce.Admin\obj\Debug\netcoreapp3.1\Razor\Views\Cart\CartDetail.cshtml.g.cs
+D:\EcommerceWebCore\Ecommerce.Admin\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.deps.json
+D:\EcommerceWebCore\Ecommerce.Admin\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.json
+D:\EcommerceWebCore\Ecommerce.Admin\bin\Debug\netcoreapp3.1\Ecommerce.WebAPI.runtimeconfig.dev.json
