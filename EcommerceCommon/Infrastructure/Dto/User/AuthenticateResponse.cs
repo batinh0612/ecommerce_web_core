@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace EcommerceCommon.Infrastructure.Dto.User
 {
@@ -8,20 +9,19 @@ namespace EcommerceCommon.Infrastructure.Dto.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
-        public string Token { get; set; }
+        public string JwtToken { get; set; }
 
-        public AuthenticateResponse()
-        {
+        [JsonIgnore] // refresh token is returned in http only cookie
+        public string RefreshToken { get; set; }
 
-        }
-
-        public AuthenticateResponse(Ecommerce.Domain.Models.User user, string token)
+        public AuthenticateResponse(Ecommerce.Domain.Models.User user, string jwtToken, string refreshToken)
         {
             Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
             Username = user.Username;
-            Token = token;
+            JwtToken = jwtToken;
+            RefreshToken = refreshToken;
         }
     }
 }

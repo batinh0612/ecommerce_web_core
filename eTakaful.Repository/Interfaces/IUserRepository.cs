@@ -12,6 +12,22 @@ namespace Ecommerce.Repository.Interfaces
     public interface IUserRepository: IRepository<User>
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="ipAddress"></param>
+        /// <returns></returns>
+        AuthenticateResponse RefreshToken(string token, string ipAddress);
+
+        /// <summary>
+        /// RevokeToken
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="ipAddress"></param>
+        /// <returns></returns>
+        bool RevokeToken(string token, string ipAddress);
+
+        /// <summary>
         /// Register
         /// </summary>
         /// <param name="dto"></param>

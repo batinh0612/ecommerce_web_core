@@ -17,6 +17,9 @@ namespace Ecommerce.Service.Interface
         /// <returns></returns>
         Task<string> Authenticate(LoginRequest request);
 
+        AuthenticateResponse RefreshToken(string token, string ipAddress);
+        bool RevokeToken(string token, string ipAddress);
+
         /// <summary>
         /// Register
         /// </summary>

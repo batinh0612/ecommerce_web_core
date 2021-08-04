@@ -31,6 +31,8 @@ namespace Ecommerce.Domain
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductInCategory> ProductInCategories { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartDetail> CartDetails { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }

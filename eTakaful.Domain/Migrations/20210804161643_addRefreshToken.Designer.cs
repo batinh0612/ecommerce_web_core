@@ -4,14 +4,16 @@ using Ecommerce.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ecommerce.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210804161643_addRefreshToken")]
+    partial class addRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -825,35 +827,6 @@ namespace Ecommerce.Domain.Migrations
                     b.ToTable("ProductTranslations");
                 });
 
-            modelBuilder.Entity("Ecommerce.Domain.Models.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Created");
-
-                    b.Property<string>("CreatedByIp");
-
-                    b.Property<DateTime>("Expires");
-
-                    b.Property<string>("ReplacedByToken");
-
-                    b.Property<DateTime?>("Revoked");
-
-                    b.Property<string>("RevokedByIp");
-
-                    b.Property<string>("Token");
-
-                    b.Property<Guid?>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
-                });
-
             modelBuilder.Entity("Ecommerce.Domain.Models.Role", b =>
                 {
                     b.Property<Guid>("Id")
@@ -968,37 +941,6 @@ namespace Ecommerce.Domain.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Ecommerce.Domain.Models.UserRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CommonStatus");
-
-                    b.Property<string>("CreatedBy");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<Guid>("RoleId");
-
-                    b.Property<string>("UpdatedBy");
-
-                    b.Property<DateTime?>("UpdatedDate");
-
-                    b.Property<Guid>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Ecommerce.Domain.Models.Cart", b =>
@@ -1187,31 +1129,45 @@ namespace Ecommerce.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Ecommerce.Domain.Models.RefreshToken", b =>
-                {
-                    b.HasOne("Ecommerce.Domain.Models.User")
-                        .WithMany("RefreshTokens")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Ecommerce.Domain.Models.User", b =>
                 {
                     b.HasOne("Ecommerce.Domain.Models.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId");
-                });
 
-            modelBuilder.Entity("Ecommerce.Domain.Models.UserRole", b =>
-                {
-                    b.HasOne("Ecommerce.Domain.Models.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.OwnsMany("Ecommerce.Domain.Models.RefreshToken", "RefreshTokens", b1 =>
+                        {
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasOne("Ecommerce.Domain.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                            b1.Property<DateTime>("Created");
+
+                            b1.Property<string>("CreatedByIp");
+
+                            b1.Property<DateTime>("Expires");
+
+                            b1.Property<string>("ReplacedByToken");
+
+                            b1.Property<DateTime?>("Revoked");
+
+                            b1.Property<string>("RevokedByIp");
+
+                            b1.Property<string>("Token");
+
+                            b1.Property<Guid>("UserId");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("UserId");
+
+                            b1.ToTable("RefreshToken");
+
+                            b1.HasOne("Ecommerce.Domain.Models.User")
+                                .WithMany("RefreshTokens")
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 #pragma warning restore 612, 618
         }

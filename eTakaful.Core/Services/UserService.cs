@@ -27,7 +27,6 @@ namespace Ecommerce.Service.Services
 
         public UserService(IUserRepository userReponsitory, 
             IMapper mapper, 
-            IOptions<AppSettings> appSettings,
             Tokens tokens,
             IRoleRepository roleRepository) : base(userReponsitory)
         {
@@ -75,6 +74,16 @@ namespace Ecommerce.Service.Services
 
             var resultToken = new JwtSecurityTokenHandler().WriteToken(token);
             return resultToken;
+        }
+
+        public AuthenticateResponse RefreshToken(string token, string ipAddress)
+        {
+            return _userReponsitory.RefreshToken(token, ipAddress);
+        }
+
+        public bool RevokeToken(string token, string ipAddress)
+        {
+            return _userReponsitory.RevokeToken(token, ipAddress);
         }
 
         /// <summary>

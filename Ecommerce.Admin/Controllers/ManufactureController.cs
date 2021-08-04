@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Admin.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class ManufactureController : BaseController
     {
         private readonly IManufactureApiClient manufactureApiClient;
